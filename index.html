@@ -4,16 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hwan</title>
-  <meta name="description" content="Portfolio and introduction page of Hwan" />
+  <meta name="description" content="AI Researcher · Full-Stack Architect · Systems Leader" />
   <meta name="theme-color" content="#0d1117" />
-
-  <!-- SEO / Open Graph -->
-  <meta property="og:title" content="Hwan" />
-  <meta property="og:description" content="AI Researcher · Full-Stack Architect · Systems Leader" />
-  <meta property="og:image" content="assets/profile.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://667700996.github.io/" />
-
   <link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
   <link rel="apple-touch-icon" href="assets/profile.jpg" />
 
@@ -21,107 +13,206 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hwan" />
+  <meta property="og:description" content="AI Researcher · Full-Stack Architect · Systems Leader" />
+  <meta property="og:image" content="assets/profile.jpg" />
+  <meta property="og:type" content="profile" />
+
   <style>
-    :root{
-      --bg:#0d1117;
-      --ink:#f0f6fc;
-      --muted:#a8b2c0;
-      --line:rgba(255,255,255,0.15); /* white-ish divider */
-      --accent:#3a8bff;
-      --max:1080px;
+    :root {
+      --bg: #0d1117;
+      --ink: #f0f6fc;
+      --muted: #9da5b4;
+      --line: #30363d;
+      --accent: #3a8bff;
+      --max: 1080px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;scroll-behavior:smooth}
-    body{
-      font-family:"Pretendard Variable",Inter,"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background-color:var(--bg); color:var(--ink);
-      line-height:1.9; letter-spacing:.02em;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body {
+      font-family: "Pretendard Variable", Inter, "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.9;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    main{ max-width:var(--max); margin:0 auto; padding:64px 28px 100px }
-
-    section{ margin:100px 0; position:relative; background-color:var(--bg) }
-    section:not(:last-child)::after{
-      content:""; display:block; height:2px; border-radius:2px;
-      width:70%; margin:80px auto 0; background:var(--line);
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 64px 28px 100px;
     }
 
-    h1{ font-size:52px; margin-bottom:8px; letter-spacing:-.03em; font-weight:800 }
-    h2{ font-size:24px; color:var(--accent); font-weight:900; letter-spacing:.08em; margin-bottom:20px }
+    section { margin-bottom: 120px; position: relative; }
+    section:not(:last-child)::after {
+      content: "";
+      display: block;
+      height: 3px;
+      background: #fff;
+      margin-top: 100px;
+      opacity: 0.8;
+    }
 
-    p{ font-size:18px; margin-bottom:16px; transition:color .25s ease, opacity .25s ease }
+    h1 {
+      font-size: 52px;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
 
-    ul{ list-style-type:"– "; padding-left:1em; line-height:1.8 }
-    li{ margin-bottom:10px }
+    h2 {
+      font-size: 26px;
+      color: var(--accent);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin-bottom: 28px;
+    }
+
+    p { font-size: 18px; margin-bottom: 16px; }
 
     /* HERO */
-    .hero{
-      display:grid; grid-template-columns:280px 1fr; gap:48px; align-items:center;
-      margin-bottom:80px; /* profile ↔ text ↔ contacts 간격 강화 */
-    }
-    .avatar{
-      width:100%; aspect-ratio:1/1; height:auto; max-height:320px; object-fit:cover;
-      border-radius:16px; border:1px solid var(--line); background:#111;
-    }
-    .subtitle{ color:var(--muted); font-weight:800; margin-bottom:28px; font-size:18px }
-
-    .contacts{ display:grid; gap:12px; max-width:640px; margin-top:20px }
-    .contact{ display:flex; align-items:center; gap:10px; color:var(--ink); text-decoration:none }
-    .contact svg{ width:20px; height:20px; fill:var(--ink); margin-bottom:-2px }
-
-    /* language toggle */
-    .lang{
-      position:fixed; right:20px; top:20px; z-index:10;
-      border:1px solid var(--line); background:transparent; color:var(--ink);
-      font-weight:700; border-radius:50px; padding:6px 12px; cursor:pointer;
-      font-size:13px; letter-spacing:.05em;
+    .hero {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 80px;
+      align-items: center;
     }
 
-    .label{ color:var(--muted); font-weight:800; font-size:13px; text-transform:uppercase; letter-spacing:.12em; margin-bottom:6px }
-    .cols-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:36px }
+    .avatar {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #111;
+    }
 
-    .row{ margin-bottom:24px }
-    .row .title{ font-weight:900; font-size:18px }
-    .row .when{ color:var(--muted); font-size:14px; margin-left:8px }
-    .org{ color:var(--muted); font-size:15px; margin:4px 0 6px }
+    .subtitle {
+      color: var(--muted);
+      font-weight: 800;
+      margin-bottom: 24px;
+      font-size: 18px;
+    }
 
-    .footer{ text-align:center; color:var(--muted); font-size:14px; margin-top:80px; opacity:.8 }
+    .contacts {
+      display: grid;
+      gap: 12px;
+      max-width: 640px;
+    }
 
-    @media(max-width:900px){
-      .hero{ grid-template-columns:1fr; gap:32px }
-      h1{ font-size:38px }
-      .avatar{ max-height:260px }
-      .cols-3{ grid-template-columns:1fr; gap:24px }
-      main{ padding:48px 18px 80px }
-      section{ margin:80px 0 }
-      p, li{ font-size:16px }
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .contact svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--ink);
+    }
+
+    /* Language Button */
+    .lang {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      z-index: 10;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 6px 14px;
+      cursor: pointer;
+    }
+
+    .label {
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 20px;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    ul { list-style: none; padding-left: 20px; }
+    ul li { margin-bottom: 6px; font-size: 17px; position: relative; }
+    ul li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: -15px;
+    }
+
+    .row { margin-bottom: 28px; }
+    .row .title { font-weight: 900; font-size: 18px; }
+    .row .when { color: var(--muted); font-size: 14px; margin-left: 8px; }
+    .org { color: var(--muted); font-size: 15px; margin: 4px 0 6px; }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 100px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Center "H" Icon */
+    .center-logo {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--accent);
+      font-size: 120px;
+      opacity: 0.06;
+      font-weight: 900;
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; }
+      h1 { font-size: 40px; }
+      .avatar { height: 260px; }
+      main { padding: 48px 18px 80px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #111; }
+      .lang, .center-logo { display: none; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Language toggle -->
-  <button id="lang" class="lang" aria-label="Language Toggle">EN</button>
+  <div class="center-logo">H</div>
+  <button id="lang" class="lang" aria-label="Language Toggle">🌐 EN</button>
 
   <main>
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" aria-labelledby="name">
       <img class="avatar" src="assets/profile.jpg" alt="Hwan profile photo" />
       <div>
-        <h1 id="name" data-i18n="hero.name" data-ko="Hwan">Hwan</h1>
-        <p class="subtitle" data-i18n="hero.role" data-ko="AI Researcher · Full-Stack Architect · Systems Leader">AI Researcher · Full-Stack Architect · Systems Leader</p>
+        <h1 id="name">Hwan</h1>
+        <p class="subtitle" data-i18n="hero.role">AI Researcher · Full-Stack Architect · Systems Leader</p>
 
         <div class="contacts">
-          <a class="contact" href="mailto:hwan.dev@proton.me" aria-label="Email">✉️ <span>hwan.dev@proton.me</span></a>
-          <a class="contact" href="https://github.com/667700996" target="_blank" rel="noopener" aria-label="GitHub">
-            <!-- GitHub icon -->
+          <a class="contact" href="mailto:hwan.dev@proton.me">✉️ <span>hwan.dev@proton.me</span></a>
+          <a class="contact" href="https://github.com/667700996" target="_blank" rel="noopener">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2c-3.3.7-4-1.4-4-1.4-.6-1.3-1.4-1.6-1.4-1.6-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 3 1.3 3.7 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C18.4 6.3 19.4 6.6 19.4 6.6c.6 1.7.2 3 .1 3.3.8.9 1.2 2 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.3.8 1 .8 2v3c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
             <span>github.com/667700996</span>
           </a>
-          <a class="contact" href="https://x.com/H_667700996" target="_blank" rel="noopener" aria-label="X">
-            <!-- X icon -->
+          <a class="contact" href="https://x.com/H_667700996" target="_blank" rel="noopener">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h5.3l4.3 6.3L18.7 3H21l-6.7 7.4L21 21h-5.3l-4.7-6.9L7 21H3l7-7.7L3 3Zm3.9 2 10.2 14H17L6.8 5H6.9Z"/></svg>
             <span>x.com/H_667700996</span>
           </a>
@@ -131,240 +222,112 @@
 
     <!-- INTRODUCE -->
     <section id="introduce">
-      <h2 data-i18n="intro.title" data-ko="INTRODUCE">INTRODUCE</h2>
-      <p data-i18n="intro.desc1" data-ko="프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다. AI 프롬프트 엔지니어링부터 대규모 인프라 설계, UX 중심의 프런트엔드 개발까지 정밀한 완성도 높은 시스템을 설계합니다.">
-        프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.
-        AI 프롬프트 엔지니어링부터 대규모 인프라 설계, UX 중심의 프런트엔드 개발까지 정밀한 완성도 높은 시스템을 설계합니다.
-      </p>
-      <p data-i18n="intro.desc2" data-ko="기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다. 코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.">
-        기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.
-        코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.
-      </p>
+      <h2 data-i18n="introduce.title">INTRODUCE</h2>
+      <p data-i18n="introduce.1">프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.<br>AI 프롬프트 엔지니어링부터 대규모 인프라 설계, UX 중심의 프런트엔드 개발까지 정밀한 완성도 높은 시스템을 설계합니다.</p>
+      <p data-i18n="introduce.2">기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.<br>코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.</p>
     </section>
 
     <!-- SKILL -->
     <section id="skills">
-      <h2 data-i18n="skill.title" data-ko="SKILL">SKILL</h2>
-      <div class="cols-3">
-        <div>
-          <div class="label" data-i18n="skill.lang" data-ko="Languages">Languages</div>
-          <ul>
-            <li data-i18n="skill.lang.1" data-ko="HTML / CSS">HTML / CSS</li>
-            <li data-i18n="skill.lang.2" data-ko="JavaScript / TypeScript">JavaScript / TypeScript</li>
-            <li data-i18n="skill.lang.3" data-ko="Java">Java</li>
-            <li data-i18n="skill.lang.4" data-ko="Rust">Rust</li>
-          </ul>
-        </div>
-        <div>
-          <div class="label" data-i18n="skill.frameworks" data-ko="Frameworks & Libraries">Frameworks & Libraries</div>
-          <ul>
-            <li data-i18n="skill.fw.1" data-ko="Node.js">Node.js</li>
-            <li data-i18n="skill.fw.2" data-ko="React.js">React.js</li>
-            <li data-i18n="skill.fw.3" data-ko="SvelteKit">SvelteKit</li>
-          </ul>
-        </div>
-        <div>
-          <div class="label" data-i18n="skill.infra" data-ko="Infrastructure & Databases">Infrastructure & Databases</div>
-          <ul>
-            <li data-i18n="skill.infra.1" data-ko="Linux / nginx">Linux / nginx</li>
-            <li data-i18n="skill.infra.2" data-ko="PostgreSQL">PostgreSQL</li>
-            <li data-i18n="skill.infra.3" data-ko="Cloud">Cloud</li>
-            <li data-i18n="skill.infra.4" data-ko="Podman">Podman</li>
-          </ul>
-        </div>
+      <h2 data-i18n="skills.title">SKILL</h2>
+      <div>
+        <div class="label">Languages</div>
+        <ul><li>HTML / CSS</li><li>JavaScript / TypeScript</li><li>Java</li><li>Rust</li></ul>
+
+        <div class="label">Frameworks & Libraries</div>
+        <ul><li>Node.js</li><li>React.js</li><li>SvelteKit</li></ul>
+
+        <div class="label">Infrastructure & Databases</div>
+        <ul><li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li></ul>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
     <section id="experience">
-      <h2 data-i18n="exp.title" data-ko="EXPERIENCE">EXPERIENCE</h2>
-
-      <div class="row">
-        <span class="title" data-i18n="exp.1.title" data-ko="우리미래연구소 — 인공지능 연구 수석">우리미래연구소 — 인공지능 연구 수석</span>
-        <span class="when" data-i18n="exp.1.when" data-ko="2023.01 ~">2023.01 ~</span>
-        <div class="org" data-i18n="exp.1.desc" data-ko="LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구">LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div>
-      </div>
-
-      <div class="row">
-        <span class="title" data-i18n="exp.2.title" data-ko="MN Co. — 총괄 웹 디자이너">MN Co. — 총괄 웹 디자이너</span>
-        <span class="when" data-i18n="exp.2.when" data-ko="2024.06 ~ 2024.12">2024.06 ~ 2024.12</span>
-        <div class="org" data-i18n="exp.2.desc" data-ko="쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계">쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계</div>
-      </div>
-
-      <div class="row">
-        <span class="title" data-i18n="exp.3.title" data-ko="Team DevCrew — 개발팀 팀장">Team DevCrew — 개발팀 팀장</span>
-        <span class="when" data-i18n="exp.3.when" data-ko="2025.01 ~">2025.01 ~</span>
-        <div class="org" data-i18n="exp.3.desc" data-ko="금융/웹 서비스 설계 및 클라우드 파이프라인 총괄 · 팀 협업 프로세스/코드리뷰 문화">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄 · 팀 협업 프로세스/코드리뷰 문화</div>
-      </div>
-
-      <div class="row">
-        <span class="title" data-i18n="exp.4.title" data-ko="온누리PG — 개발부 부장">온누리PG — 개발부 부장</span>
-        <span class="when" data-i18n="exp.4.when" data-ko="2025.05 ~">2025.05 ~</span>
-        <div class="org" data-i18n="exp.4.desc" data-ko="PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화">PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화</div>
-      </div>
+      <h2>EXPERIENCE</h2>
+      <div class="row"><span class="title">우리미래연구소 — 인공지능 연구 수석</span><span class="when">2023.01 ~</span>
+        <div class="org">LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div></div>
+      <div class="row"><span class="title">MN Co. — 총괄 웹 디자이너</span><span class="when">2024.06 ~ 2024.12</span>
+        <div class="org">쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계</div></div>
+      <div class="row"><span class="title">Team DevCrew — 개발팀 팀장</span><span class="when">2025.01 ~</span>
+        <div class="org">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄 · 팀 협업 프로세스/코드리뷰 문화</div></div>
+      <div class="row"><span class="title">온누리PG — 개발부 부장</span><span class="when">2025.05 ~</span>
+        <div class="org">PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화</div></div>
     </section>
 
     <!-- PROJECT -->
     <section id="projects">
-      <h2 data-i18n="proj.title" data-ko="PROJECT">PROJECT</h2>
-
+      <h2>PROJECT</h2>
       <div class="row">
-        <span class="title" data-i18n="proj.1.title" data-ko="Prompt AI Research Platform">Prompt AI Research Platform</span>
-        <span class="when" data-i18n="proj.1.when" data-ko="2023.01 ~">2023.01 ~</span>
-        <div class="org" data-i18n="proj.1.org" data-ko="우리미래연구소">우리미래연구소</div>
+        <span class="title">Prompt AI Research Platform</span><span class="when">2023.01 ~</span>
+        <div class="org">우리미래연구소</div>
         <ul>
-          <li data-i18n="proj.1.b1" data-ko="프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구">프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
-          <li data-i18n="proj.1.b2" data-ko="고정확도 응답 최적화 및 지식 정렬(Alignment) 연구">고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
-          <li data-i18n="proj.1.b3" data-ko="AI 모델 공격/방어 실험 및 결과 분석 리드">AI 모델 공격/방어 실험 및 결과 분석 리드</li>
+          <li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
+          <li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
+          <li>AI 모델 공격/방어 실험 및 결과 분석 리드</li>
         </ul>
       </div>
-
       <div class="row">
-        <span class="title" data-i18n="proj.2.title" data-ko="쇼핑몰 웹 서비스 전면 구축">쇼핑몰 웹 서비스 전면 구축</span>
-        <span class="when" data-i18n="proj.2.when" data-ko="2024.06 ~ 2024.12">2024.06 ~ 2024.12</span>
-        <div class="org" data-i18n="proj.2.org" data-ko="MN Co.">MN Co.</div>
+        <span class="title">쇼핑몰 웹 서비스 전면 구축</span><span class="when">2024.06 ~ 2024.12</span>
+        <div class="org">MN Co.</div>
         <ul>
-          <li data-i18n="proj.2.b1" data-ko="UI/UX 전면 재설계 및 반응형 프런트엔드 개발">UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
-          <li data-i18n="proj.2.b2" data-ko="API 서버 통합 및 nginx 캐싱/로딩 최적화">API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
-          <li data-i18n="proj.2.b3" data-ko="사용자 중심 데이터 흐름 설계로 전환율/안정성 동시 향상">사용자 중심 데이터 흐름 설계로 전환율/안정성 동시 향상</li>
+          <li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
+          <li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
+          <li>사용자 중심 데이터 흐름 설계로 전환율/안정성 동시 향상</li>
         </ul>
       </div>
-
       <div class="row">
-        <span class="title" data-i18n="proj.3.title" data-ko="금융 웹 인프라 통합">금융 웹 인프라 통합</span>
-        <span class="when" data-i18n="proj.3.when" data-ko="2025.05 ~">2025.05 ~</span>
-        <div class="org" data-i18n="proj.3.org" data-ko="Team DevCrew × 온누리PG">Team DevCrew × 온누리PG</div>
+        <span class="title">금융 웹 인프라 통합</span><span class="when">2025.05 ~</span>
+        <div class="org">Team DevCrew × 온누리PG</div>
         <ul>
-          <li data-i18n="proj.3.b1" data-ko="결제/정산 백엔드 보안 아키텍처 재설계">결제/정산 백엔드 보안 아키텍처 재설계</li>
-          <li data-i18n="proj.3.b2" data-ko="실시간 트랜잭션 로그/인증/암호화 체계 구축">실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
-          <li data-i18n="proj.3.b3" data-ko="금융 데이터 정합성 강화 및 SRE 기반 관측성 확보">금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
-          <li data-i18n="proj.3.b4" data-ko="조직 간 의사결정 인터페이스 정의로 품질과 속도 동시 개선">조직 간 의사결정 인터페이스 정의로 품질과 속도 동시 개선</li>
+          <li>결제/정산 백엔드 보안 아키텍처 재설계</li>
+          <li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
+          <li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
+          <li>조직 간 의사결정 인터페이스 정의로 품질과 속도 동시 개선</li>
         </ul>
       </div>
     </section>
 
     <!-- PRESENTATION -->
     <section id="presentation">
-      <h2 data-i18n="pres.title" data-ko="PRESENTATION">PRESENTATION</h2>
+      <h2>PRESENTATION</h2>
       <ul>
-        <li data-i18n="pres.1" data-ko="(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나">(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
-        <li data-i18n="pres.2" data-ko="(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나">(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
-        <li data-i18n="pres.3" data-ko="(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나">(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
-        <li data-i18n="pres.4" data-ko="(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연">(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
+        <li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
+        <li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
+        <li>(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
+        <li>(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
       </ul>
     </section>
 
-    <div class="footer" data-i18n="footer.quote" data-ko="“Logic. Reason. Form.” — Hwan">“Logic. Reason. Form.” — Hwan</div>
+    <div class="footer">“Logic. Reason. Form.” — Hwan</div>
   </main>
 
   <script>
-    // English dictionary (natural resume tone)
     const dict = {
       en: {
-        "hero.name": "Hwan",
-        "hero.role": "AI Researcher · Full-Stack Architect · Systems Leader",
-
-        "intro.title": "INTRODUCE",
-        "intro.desc1":
-          "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design. From prompt engineering to system architecture, I build precise, resilient, human-centered systems.",
-        "intro.desc2":
-          "I don’t merely work with technology—I solve problems through reasoning. Code is the outcome of thought; a system is thought refined into logic.",
-
-        "skill.title": "SKILL",
-        "skill.lang": "Languages",
-        "skill.lang.1": "HTML / CSS",
-        "skill.lang.2": "JavaScript / TypeScript",
-        "skill.lang.3": "Java",
-        "skill.lang.4": "Rust",
-
-        "skill.frameworks": "Frameworks & Libraries",
-        "skill.fw.1": "Node.js",
-        "skill.fw.2": "React.js",
-        "skill.fw.3": "SvelteKit",
-
-        "skill.infra": "Infrastructure & Databases",
-        "skill.infra.1": "Linux / nginx",
-        "skill.infra.2": "PostgreSQL",
-        "skill.infra.3": "Cloud",
-        "skill.infra.4": "Podman",
-
-        "exp.title": "EXPERIENCE",
-        "exp.1.title": "Woori Future Lab — Lead AI Researcher",
-        "exp.1.when": "2023.01 ~",
-        "exp.1.desc": "LLM experimentation, safety/alignment research; trustworthy response design; prompt-security defenses.",
-        "exp.2.title": "MN Co. — Lead Web Designer",
-        "exp.2.when": "2024.06 ~ 2024.12",
-        "exp.2.desc": "E-commerce UX overhaul & front-end build; backend/infrastructure integration architecture.",
-        "exp.3.title": "Team DevCrew — Engineering Lead",
-        "exp.3.when": "2025.01 ~",
-        "exp.3.desc": "Financial/web service architecture & cloud pipelines; collaboration process and code-review culture.",
-        "exp.4.title": "Onnuri PG — Head of Development",
-        "exp.4.when": "2025.05 ~",
-        "exp.4.desc": "Payment infrastructure & transaction security architecture; crypto/auth modules hardening.",
-
-        "proj.title": "PROJECT",
-        "proj.1.title": "Prompt AI Research Platform",
-        "proj.1.when": "2023.01 ~",
-        "proj.1.org": "Woori Future Lab",
-        "proj.1.b1": "Structured prompt datasets; LLM security and vulnerability research.",
-        "proj.1.b2": "High-accuracy response optimization and knowledge alignment.",
-        "proj.1.b3": "Offense/defense experiments on AI models with result analysis.",
-        "proj.2.title": "E-commerce Platform Rebuild",
-        "proj.2.when": "2024.06 ~ 2024.12",
-        "proj.2.org": "MN Co.",
-        "proj.2.b1": "End-to-end UX redesign with responsive front-end implementation.",
-        "proj.2.b2": "Unified API services; nginx caching & load optimization.",
-        "proj.2.b3": "Data-flow refactor improving conversion and stability together.",
-        "proj.3.title": "Financial Web Infrastructure Unification",
-        "proj.3.when": "2025.05 ~",
-        "proj.3.org": "Team DevCrew × Onnuri PG",
-        "proj.3.b1": "Redesigned secure architecture for payments/settlement backend.",
-        "proj.3.b2": "Real-time transaction logging, auth, and encryption pipeline.",
-        "proj.3.b3": "Data integrity hardening with SRE-grade observability.",
-        "proj.3.b4": "Defined inter-org decision interfaces to raise both quality and speed.",
-
-        "pres.title": "PRESENTATION",
-        "pres.1": "(2023.12.10) “Thinking in Language: AI” — Woori Future Lab Seminar",
-        "pres.2": "(2024.07.15) “From Vision to Design: UX Leads Systems” — MN Co. Seminar",
-        "pres.3": "(2024.03.20) “Prompt Engineering Deep-Dive: Programming Thought” — Woori Future Lab Seminar",
-        "pres.4": "(2025.09.15) “Financial Infra Security: Designing for Trust” — Onnuri PG Talk",
-
-        "footer.quote": "“Logic. Reason. Form.” — Hwan"
-      }
+        "introduce.title": "INTRODUCE",
+        "introduce.1": "A full-stack developer bridging frontend, backend, and AI research. From AI prompt engineering to scalable infrastructure and UX-driven frontend development, I craft precise, high-quality systems.",
+        "introduce.2": "Not a technician handling tools — a thinker solving problems through reasoning. Code is the result of thought; systems are structured forms of logic."
+      },
+      ko: {}
     };
 
-    function applyLang(lang){
-      const isEN = (lang === 'en');
-      document.documentElement.lang = isEN ? 'en' : 'ko';
-
-      // Update all nodes with data-i18n
-      document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const key = el.getAttribute('data-i18n');
-        const ko = el.getAttribute('data-ko'); // original Korean text
-        if(isEN){
-          // If a translation exists, use it; else fall back to KO/original text
-          if (dict.en[key]) el.textContent = dict.en[key];
-          else if (ko) el.textContent = ko;
-        }else{
-          if (ko) el.textContent = ko;
-        }
+    const applyLang = (lang) => {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (lang === "en" && dict.en[key]) el.textContent = dict.en[key];
+        else el.textContent = el.dataset.ko || el.textContent;
       });
+      const btn = document.getElementById("lang");
+      btn.textContent = lang === "en" ? "🌐 KO" : "🌐 EN";
+      localStorage.setItem("lang", lang);
+    };
 
-      // Button label
-      const btn = document.getElementById('lang');
-      if(btn) btn.textContent = isEN ? 'KO' : 'EN';
-
-      // Persist
-      localStorage.setItem('lang', isEN ? 'en' : 'ko');
-    }
-
-    // Initialize from storage (default: ko)
-    const initialLang = localStorage.getItem('lang') || 'ko';
-    applyLang(initialLang);
-
-    // Toggle on click
-    document.getElementById('lang').addEventListener('click', ()=>{
-      const next = (localStorage.getItem('lang') === 'en') ? 'ko' : 'en';
+    const initial = localStorage.getItem("lang") || "ko";
+    applyLang(initial);
+    document.getElementById("lang").addEventListener("click", () => {
+      const next = (localStorage.getItem("lang") || "ko") === "en" ? "ko" : "en";
       applyLang(next);
     });
   </script>
