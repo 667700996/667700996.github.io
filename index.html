@@ -31,7 +31,7 @@
     section{margin-bottom:120px;position:relative}
     section:not(:last-child)::after{
       content:"";display:block;height:2px;background:#f0f6fc;opacity:.15;
-      margin:100px auto 0;width:calc(100% - 120px);border-radius:2px;
+      margin:100px auto 0;width:clamp(160px, 32vw, 420px);border-radius:2px;
     }
     section.hero::after{display:none}
 
@@ -337,23 +337,54 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       });
     }
 
-    if(sectionTargets.length){
-      const observer = new IntersectionObserver(entries => {
-        const visible = entries.filter(entry => entry.isIntersecting);
-        if(!visible.length) return;
-        visible.sort((a, b) => {
-          return (sectionIndex.get(a.target.id) || 0) - (sectionIndex.get(b.target.id) || 0);
-        });
-        setActive(visible[0].target.id);
-      }, { root: null, rootMargin: "-45% 0px -45% 0px", threshold: 0.25 });
+    function updateActiveByScroll(){
+      if(!sectionTargets.length) return;
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+      let bestId = null;
+      let bestDistance = Infinity;
 
-      sectionTargets.forEach(({ section }) => observer.observe(section));
+      sectionTargets.forEach(({ id, section }) => {
+        const rect = section.getBoundingClientRect();
+        if(rect.bottom < 0 || rect.top > viewportHeight) return;
+        const sectionCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(sectionCenter - viewportCenter);
+        if(distance < bestDistance){
+          bestDistance = distance;
+          bestId = id;
+        }
+      });
+
+      if(!bestId){
+        bestId = sectionTargets[0]?.id || currentActiveId;
+      }
+
+      if(bestId){
+        setActive(bestId);
+      }
+    }
+
+    let ticking = false;
+    function requestUpdate(){
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        updateActiveByScroll();
+      });
+    }
+
+    if(sectionTargets.length){
+      requestUpdate();
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate);
     }
 
     navLinks.forEach(link => {
       link.addEventListener("click", () => {
         const id = link.getAttribute("href").slice(1);
         setActive(id);
+        requestUpdate();
       });
     });
 
@@ -374,11 +405,13 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
     const initial = localStorage.getItem("lang") || "ko";
     applyLang(initial);
     setActive(currentActiveId);
+    requestUpdate();
 
     document.getElementById("lang").addEventListener("click", ()=>{
       const next = (localStorage.getItem("lang") || "ko") === "ko" ? "en" : "ko";
       applyLang(next);
       setActive(currentActiveId);
+      requestUpdate();
     });
   </script>
 </body>
