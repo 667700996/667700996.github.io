@@ -8,12 +8,8 @@
   <meta name="theme-color" content="#0d1117" />
   <link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
   <link rel="apple-touch-icon" href="assets/profile.jpg" />
-
-  <!-- Pretendard Variable -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-
-  <!-- Open Graph -->
   <meta property="og:title" content="Hwan" />
   <meta property="og:description" content="AI Researcher · Full-Stack Architect · Systems Leader" />
   <meta property="og:image" content="assets/profile.jpg" />
@@ -28,7 +24,6 @@
       --accent: #3a8bff;
       --max: 1080px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; scroll-behavior: smooth; }
     body {
@@ -40,146 +35,67 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
     main {
       max-width: var(--max);
       margin: 0 auto;
       padding: 64px 28px 100px;
     }
-
     section { margin-bottom: 120px; position: relative; }
     section:not(:last-child)::after {
       content: "";
       display: block;
       height: 2px;
       background: #f0f6fc;
-      margin: 100px auto 0;
       opacity: 0.3;
+      margin: 100px auto 0;
       width: calc(100% - 120px);
       border-radius: 2px;
     }
-
-    /* 첫 번째 구분선 제거 */
     section.hero::after { display: none; }
-
-    h1 {
-      font-size: 52px;
-      margin-bottom: 8px;
-      letter-spacing: -0.03em;
-      font-weight: 800;
-    }
-
-    h2 {
-      font-size: 26px;
-      color: var(--accent);
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      margin-bottom: 28px;
-    }
-
+    h1 { font-size: 52px; margin-bottom: 8px; letter-spacing: -0.03em; font-weight: 800; }
+    h2 { font-size: 26px; color: var(--accent); font-weight: 900; letter-spacing: 0.08em; margin-bottom: 28px; }
     p { font-size: 18px; margin-bottom: 16px; }
-
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
+    .hero { display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: center; }
     .avatar {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: #111;
+      width: 100%; height: 280px; object-fit: cover;
+      border-radius: 16px; border: 1px solid var(--line); background: #111;
     }
-
     .subtitle {
-      color: var(--muted);
-      font-weight: 800;
-      margin-bottom: 24px;
-      font-size: 18px;
+      color: var(--muted); font-weight: 800; margin-bottom: 24px; font-size: 18px; line-height: 1.6;
     }
-
-    .contacts {
-      display: grid;
-      gap: 14px;
-      max-width: 640px;
+    .subtitle .sep { opacity: .6; }
+    @media (max-width: 900px) {
+      .subtitle .line { display: block; }
+      .subtitle .sep { display: none; }
     }
-
-    .contact {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--ink);
-      text-decoration: none;
-    }
-
-    .contact svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--ink);
-    }
-
-    /* Language Button */
+    .contacts { display: grid; gap: 14px; max-width: 640px; margin-top: 10px; }
+    .contact { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+    .contact svg { width: 20px; height: 20px; fill: var(--ink); }
     .lang {
-      position: fixed;
-      right: 20px;
-      top: 20px;
-      z-index: 10;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--ink);
-      font-weight: 700;
-      border-radius: 50px;
-      padding: 6px 14px;
-      cursor: pointer;
+      position: fixed; right: 20px; top: 20px; z-index: 1000;
+      border: 1px solid var(--line); background: rgba(13,17,23,0.75);
+      backdrop-filter: blur(6px); color: var(--ink); font-weight: 700;
+      border-radius: 50px; padding: 6px 14px; cursor: pointer;
     }
-
     .label {
-      color: var(--muted);
-      font-weight: 900;
-      font-size: 20px;
-      margin-top: 28px;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      color: var(--muted); font-weight: 900; font-size: 20px;
+      margin-top: 28px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;
     }
-
     ul { list-style: none; padding-left: 20px; }
     ul li { margin-bottom: 6px; font-size: 17px; position: relative; }
     ul li::before {
-      content: "•";
-      color: var(--accent);
-      position: absolute;
-      left: -15px;
+      content: "–"; position: absolute; left: -14px; color: var(--muted);
     }
-
-    .row { margin-bottom: 28px; }
+    .row { margin-bottom: 24px; }
     .row .title { font-weight: 900; font-size: 18px; }
     .row .when { color: var(--muted); font-size: 14px; margin-left: 8px; }
     .org { color: var(--muted); font-size: 15px; margin: 4px 0 6px; }
-
-    .footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 15px;
-      margin-top: 100px;
-      letter-spacing: 0.05em;
-    }
-
+    .footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 80px; }
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: 40px; }
-      h1 { font-size: 40px; }
-      .avatar { height: 260px; }
+      .hero { grid-template-columns: 1fr; gap: 24px; }
+      h1 { font-size: 38px; }
+      .avatar { height: 260px; margin-top: 30px; }
       main { padding: 48px 18px 80px; }
-    }
-
-    @media print {
-      body { background: #fff; color: #111; }
-      .lang { display: none; }
     }
   </style>
 </head>
@@ -188,13 +104,15 @@
   <button id="lang" class="lang" aria-label="Language Toggle">🌐 EN</button>
 
   <main>
-    <!-- HERO -->
     <section class="hero" aria-labelledby="name">
       <img class="avatar" src="assets/profile.jpg" alt="Hwan profile photo" />
       <div>
         <h1 id="name">Hwan</h1>
-        <p class="subtitle" data-i18n="hero.role">AI Researcher · Full-Stack Architect · Systems Leader</p>
-
+        <p class="subtitle" data-i18n="hero.role">
+          <span class="line">AI Researcher</span><span class="sep"> · </span>
+          <span class="line">Full-Stack Architect</span><span class="sep"> · </span>
+          <span class="line">Systems Leader</span>
+        </p>
         <div class="contacts">
           <a class="contact" href="mailto:hwan.dev@proton.me">✉️ <span>hwan.dev@proton.me</span></a>
           <a class="contact" href="https://github.com/667700996" target="_blank" rel="noopener">
@@ -209,31 +127,24 @@
       </div>
     </section>
 
-    <!-- INTRODUCE -->
     <section id="introduce">
       <h2 data-i18n="introduce.title">INTRODUCE</h2>
-      <p data-i18n="introduce.1">프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.<br>AI 프롬프트 엔지니어링부터 대규모 인프라 설계, UX 중심의 프런트엔드 개발까지 정밀한 완성도 높은 시스템을 설계합니다.</p>
-      <p data-i18n="introduce.2">기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.<br>코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.</p>
+      <p data-i18n="introduce.text1">프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.<br>AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.</p>
+      <p data-i18n="introduce.text2">기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.<br>코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.</p>
     </section>
 
-    <!-- SKILL -->
     <section id="skills">
       <h2 data-i18n="skills.title">SKILL</h2>
-      <div>
-        <div class="label">Languages</div>
-        <ul><li>HTML / CSS</li><li>JavaScript / TypeScript</li><li>Java</li><li>Rust</li></ul>
-
-        <div class="label">Frameworks & Libraries</div>
-        <ul><li>Node.js</li><li>React.js</li><li>SvelteKit</li></ul>
-
-        <div class="label">Infrastructure & Databases</div>
-        <ul><li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li></ul>
-      </div>
+      <div class="label" data-i18n="skills.lang">LANGUAGES</div>
+      <ul><li>HTML / CSS</li><li>JavaScript / TypeScript</li><li>Java</li><li>Rust</li></ul>
+      <div class="label" data-i18n="skills.framework">FRAMEWORKS & LIBRARIES</div>
+      <ul><li>Node.js</li><li>React.js</li><li>SvelteKit</li></ul>
+      <div class="label" data-i18n="skills.infra">INFRASTRUCTURE & DATABASES</div>
+      <ul><li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li></ul>
     </section>
 
-    <!-- EXPERIENCE -->
     <section id="experience">
-      <h2>EXPERIENCE</h2>
+      <h2 data-i18n="exp.title">EXPERIENCE</h2>
       <div class="row"><span class="title">우리미래연구소 — 인공지능 연구 수석</span><span class="when">2023.01 ~</span>
         <div class="org">LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div></div>
       <div class="row"><span class="title">MN Co. — 총괄 웹 디자이너</span><span class="when">2024.06 ~ 2024.12</span>
@@ -244,9 +155,8 @@
         <div class="org">PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화</div></div>
     </section>
 
-    <!-- PROJECT -->
     <section id="projects">
-      <h2>PROJECT</h2>
+      <h2 data-i18n="proj.title">PROJECT</h2>
       <div class="row">
         <span class="title">Prompt AI Research Platform</span><span class="when">2023.01 ~</span>
         <div class="org">우리미래연구소</div>
@@ -262,7 +172,7 @@
         <ul>
           <li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
           <li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
-          <li>사용자 중심 데이터 흐름 설계로 전환율/안정성 동시 향상</li>
+          <li>사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li>
         </ul>
       </div>
       <div class="row">
@@ -272,14 +182,13 @@
           <li>결제/정산 백엔드 보안 아키텍처 재설계</li>
           <li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
           <li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
-          <li>조직 간 의사결정 인터페이스 정의로 품질과 속도 동시 개선</li>
+          <li>조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li>
         </ul>
       </div>
     </section>
 
-    <!-- PRESENTATION -->
     <section id="presentation">
-      <h2>PRESENTATION</h2>
+      <h2 data-i18n="pres.title">PRESENTATION</h2>
       <ul>
         <li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
         <li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
@@ -288,36 +197,42 @@
       </ul>
     </section>
 
-    <div class="footer">“Logic. Reason. Form.” — Hwan</div>
+    <div class="footer" data-i18n="footer">“Logic. Reason. Form.” — Hwan</div>
   </main>
 
   <script>
     const dict = {
       en: {
+        "hero.role": "AI Researcher · Full-Stack Architect · Systems Leader",
         "introduce.title": "INTRODUCE",
-        "introduce.1": "A full-stack developer bridging frontend, backend, and AI research.<br>From AI prompt engineering to scalable infrastructure and UX-driven frontend development, I craft precise, high-quality systems.",
-        "introduce.2": "Not a technician handling tools — a thinker solving problems through reasoning.<br>Code is the result of thought; systems are structured forms of logic."
-      },
-      ko: {}
+        "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design. From AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
+        "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning. Code reflects structured thought, and every system embodies logic refined through clarity.",
+        "skills.title": "SKILL",
+        "skills.lang": "LANGUAGES",
+        "skills.framework": "FRAMEWORKS & LIBRARIES",
+        "skills.infra": "INFRASTRUCTURE & DATABASES",
+        "exp.title": "EXPERIENCE",
+        "proj.title": "PROJECT",
+        "pres.title": "PRESENTATION",
+        "footer": "“Logic. Reason. Form.” — Hwan"
+      }
     };
-
     const applyLang = (lang) => {
-      document.documentElement.lang = lang;
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (!el.dataset.ko) el.dataset.ko = el.innerHTML;
-        if (lang === "en" && dict.en[key]) el.innerHTML = dict.en[key];
-        else el.innerHTML = el.dataset.ko;
+      const map = lang === 'en' ? dict.en : null;
+      document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+      document.querySelectorAll('[data-i18n]').forEach(n => {
+        if (!n.dataset.ko) n.dataset.ko = n.innerHTML.trim();
+        if (map && map[n.dataset.i18n]) n.innerHTML = map[n.dataset.i18n];
+        if (!map && n.dataset.ko) n.innerHTML = n.dataset.ko;
       });
-      const btn = document.getElementById("lang");
-      btn.textContent = lang === "en" ? "🌐 KO" : "🌐 EN";
-      localStorage.setItem("lang", lang);
+      document.getElementById('lang').textContent = lang === 'en' ? '🌐 KO' : '🌐 EN';
+      localStorage.setItem('lang', lang);
     };
-
-    const initial = localStorage.getItem("lang") || "ko";
+    const initial = localStorage.getItem('lang') || 'ko';
     applyLang(initial);
-    document.getElementById("lang").addEventListener("click", () => {
-      const next = (localStorage.getItem("lang") || "ko") === "en" ? "ko" : "en";
+    document.getElementById('lang').addEventListener('click', () => {
+      const current = localStorage.getItem('lang') || 'ko';
+      const next = current === 'en' ? 'ko' : 'en';
       applyLang(next);
     });
   </script>
