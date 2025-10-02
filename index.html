@@ -87,24 +87,24 @@
       font-weight:700;border-radius:50px;padding:6px 14px;cursor:pointer;z-index:100;
     }
 
-    .label{color:var(--muted);font-weight:900;font-size:20px;margin-top:32px;margin-bottom:18px;text-transform:uppercase;letter-spacing:.05em}
+    .label{color:var(--muted);font-weight:900;font-size:20px;margin-top:40px;margin-bottom:22px;text-transform:uppercase;letter-spacing:.05em}
 
     ul{list-style:none;padding-left:20px}
     ul li{margin-bottom:12px;font-size:17px;position:relative}
     ul li::before{content:"•";position:absolute;left:-14px;color:var(--accent);font-size:18px}
-    .skill-list{padding-left:0;margin-top:0}
+    .skill-list{padding-left:28px;margin-top:0}
     .skill-list li{display:flex;align-items:center;gap:14px;margin-bottom:16px;font-size:17px;position:relative}
     .skill-list li::before{content:none}
     .skill-icon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0}
     .skill-icon svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}
     .skill-label{font-weight:600}
 
-    .row{margin-bottom:40px}
-    .row .title{display:block;font-weight:900;font-size:18px}
+    .row{margin-bottom:48px}
+    .row .title{display:block;font-weight:900;font-size:18px;margin-bottom:8px}
     .row .when{display:block;color:var(--accent);font-size:17px;font-weight:700;margin:12px 0 18px}
     .org{
       color:var(--ink);font-size:17px;margin:8px 0 10px;
-      display:flex;flex-direction:column;gap:10px;align-items:flex-start;text-align:left;
+      display:flex;flex-direction:column;gap:12px;align-items:flex-start;text-align:left;
     }
     .org-line{
       display:flex;align-items:center;justify-content:flex-start;gap:10px;
@@ -231,7 +231,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       <div class="row" data-i18n="proj.block1">
         <span class="title">Prompt AI Research Platform</span><span class="when">2023.01 ~</span>
         <div class="org">
-          <span class="org-line">우리미래 연구소</span>
+          <span class="org-line org-line-muted org-line-no-dot">우리미래 연구소</span>
         </div>
         <ul>
           <li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
@@ -255,7 +255,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       <div class="row" data-i18n="proj.block3">
         <span class="title">금융 웹 인프라 통합</span><span class="when">2025.05 ~</span>
         <div class="org">
-          <span class="org-line">Team DevCrew × 온누리PG</span>
+          <span class="org-line org-line-muted org-line-no-dot">Team DevCrew × 온누리PG</span>
         </div>
         <ul>
           <li>결제/정산 백엔드 보안 아키텍처 재설계</li>
@@ -312,7 +312,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
         "proj.title": "PROJECT",
         "proj.block1": "<span class='title'>Prompt AI Research Platform</span><span class='when'>2023.01 ~</span><div class='org'><span class='org-line'>우리미래 연구소</span></div><ul><li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li><li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li><li>AI 모델 공격/방어 실험 및 결과 분석 리드</li></ul>",
-        "proj.block2": "<span class='title'>쇼핑몰 웹 서비스 전면 구축</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'><span class='org-line'>MN Co.</span></div><ul><li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li><li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li><li>사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li></ul>",
+        "proj.block2": "<span class='title'>쇼핑몰 웹 서비스 전면 구축</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'><span class='org-line org-line-muted org-line-no-dot'>MN Co.</span></div><ul><li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li><li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li><li>사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li></ul>",
         "proj.block3": "<span class='title'>금융 웹 인프라 통합</span><span class='when'>2025.05 ~</span><div class='org'><span class='org-line'>Team DevCrew × 온누리PG</span></div><ul><li>결제/정산 백엔드 보안 아키텍처 재설계</li><li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li><li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li><li>조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li></ul>",
 
         "pres.title": "PRESENTATION",
@@ -347,7 +347,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
         "proj.title": "PROJECT",
         "proj.block1": "<span class='title'>Prompt AI Research Platform</span><span class='when'>2023.01 ~</span><div class='org'><span class='org-line'>Woori Future Institute</span></div><ul><li>Structured prompt-learning datasets and LLM security research</li><li>High-accuracy response optimization and alignment</li><li>Led adversarial evaluation and reporting</li></ul>",
-        "proj.block2": "<span class='title'>Commerce Web Rebuild</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'><span class='org-line'>MN Co.</span></div><ul><li>Responsive UX redesign and frontend implementation</li><li>API consolidation and nginx caching/latency optimization</li><li>User-centric data flows improved conversion and stability</li></ul>",
+        "proj.block2": "<span class='title'>Commerce Web Rebuild</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'><span class='org-line org-line-muted org-line-no-dot'>MN Co.</span></div><ul><li>Responsive UX redesign and frontend implementation</li><li>API consolidation and nginx caching/latency optimization</li><li>User-centric data flows improved conversion and stability</li></ul>",
         "proj.block3": "<span class='title'>Financial Infra Integration</span><span class='when'>2025.05 ~</span><div class='org'><span class='org-line'>Team DevCrew × OnnuriPG</span></div><ul><li>Redesigned secure settlement/payment backend architecture</li><li>Real-time logging/auth/encryption pipelines</li><li>Data integrity hardening and SRE-grade observability</li><li>Defined decision interfaces across orgs for quality & speed</li></ul>",
 
         "pres.title": "PRESENTATION",
