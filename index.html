@@ -10,10 +10,6 @@
   <link rel="apple-touch-icon" href="assets/profile.jpg" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-  <meta property="og:title" content="Hwan" />
-  <meta property="og:description" content="AI Researcher · Full-Stack Architect · Systems Leader" />
-  <meta property="og:image" content="assets/profile.jpg" />
-  <meta property="og:type" content="profile" />
 
   <style>
     :root {
@@ -71,9 +67,11 @@
       margin-bottom: 24px;
       font-size: 18px;
       line-height: 1.6;
+      white-space: nowrap;
     }
     .subtitle .sep { opacity: .6; }
     @media (max-width: 900px) {
+      .subtitle { white-space: normal; }
       .subtitle .line { display: block; }
       .subtitle .sep { display: none; }
     }
@@ -104,13 +102,24 @@
       letter-spacing: 0.05em;
     }
     ul { list-style: none; padding-left: 20px; }
-    ul li { margin-bottom: 6px; font-size: 17px; position: relative; }
-    ul li::before { content: "–"; position: absolute; left: -14px; color: var(--muted); }
+    ul li {
+      margin-bottom: 6px;
+      font-size: 17px;
+      position: relative;
+    }
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: -14px;
+      color: var(--accent);
+      font-size: 18px;
+    }
     .row { margin-bottom: 24px; }
     .row .title { font-weight: 900; font-size: 18px; }
     .row .when { color: var(--muted); font-size: 14px; margin-left: 8px; }
     .org { color: var(--muted); font-size: 15px; margin: 4px 0 6px; }
     .footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 80px; }
+
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; gap: 24px; }
       h1 { font-size: 38px; }
@@ -153,78 +162,6 @@
       <p data-i18n="introduce.text2">기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.<br>코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.</p>
     </section>
 
-    <section id="skills">
-      <h2 data-i18n="skills.title">SKILL</h2>
-      <div class="label" data-i18n="skills.lang">LANGUAGES</div>
-      <ul data-i18n="skills.langlist"><li>HTML / CSS</li><li>JavaScript / TypeScript</li><li>Java</li><li>Rust</li></ul>
-      <div class="label" data-i18n="skills.framework">FRAMEWORKS & LIBRARIES</div>
-      <ul data-i18n="skills.frameworklist"><li>Node.js</li><li>React.js</li><li>SvelteKit</li></ul>
-      <div class="label" data-i18n="skills.infra">INFRASTRUCTURE & DATABASES</div>
-      <ul data-i18n="skills.infralist"><li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li></ul>
-    </section>
-
-    <section id="experience">
-      <h2 data-i18n="exp.title">EXPERIENCE</h2>
-      <div class="row" data-i18n="exp.item1">
-        <span class="title">우리미래연구소 — 인공지능 연구 수석</span><span class="when">2023.01 ~</span>
-        <div class="org">LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div>
-      </div>
-      <div class="row" data-i18n="exp.item2">
-        <span class="title">MN Co. — 총괄 웹 디자이너</span><span class="when">2024.06 ~ 2024.12</span>
-        <div class="org">쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계</div>
-      </div>
-      <div class="row" data-i18n="exp.item3">
-        <span class="title">Team DevCrew — 개발팀 팀장</span><span class="when">2025.01 ~</span>
-        <div class="org">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄 · 팀 협업 프로세스/코드리뷰 문화</div>
-      </div>
-      <div class="row" data-i18n="exp.item4">
-        <span class="title">온누리PG — 개발부 부장</span><span class="when">2025.05 ~</span>
-        <div class="org">PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화</div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2 data-i18n="proj.title">PROJECT</h2>
-      <div class="row" data-i18n="proj.item1">
-        <span class="title">Prompt AI Research Platform</span><span class="when">2023.01 ~</span>
-        <div class="org">우리미래연구소</div>
-        <ul>
-          <li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
-          <li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
-          <li>AI 모델 공격/방어 실험 및 결과 분석 리드</li>
-        </ul>
-      </div>
-      <div class="row" data-i18n="proj.item2">
-        <span class="title">쇼핑몰 웹 서비스 전면 구축</span><span class="when">2024.06 ~ 2024.12</span>
-        <div class="org">MN Co.</div>
-        <ul>
-          <li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
-          <li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
-          <li>사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li>
-        </ul>
-      </div>
-      <div class="row" data-i18n="proj.item3">
-        <span class="title">금융 웹 인프라 통합</span><span class="when">2025.05 ~</span>
-        <div class="org">Team DevCrew × 온누리PG</div>
-        <ul>
-          <li>결제/정산 백엔드 보안 아키텍처 재설계</li>
-          <li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
-          <li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
-          <li>조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="presentation">
-      <h2 data-i18n="pres.title">PRESENTATION</h2>
-      <ul data-i18n="pres.list">
-        <li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
-        <li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
-        <li>(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
-        <li>(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
-      </ul>
-    </section>
-
     <div class="footer" data-i18n="footer">“Logic. Reason. Form.” — Hwan</div>
   </main>
 
@@ -252,5 +189,14 @@
           el.innerHTML = translations[lang][key];
         }
       });
+      currentLang = lang;
       btn.textContent = lang === "ko" ? "🌐 EN" : "🌐 KO";
-      current
+    };
+
+    btn.addEventListener("click", () => {
+      const newLang = currentLang === "ko" ? "en" : "ko";
+      updateLanguage(newLang);
+    });
+  </script>
+</body>
+</html>
