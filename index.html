@@ -6,7 +6,17 @@
   <title>Hwan — AI Researcher · Full-Stack Architect · Systems Leader</title>
   <meta name="description" content="AI Researcher · Full-Stack Architect · Systems Leader" />
   <meta name="theme-color" content="#0d1117" />
-  <link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
+
+  <!-- Favicon (White H SVG centered) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d1117'/><text x='50%' y='55%' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Pretendard, Arial, sans-serif' font-size='60' font-weight='bold'>H</text></svg>">
+  <link rel="apple-touch-icon" href="assets/profile.jpg" />
+
+  <!-- SEO + Open Graph -->
+  <meta property="og:title" content="Hwan — AI Researcher · Full-Stack Architect · Systems Leader">
+  <meta property="og:description" content="프론트엔드, 백엔드, 인공지능 연구 전반을 아우르는 풀스택 개발자 Hwan의 포트폴리오">
+  <meta property="og:image" content="https://667700996.github.io/assets/profile.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://667700996.github.io">
 
   <!-- Pretendard Variable -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
@@ -15,8 +25,8 @@
   <style>
     :root {
       --bg: #0d1117;
-      --ink: #e6edf3;
-      --muted: #8b949e;
+      --ink: #f0f6fc;
+      --muted: #9da5b4;
       --line: #161b22;
       --accent: #3a8bff;
       --max: 1080px;
@@ -24,12 +34,15 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; scroll-behavior: smooth; }
+
     body {
       font-family: "Pretendard Variable", Inter, "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--ink);
       line-height: 1.9;
       letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     main {
@@ -40,6 +53,15 @@
 
     section { margin-bottom: 120px; }
     section:last-child { margin-bottom: 60px; }
+
+    section:not(:last-child)::after {
+      content: "";
+      display: block;
+      height: 1px;
+      background: var(--line);
+      margin-top: 80px;
+      opacity: 0.5;
+    }
 
     h1 {
       font-size: 52px;
@@ -53,10 +75,10 @@
       color: var(--accent);
       font-weight: 900;
       letter-spacing: 0.08em;
-      margin-bottom: 20px;
+      margin-bottom: 28px;
     }
 
-    p { font-size: 18px; margin-bottom: 16px; }
+    p { font-size: 18px; margin-bottom: 18px; }
 
     .hero {
       display: grid;
@@ -138,8 +160,10 @@
     .footer {
       text-align: center;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
       margin-top: 80px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
 
     @media (max-width: 900px) {
@@ -147,7 +171,7 @@
       h1 { font-size: 38px; }
       .avatar { height: 260px; }
       .cols-3 { grid-template-columns: 1fr; }
-      main { padding: 48px 18px 80px; }
+      main { padding: 60px 22px 80px; }
     }
 
     @media print {
@@ -197,8 +221,7 @@
         AI 프롬프트 엔지니어링부터 대규모 인프라 설계, UX 중심의 프런트엔드 개발까지 정밀한 완성도 높은 시스템을 설계합니다.
       </p>
       <p>
-        기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.<br>
-        코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 형태라 믿습니다.
+        기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다 — 코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.
       </p>
     </section>
 
@@ -305,6 +328,3 @@
     document.getElementById('lang').addEventListener('click', () => {
       applyLang((localStorage.getItem('lang') || 'ko') === 'en' ? 'ko' : 'en');
     });
-  </script>
-</body>
-</html>
