@@ -20,109 +20,86 @@
       --accent: #3a8bff;
       --max: 1080px;
     }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;scroll-behavior:smooth}
+    body{
+      font-family:"Pretendard Variable",Inter,"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);color:var(--ink);line-height:1.9;letter-spacing:.02em;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    }
+    main{max-width:var(--max);margin:0 auto;padding:64px 28px 100px}
+    section{margin-bottom:120px;position:relative}
+    section:not(:last-child)::after{
+      content:"";display:block;height:2px;background:#f0f6fc;opacity:.15;
+      margin:100px auto 0;width:calc(100% - 120px);border-radius:2px;
+    }
+    section.hero::after{display:none}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; scroll-behavior: smooth; }
-    body {
-      font-family: "Pretendard Variable", Inter, "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.9;
-      letter-spacing: 0.02em;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    h1{font-size:52px;margin-bottom:8px;letter-spacing:-.03em;font-weight:800}
+    h2{font-size:26px;color:var(--accent);font-weight:900;letter-spacing:.08em;margin-bottom:28px}
+    p{font-size:18px;margin-bottom:16px;white-space:pre-line}
+
+    .hero{
+      display:grid;grid-template-columns:280px 1fr;gap:80px;align-items:center;
+      min-height:320px;
+    }
+    .avatar{
+      width:100%;height:280px;object-fit:cover;border-radius:16px;border:1px solid var(--line);background:#111;
+      align-self:center;
+    }
+    .hero-text{
+      display:flex;flex-direction:column;justify-content:center;
+      align-self:center;
+      transform:translateY(10px);
     }
 
-    main {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 64px 28px 100px;
+    .subtitle{color:var(--muted);font-weight:800;margin-bottom:24px;font-size:18px;line-height:1.6;white-space:nowrap}
+    .subtitle .sep{opacity:.6}
+    @media (max-width: 900px){
+      .subtitle{white-space:normal}
+      .subtitle .line{display:block}
+      .subtitle .sep{display:none}
     }
 
-    section { margin-bottom: 120px; position: relative; }
-    section:not(:last-child)::after {
-      content: "";
-      display: block;
-      height: 2px;
-      background: #f0f6fc;
-      opacity: 0.15;
-      margin: 100px auto 0;
-      width: calc(100% - 120px);
-      border-radius: 2px;
-    }
-    section.hero::after { display: none; }
+    .contacts{display:grid;gap:14px;max-width:640px;margin-top:18px}
+    .contact{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none}
+    .contact svg{width:20px;height:20px;fill:var(--ink)}
 
-    h1 { font-size: 52px; margin-bottom: 8px; letter-spacing: -0.03em; font-weight: 800; }
-    h2 { font-size: 26px; color: var(--accent); font-weight: 900; letter-spacing: 0.08em; margin-bottom: 28px; }
-    p { font-size: 18px; margin-bottom: 16px; white-space: pre-line; }
-
-    .hero { display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: center; }
-    .avatar {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: #111;
-      margin-top: 120px;
+    .lang{
+      position:fixed;right:20px;top:20px;border:1px solid var(--line);
+      background:rgba(13,17,23,.85);backdrop-filter:blur(6px);color:var(--ink);
+      font-weight:700;border-radius:50px;padding:6px 14px;cursor:pointer;z-index:100;
     }
 
-    .subtitle { color: var(--muted); font-weight: 800; margin-bottom: 24px; font-size: 18px; line-height: 1.6; white-space: nowrap; }
-    .subtitle .sep { opacity: .6; }
+    .label{color:var(--muted);font-weight:900;font-size:20px;margin-top:28px;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
 
-    @media (max-width: 900px) {
-      .subtitle { white-space: normal; }
-      .subtitle .line { display: block; }
-      .subtitle .sep { display: none; }
-    }
+    ul{list-style:none;padding-left:20px}
+    ul li{margin-bottom:6px;font-size:17px;position:relative}
+    ul li::before{content:"•";position:absolute;left:-14px;color:var(--accent);font-size:18px}
 
-    .contacts { display: grid; gap: 14px; max-width: 640px; margin-top: 18px; }
-    .contact { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
-    .contact svg { width: 20px; height: 20px; fill: var(--ink); }
+    .row{margin-bottom:24px}
+    .row .title{font-weight:900;font-size:18px}
+    .row .when{color:var(--muted);font-size:14px;margin-left:8px}
+    .org{color:var(--muted);font-size:15px;margin:4px 0 6px}
 
-    .lang {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      border: 1px solid var(--line);
-      background: rgba(13,17,23,0.85);
-      backdrop-filter: blur(6px);
-      color: var(--ink);
-      font-weight: 700;
-      border-radius: 50px;
-      padding: 6px 14px;
-      cursor: pointer;
-      z-index: 100;
-    }
+    .footer{text-align:center;color:var(--muted);font-size:14px;margin-top:80px}
 
-    .label { color: var(--muted); font-weight: 900; font-size: 20px; margin-top: 28px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
-
-    ul { list-style: none; padding-left: 20px; }
-    ul li { margin-bottom: 6px; font-size: 17px; position: relative; }
-    ul li::before { content: "•"; position: absolute; left: -14px; color: var(--accent); font-size: 18px; }
-
-    .row { margin-bottom: 24px; }
-    .row .title { font-weight: 900; font-size: 18px; }
-    .row .when { color: var(--muted); font-size: 14px; margin-left: 8px; }
-    .org { color: var(--muted); font-size: 15px; margin: 4px 0 6px; }
-    .footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 80px; }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: 24px; }
-      h1 { font-size: 38px; }
-      .avatar { height: 260px; margin-top: 100px; }
-      main { padding: 48px 18px 80px; }
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;gap:24px}
+      h1{font-size:38px}
+      .avatar{height:260px;margin-top:96px}
+      main{padding:48px 18px 80px}
+      .hero-text{transform:none}
     }
   </style>
 </head>
-
 <body>
   <button id="lang" class="lang" aria-label="Language Toggle">🌐 EN</button>
 
   <main>
     <section class="hero" aria-labelledby="name">
       <img class="avatar" src="assets/profile.jpg" alt="Hwan profile photo" />
-      <div>
+      <div class="hero-text">
         <h1 id="name">Hwan</h1>
         <p class="subtitle" data-i18n="hero.role">
           <span class="line">AI Researcher</span><span class="sep"> · </span>
@@ -144,47 +121,107 @@
     </section>
 
     <section id="introduce">
-      <h2 data-i18n="introduce.title"></h2>
-      <p data-i18n="introduce.text1"></p>
-      <p data-i18n="introduce.text2"></p>
+      <h2 data-i18n="introduce.title">INTRODUCE</h2>
+      <p data-i18n="introduce.text1">프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.
+AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.</p>
+      <p data-i18n="introduce.text2">기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.
+코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.</p>
     </section>
 
     <section id="skills">
-      <h2 data-i18n="skills.title"></h2>
+      <h2 data-i18n="skills.title">SKILL</h2>
       <div>
-        <div class="label" data-i18n="skills.lang"></div>
-        <ul data-i18n="skills.langlist"></ul>
-        <div class="label" data-i18n="skills.frameworks"></div>
-        <ul data-i18n="skills.frameworklist"></ul>
-        <div class="label" data-i18n="skills.infra"></div>
-        <ul data-i18n="skills.infralist"></ul>
+        <div class="label" data-i18n="skills.lang">LANGUAGES</div>
+        <ul data-i18n="skills.langlist"><li>HTML / CSS</li><li>JavaScript / TypeScript</li><li>Java</li><li>Rust</li></ul>
+
+        <div class="label" data-i18n="skills.frameworks">FRAMEWORKS & LIBRARIES</div>
+        <ul data-i18n="skills.frameworklist"><li>Node.js</li><li>React.js</li><li>SvelteKit</li></ul>
+
+        <div class="label" data-i18n="skills.infra">INFRASTRUCTURE & DATABASES</div>
+        <ul data-i18n="skills.infralist"><li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li></ul>
       </div>
     </section>
 
     <section id="experience">
-      <h2 data-i18n="exp.title"></h2>
-      <div class="row" data-i18n="exp.content"></div>
+      <h2 data-i18n="exp.title">EXPERIENCE</h2>
+
+      <div class="row" data-i18n="exp.item1">
+        <span class="title">우리미래연구소 — 인공지능 연구 수석</span><span class="when">2023.01 ~</span>
+        <div class="org">LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div>
+      </div>
+
+      <div class="row" data-i18n="exp.item2">
+        <span class="title">MN Co. — 총괄 웹 디자이너</span><span class="when">2024.06 ~ 2024.12</span>
+        <div class="org">쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계</div>
+      </div>
+
+      <div class="row" data-i18n="exp.item3">
+        <span class="title">Team DevCrew — 개발팀 팀장</span><span class="when">2025.01 ~</span>
+        <div class="org">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄 · 팀 협업 프로세스/코드리뷰 문화</div>
+      </div>
+
+      <div class="row" data-i18n="exp.item4">
+        <span class="title">온누리PG — 개발부 부장</span><span class="when">2025.05 ~</span>
+        <div class="org">PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화</div>
+      </div>
     </section>
 
     <section id="projects">
-      <h2 data-i18n="proj.title"></h2>
-      <div data-i18n="proj.content"></div>
+      <h2 data-i18n="proj.title">PROJECT</h2>
+
+      <div class="row" data-i18n="proj.block1">
+        <span class="title">Prompt AI Research Platform</span><span class="when">2023.01 ~</span>
+        <div class="org">우리미래연구소</div>
+        <ul>
+          <li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
+          <li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
+          <li>AI 모델 공격/방어 실험 및 결과 분석 리드</li>
+        </ul>
+      </div>
+
+      <div class="row" data-i18n="proj.block2">
+        <span class="title">쇼핑몰 웹 서비스 전면 구축</span><span class="when">2024.06 ~ 2024.12</span>
+        <div class="org">MN Co.</div>
+        <ul>
+          <li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
+          <li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
+          <li>사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li>
+        </ul>
+      </div>
+
+      <div class="row" data-i18n="proj.block3">
+        <span class="title">금융 웹 인프라 통합</span><span class="when">2025.05 ~</span>
+        <div class="org">Team DevCrew × 온누리PG</div>
+        <ul>
+          <li>결제/정산 백엔드 보안 아키텍처 재설계</li>
+          <li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
+          <li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
+          <li>조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li>
+        </ul>
+      </div>
     </section>
 
     <section id="presentation">
-      <h2 data-i18n="pres.title"></h2>
-      <ul data-i18n="pres.content"></ul>
+      <h2 data-i18n="pres.title">PRESENTATION</h2>
+      <ul data-i18n="pres.list">
+        <li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
+        <li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
+        <li>(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
+        <li>(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
+      </ul>
     </section>
 
-    <div class="footer" data-i18n="footer"></div>
+    <div class="footer" data-i18n="footer">“Logic. Reason. Form.” — Hwan</div>
   </main>
 
   <script>
     const i18n = {
       ko: {
+        "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
         "introduce.title": "INTRODUCE",
         "introduce.text1": "프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.\nAI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.",
         "introduce.text2": "기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.\n코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.",
+
         "skills.title": "SKILL",
         "skills.lang": "LANGUAGES",
         "skills.langlist": "<li>HTML / CSS</li><li>JavaScript / TypeScript</li><li>Java</li><li>Rust</li>",
@@ -192,18 +229,28 @@
         "skills.frameworklist": "<li>Node.js</li><li>React.js</li><li>SvelteKit</li>",
         "skills.infra": "INFRASTRUCTURE & DATABASES",
         "skills.infralist": "<li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li>",
+
         "exp.title": "EXPERIENCE",
-        "exp.content": "<div class='row'><span class='title'>우리미래연구소 — 인공지능 연구 수석</span><span class='when'>2023.01 ~</span><div class='org'>LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div></div><div class='row'><span class='title'>MN Co. — 총괄 웹 디자이너</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'>쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계</div></div>",
+        "exp.item1": "<span class='title'>우리미래연구소 — 인공지능 연구 수석</span><span class='when'>2023.01 ~</span><div class='org'>LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div>",
+        "exp.item2": "<span class='title'>MN Co. — 총괄 웹 디자이너</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'>쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계</div>",
+        "exp.item3": "<span class='title'>Team DevCrew — 개발팀 팀장</span><span class='when'>2025.01 ~</span><div class='org'>금융/웹 서비스 설계 및 클라우드 파이프라인 총괄 · 팀 협업 프로세스/코드리뷰 문화</div>",
+        "exp.item4": "<span class='title'>온누리PG — 개발부 부장</span><span class='when'>2025.05 ~</span><div class='org'>PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화</div>",
+
         "proj.title": "PROJECT",
-        "proj.content": "<div class='row'><span class='title'>Prompt AI Research Platform</span><span class='when'>2023.01 ~</span><div class='org'>우리미래연구소</div><ul><li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li><li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li><li>AI 모델 공격/방어 실험 및 결과 분석 리드</li></ul></div>",
+        "proj.block1": "<span class='title'>Prompt AI Research Platform</span><span class='when'>2023.01 ~</span><div class='org'>우리미래연구소</div><ul><li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li><li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li><li>AI 모델 공격/방어 실험 및 결과 분석 리드</li></ul>",
+        "proj.block2": "<span class='title'>쇼핑몰 웹 서비스 전면 구축</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'>MN Co.</div><ul><li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li><li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li><li>사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li></ul>",
+        "proj.block3": "<span class='title'>금융 웹 인프라 통합</span><span class='when'>2025.05 ~</span><div class='org'>Team DevCrew × 온누리PG</div><ul><li>결제/정산 백엔드 보안 아키텍처 재설계</li><li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li><li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li><li>조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li></ul>",
+
         "pres.title": "PRESENTATION",
-        "pres.content": "<li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>",
+        "pres.list": "<li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li><li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li><li>(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li><li>(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>",
         "footer": "“Logic. Reason. Form.” — Hwan"
       },
       en: {
+        "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
         "introduce.title": "INTRODUCE",
         "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design.\nFrom AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
         "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.\nCode reflects structured thought, and every system embodies logic refined through clarity.",
+
         "skills.title": "SKILL",
         "skills.lang": "LANGUAGES",
         "skills.langlist": "<li>HTML / CSS</li><li>JavaScript / TypeScript</li><li>Java</li><li>Rust</li>",
@@ -211,36 +258,45 @@
         "skills.frameworklist": "<li>Node.js</li><li>React.js</li><li>SvelteKit</li>",
         "skills.infra": "INFRASTRUCTURE & DATABASES",
         "skills.infralist": "<li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li>",
+
         "exp.title": "EXPERIENCE",
-        "exp.content": "<div class='row'><span class='title'>Woori Future Institute — AI Research Lead</span><span class='when'>2023.01 ~</span><div class='org'>Conducted LLM security/alignment research and designed high-reliability prompt-defense architectures</div></div><div class='row'><span class='title'>MN Co. — Lead Web Designer</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'>Led UI/UX redesign and frontend development · Integrated backend & infrastructure design</div></div>",
+        "exp.item1": "<span class='title'>Woori Future Institute — Chief AI Researcher</span><span class='when'>2023.01 ~</span><div class='org'>LLM security/alignment research · High-reliability response design and prompt-attack mitigation</div>",
+        "exp.item2": "<span class='title'>MN Co. — Lead Web Designer</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'>Redesigned commerce UX and built responsive frontend · Integrated backend and infrastructure</div>",
+        "exp.item3": "<span class='title'>Team DevCrew — Engineering Lead</span><span class='when'>2025.01 ~</span><div class='org'>Financial/web platform design and cloud pipelines · Collaboration process & codereview culture</div>",
+        "exp.item4": "<span class='title'>OnnuriPG — Head of Engineering</span><span class='when'>2025.05 ~</span><div class='org'>Payment infrastructure & architecture · Security/crypto/transaction modules</div>",
+
         "proj.title": "PROJECT",
-        "proj.content": "<div class='row'><span class='title'>Prompt AI Research Platform</span><span class='when'>2023.01 ~</span><div class='org'>Woori Future Institute</div><ul><li>Structured prompt-learning datasets and conducted LLM security research</li><li>Optimized high-accuracy alignment and knowledge tuning</li><li>Led adversarial AI experiments and evaluation</li></ul></div>",
+        "proj.block1": "<span class='title'>Prompt AI Research Platform</span><span class='when'>2023.01 ~</span><div class='org'>Woori Future Institute</div><ul><li>Structured prompt-learning datasets and LLM security research</li><li>High-accuracy response optimization and alignment</li><li>Led adversarial evaluation and reporting</li></ul>",
+        "proj.block2": "<span class='title'>Commerce Web Rebuild</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'>MN Co.</div><ul><li>Responsive UX redesign and frontend implementation</li><li>API consolidation and nginx caching/latency optimization</li><li>User-centric data flows improved conversion and stability</li></ul>",
+        "proj.block3": "<span class='title'>Financial Infra Integration</span><span class='when'>2025.05 ~</span><div class='org'>Team DevCrew × OnnuriPG</div><ul><li>Redesigned secure settlement/payment backend architecture</li><li>Real-time logging/auth/encryption pipelines</li><li>Data integrity hardening and SRE-grade observability</li><li>Defined decision interfaces across orgs for quality & speed</li></ul>",
+
         "pres.title": "PRESENTATION",
-        "pres.content": "<li>(2023.12.10) “Thinking in Language — The Cognitive Foundations of AI” — Woori Future Institute Seminar</li>",
+        "pres.list": "<li>(2023.12.10) “Thinking in Language” — Woori Future Institute Seminar</li><li>(2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar</li><li>(2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar</li><li>(2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk</li>",
         "footer": "“Logic. Reason. Form.” — Hwan"
       }
     };
 
-    let currentLang = "ko";
-    const button = document.getElementById("lang");
-
-    function applyLang(lang) {
-      for (const key in i18n[lang]) {
-        const el = document.querySelector(`[data-i18n='${key}']`);
-        if (el) {
-          if (i18n[lang][key].includes("<")) el.innerHTML = i18n[lang][key];
-          else el.textContent = i18n[lang][key];
+    function applyLang(lang){
+      document.documentElement.lang = lang === "en" ? "en" : "ko";
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        const val = i18n[lang][key];
+        if(typeof val === "string"){
+          if(val.includes("<")) el.innerHTML = val;
+          else el.textContent = val;
         }
-      }
-      button.textContent = lang === "ko" ? "🌐 EN" : "🌐 KO";
-      currentLang = lang;
+      });
+      document.getElementById("lang").textContent = lang === "ko" ? "🌐 EN" : "🌐 KO";
+      localStorage.setItem("lang", lang);
     }
 
-    button.addEventListener("click", () => {
-      applyLang(currentLang === "ko" ? "en" : "ko");
-    });
+    const initial = localStorage.getItem("lang") || "ko";
+    applyLang(initial);
 
-    applyLang("ko");
+    document.getElementById("lang").addEventListener("click", ()=>{
+      const next = (localStorage.getItem("lang") || "ko") === "ko" ? "en" : "ko";
+      applyLang(next);
+    });
   </script>
 </body>
 </html>
