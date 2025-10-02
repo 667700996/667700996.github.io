@@ -51,8 +51,20 @@
       display:flex;flex-direction:column;justify-content:center;
       align-self:center;
     }
+    .side-nav{display:none}
+    .side-link{
+      color:var(--muted);text-decoration:none;font-size:14px;font-weight:800;
+      letter-spacing:.08em;transition:color .2s ease;
+    }
+    .side-link:hover,.side-link:focus{color:var(--ink)}
     @media (min-width:901px){
       .hero{margin-top:80px;}
+      .side-nav{
+        position:fixed;right:36px;top:50%;transform:translateY(-50%);
+        display:flex;flex-direction:column;gap:14px;padding:18px 20px;
+        border:1px solid var(--line);border-radius:18px;
+        background:rgba(13,17,23,.9);backdrop-filter:blur(10px);
+      }
     }
 
     .subtitle{color:var(--muted);font-weight:800;margin-bottom:24px;font-size:18px;line-height:1.6;white-space:nowrap}
@@ -99,7 +111,7 @@
   <button id="lang" class="lang" aria-label="Language Toggle">🌐 EN</button>
 
   <main>
-    <section class="hero" aria-labelledby="name">
+    <section id="hero" class="hero" aria-labelledby="name">
       <img class="avatar" src="assets/profile.jpg" alt="Hwan profile photo" />
       <div class="hero-text">
         <h1 id="name">Hwan</h1>
@@ -216,6 +228,15 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
     <div class="footer" data-i18n="footer">“Logic. Reason. Form.” — Hwan</div>
   </main>
 
+  <nav class="side-nav" aria-label="Section navigation">
+    <a class="side-link" href="#hero" data-i18n="nav.hero">HOME</a>
+    <a class="side-link" href="#introduce" data-i18n="nav.introduce">INTRODUCE</a>
+    <a class="side-link" href="#skills" data-i18n="nav.skills">SKILL</a>
+    <a class="side-link" href="#experience" data-i18n="nav.experience">EXPERIENCE</a>
+    <a class="side-link" href="#projects" data-i18n="nav.projects">PROJECT</a>
+    <a class="side-link" href="#presentation" data-i18n="nav.presentation">PRESENTATION</a>
+  </nav>
+
   <script>
     const i18n = {
       ko: {
@@ -245,7 +266,13 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
         "pres.title": "PRESENTATION",
         "pres.list": "<li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li><li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li><li>(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li><li>(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>",
-        "footer": "“Logic. Reason. Form.” — Hwan"
+        "footer": "“Logic. Reason. Form.” — Hwan",
+        "nav.hero": "메인",
+        "nav.introduce": "소개",
+        "nav.skills": "기술",
+        "nav.experience": "경력",
+        "nav.projects": "프로젝트",
+        "nav.presentation": "발표"
       },
       en: {
         "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
@@ -274,7 +301,13 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
         "pres.title": "PRESENTATION",
         "pres.list": "<li>(2023.12.10) “Thinking in Language” — Woori Future Institute Seminar</li><li>(2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar</li><li>(2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar</li><li>(2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk</li>",
-        "footer": "“Logic. Reason. Form.” — Hwan"
+        "footer": "“Logic. Reason. Form.” — Hwan",
+        "nav.hero": "HOME",
+        "nav.introduce": "INTRODUCE",
+        "nav.skills": "SKILL",
+        "nav.experience": "EXPERIENCE",
+        "nav.projects": "PROJECT",
+        "nav.presentation": "PRESENTATION"
       }
     };
 
