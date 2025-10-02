@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hwan — AI Researcher · Full‑Stack Architect · Systems Leader</title>
+  <meta name="description" content="AI Researcher · Full‑Stack Architect · Systems Leader — Seoul, Republic of Korea" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23000'/%3E%3Ctext x='50' y='58' font-family='Inter,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif' font-size='44' text-anchor='middle' fill='%23fff' font-weight='700'%3EH%3C/text%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hwan — AI Researcher · Full‑Stack Architect · Systems Leader" />
+  <meta property="og:description" content="AI Researcher · Full‑Stack Architect · Systems Leader — Seoul, Republic of Korea" />
+  <meta property="og:url" content="https://667700996.github.io" />
+  <meta name="theme-color" content="#0f172a" />
+  <style>
+    :root {
+      --bg: #0b0d12;         /* near-black */
+      --panel: #11151b;      /* dark panel */
+      --ink: #e5e7eb;        /* text */
+      --muted: #9aa4b2;      /* secondary */
+      --line: #1f2937;       /* borders */
+      --accent: #38bdf8;     /* cyan */
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fafafa;
+        --panel: #ffffff;
+        --ink: #111827;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --accent: #0ea5e9;
+      }
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: Inter, "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 48px 20px 80px; }
+    header.hero {
+      display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: center; margin-bottom: 24px;
+    }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 999px; background: radial-gradient(120px 120px at 50% 40%, #1f2937, #0b0d12);
+      display: grid; place-items: center; font-weight: 800; font-size: 36px; color: white; border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    h1 { font-size: 40px; margin: 0 0 6px; letter-spacing: -0.5px; }
+    .subtitle { color: var(--muted); margin-top: 4px; font-weight: 500; }
+    .meta { display:flex; gap:10px; margin-top:8px; flex-wrap: wrap; }
+    .chip { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--ink); text-decoration:none; font-weight:600; }
+    .chip:hover { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent); }
+
+    nav { position: sticky; top: 0; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 86%, transparent); border-bottom: 1px solid var(--line); z-index: 50; }
+    nav .navwrap { max-width: 980px; margin: 0 auto; padding: 10px 20px; display:flex; gap:18px; flex-wrap: wrap; }
+    nav a { color: var(--muted); text-decoration: none; font-weight: 600; }
+    nav a:hover { color: var(--accent); }
+
+    section { border: 1px solid var(--line); background: var(--panel); border-radius: 18px; padding: 28px; margin-top: 18px; }
+    section h2 { margin: 6px 0 16px; font-size: 20px; letter-spacing: 0.2px; text-transform: uppercase; color: var(--accent); }
+    .grid-2 { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { display: grid; gap: 14px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .kicker { color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; }
+    .title { font-weight: 700; font-size: 16px; margin-bottom: 2px; }
+    ul { margin: 6px 0 0 18px; line-height: 1.6; }
+    li { margin: 4px 0; }
+    .row { display:flex; align-items:center; justify-content: space-between; gap: 10px; }
+    .pill { font-size: 12px; color: var(--muted); border: 1px solid var(--line); padding: 2px 8px; border-radius: 999px; }
+
+    .muted { color: var(--muted); }
+    .footer { text-align: center; color: var(--muted); margin-top: 24px; }
+
+    @media (max-width: 700px) {
+      header.hero { grid-template-columns: 1fr; gap: 10px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script>
+    // enable smooth scroll for anchor nav
+    addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => { const id=a.getAttribute('href').slice(1); const el=document.getElementById(id); if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); } });
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="navwrap">
+      <a href="#introduce">Introduce</a>
+      <a href="#hallmarks">Hallmarks</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#presentation">Presentation</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <header class="hero">
+      <div class="avatar" aria-hidden>H</div>
+      <div>
+        <h1>Hwan</h1>
+        <div class="subtitle">AI Researcher · Full‑Stack Architect · Systems Leader</div>
+        <div class="muted" style="margin-top:6px">Seoul, Republic of Korea 🇰🇷</div>
+        <div class="meta">
+          <a class="chip" href="mailto:hwan@onnuripg.com">메일</a>
+          <a class="chip" href="https://github.com/667700996" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip" href="https://x.com/H_667700996" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="introduce">
+      <h2>Introduce</h2>
+      <p>프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다. AI 프롬프트 엔지니어링부터 대규모 인프라 설계, UX 중심의 프런트엔드 개발까지 정밀한 완성도 높은 시스템을 설계합니다.</p>
+      <p>기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다. 코드는 사고의 산물이며, 시스템은 논리의 형태로 구현된 사고 구조라고 믿습니다. 복잡하고 불완전한 구조일수록 논리로 다듬습니다.</p>
+    </section>
+
+    <section id="hallmarks">
+      <h2>Hallmarks</h2>
+      <div class="grid-3">
+        <div>
+          <div class="title">Impact</div>
+          <ul>
+            <li>99.99% 가용성 목표 설계 및 무중단 릴리즈 운영</li>
+            <li>실시간 결제 트래픽 안정화 및 장애 0회 릴리즈 리드</li>
+            <li>관측성 표준 수립: 구조적 로그 / 트레이싱 / 대시보드</li>
+          </ul>
+        </div>
+        <div>
+          <div class="title">Security</div>
+          <ul>
+            <li>키 관리 / 권한 모델 / 암호화 표준화 및 감사 추적 시스템 구축</li>
+            <li>웹 / 모델 양면 공격 표면 축소 아키텍처 설계</li>
+            <li>위협 모델링 기반 사전 리스크 차단 체계 정립</li>
+          </ul>
+        </div>
+        <div>
+          <div class="title">Leadership</div>
+          <ul>
+            <li>조직 / 제품 / 플랫폼 인터페이스 정렬로 합의 비용 최소화</li>
+            <li>리뷰 문화 / 품질 기준 정의 및 외부 이해관계자 조율</li>
+            <li>데이터 기반 의사결정과 롤백 가능한 배포 원칙 수립</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="grid-3">
+        <div>
+          <div class="kicker">Core Interests</div>
+          <ul>
+            <li>AI Prompt Engineering</li>
+            <li>Web Architecture</li>
+            <li>System Design</li>
+            <li>Security Engineering</li>
+          </ul>
+        </div>
+        <div>
+          <div class="kicker">Languages</div>
+          <ul>
+            <li>HTML · CSS · JavaScript · Java · TypeScript · Rust</li>
+          </ul>
+        </div>
+        <div>
+          <div class="kicker">Frameworks & Libraries</div>
+          <ul>
+            <li>Node.js · React.js · SvelteKit</li>
+          </ul>
+        </div>
+        <div>
+          <div class="kicker">Infrastructure & Databases</div>
+          <ul>
+            <li>Linux · nginx · PostgreSQL · Cloud · Podman</li>
+          </ul>
+        </div>
+        <div>
+          <div class="kicker">Tools & IDEs</div>
+          <ul>
+            <li>Vim · Git · GitHub · JetBrains · VS Code · Codex‑CLI · Gemini‑CLI</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Project</h2>
+      <div class="grid-2">
+        <div>
+          <div class="row"><div class="title">Prompt AI Research Platform</div><span class="pill">2023.01 ~</span></div>
+          <div class="muted">우리미래연구소</div>
+          <ul>
+            <li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
+            <li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
+            <li>AI 모델 공격/방어 실험 및 결과 분석 리드</li>
+          </ul>
+        </div>
+        <div>
+          <div class="row"><div class="title">쇼핑몰 웹 서비스 전면 구축</div><span class="pill">2024.06 ~ 2024.12</span></div>
+          <div class="muted">MN Co.</div>
+          <ul>
+            <li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
+            <li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
+            <li>사용자 중심 데이터 흐름 설계로 전환율/안정성 동시 향상</li>
+          </ul>
+        </div>
+        <div>
+          <div class="row"><div class="title">금융 웹 인프라 통합</div><span class="pill">2025.05 ~</span></div>
+          <div class="muted">Team DevCrew × 온누리PG</div>
+          <ul>
+            <li>결제/정산 백엔드 보안 아키텍처 재설계</li>
+            <li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
+            <li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
+            <li>조직 간 의사결정 인터페이스 정의로 품질과 속도 동시 개선</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="grid-2">
+        <div>
+          <div class="row"><div class="title">우리미래연구소 — 인공지능 연구 수석</div><span class="pill">2023.01 ~</span></div>
+          <ul>
+            <li>LLM 실험/보안/정렬 연구 수행</li>
+            <li>고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</li>
+          </ul>
+        </div>
+        <div>
+          <div class="row"><div class="title">MN Co. — 총괄 웹 디자이너</div><span class="pill">2024.06 ~ 2024.12</span></div>
+          <ul>
+            <li>쇼핑몰 UI/UX 설계 및 프런트엔드 개발</li>
+            <li>백엔드 및 인프라 통합 구조 설계</li>
+          </ul>
+        </div>
+        <div>
+          <div class="row"><div class="title">Team DevCrew — 개발팀 팀장</div><span class="pill">2025.01 ~</span></div>
+          <ul>
+            <li>금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</li>
+            <li>팀 협업 프로세스 및 코드 리뷰 문화 체계화</li>
+          </ul>
+        </div>
+        <div>
+          <div class="row"><div class="title">온누리PG — 개발부 부장</div><span class="pill">2025.05 ~</span></div>
+          <ul>
+            <li>PG 전산 인프라 및 결제 시스템 아키텍처 설계</li>
+            <li>보안/암호화/트랜잭션 모듈 고도화</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="presentation">
+      <h2>Presentation</h2>
+      <ul>
+        <li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
+        <li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
+        <li>(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
+        <li>(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
+      </ul>
+    </section>
+
+    <p class="footer">“Logic. Reason. Form.” — Hwan</p>
+  </main>
+</body>
+</html>
