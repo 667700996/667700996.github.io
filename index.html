@@ -46,7 +46,7 @@
       display: block;
       height: 2px;
       background: #f0f6fc;
-      opacity: 0.2;
+      opacity: 0.15;
       margin: 100px auto 0;
       width: calc(100% - 120px);
       border-radius: 2px;
@@ -57,11 +57,20 @@
     p { font-size: 18px; margin-bottom: 16px; white-space: pre-line; }
     .hero { display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: center; }
     .avatar {
-      width: 100%; height: 280px; object-fit: cover;
-      border-radius: 16px; border: 1px solid var(--line); background: #111; margin-top: 40px;
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #111;
+      margin-top: 80px;
     }
     .subtitle {
-      color: var(--muted); font-weight: 800; margin-bottom: 24px; font-size: 18px; line-height: 1.6;
+      color: var(--muted);
+      font-weight: 800;
+      margin-bottom: 24px;
+      font-size: 18px;
+      line-height: 1.6;
     }
     .subtitle .sep { opacity: .6; }
     @media (max-width: 900px) {
@@ -72,27 +81,31 @@
     .contact { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
     .contact svg { width: 20px; height: 20px; fill: var(--ink); }
     .lang {
-      position: absolute;
+      position: fixed;
       right: 20px;
       top: 20px;
       border: 1px solid var(--line);
-      background: rgba(13,17,23,0.75);
+      background: rgba(13,17,23,0.85);
       backdrop-filter: blur(6px);
       color: var(--ink);
       font-weight: 700;
       border-radius: 50px;
       padding: 6px 14px;
       cursor: pointer;
+      z-index: 100;
     }
     .label {
-      color: var(--muted); font-weight: 900; font-size: 20px;
-      margin-top: 28px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 20px;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     ul { list-style: none; padding-left: 20px; }
     ul li { margin-bottom: 6px; font-size: 17px; position: relative; }
-    ul li::before {
-      content: "–"; position: absolute; left: -14px; color: var(--muted);
-    }
+    ul li::before { content: "–"; position: absolute; left: -14px; color: var(--muted); }
     .row { margin-bottom: 24px; }
     .row .title { font-weight: 900; font-size: 18px; }
     .row .when { color: var(--muted); font-size: 14px; margin-left: 8px; }
@@ -101,16 +114,17 @@
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; gap: 24px; }
       h1 { font-size: 38px; }
-      .avatar { height: 260px; margin-top: 50px; }
+      .avatar { height: 260px; margin-top: 90px; }
       main { padding: 48px 18px 80px; }
     }
   </style>
 </head>
 
 <body>
+  <button id="lang" class="lang" aria-label="Language Toggle">🌐 EN</button>
+
   <main>
     <section class="hero" aria-labelledby="name">
-      <button id="lang" class="lang" aria-label="Language Toggle">🌐 EN</button>
       <img class="avatar" src="assets/profile.jpg" alt="Hwan profile photo" />
       <div>
         <h1 id="name">Hwan</h1>
@@ -215,19 +229,28 @@
   </main>
 
   <script>
-    const dict = {
+    const translations = {
       en: {
-        "hero.role": "AI Researcher · Full-Stack Architect · Systems Leader",
         "introduce.title": "INTRODUCE",
         "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design.\nFrom AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
-        "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.\nCode reflects structured thought, and every system embodies logic refined through clarity.",
-        "skills.title": "SKILL",
-        "skills.lang": "LANGUAGES",
-        "skills.framework": "FRAMEWORKS & LIBRARIES",
-        "skills.infra": "INFRASTRUCTURE & DATABASES",
-        "skills.langlist": "<li>HTML / CSS</li><li>JavaScript / TypeScript</li><li>Java</li><li>Rust</li>",
-        "skills.frameworklist": "<li>Node.js</li><li>React.js</li><li>SvelteKit</li>",
-        "skills.infralist": "<li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li>",
-        "exp.title": "EXPERIENCE",
-        "exp.item1": "<span class='title'>Woori Future Lab — Chief AI Researcher</span><span class='when'>2023.01 ~</span><div class='org'>LLM security, alignment, and reliability research · Prompt attack prevention and model consistency design</div>",
-        "exp.item2": "<span class='title'>MN Co. — Lead Web Designer</span><span class='when'>2024.
+        "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.\nCode reflects structured thought, and every system embodies logic refined through clarity."
+      },
+      ko: {
+        "introduce.title": "INTRODUCE",
+        "introduce.text1": "프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.\nAI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.",
+        "introduce.text2": "기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.\n코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다."
+      }
+    };
+
+    let currentLang = "ko";
+    const btn = document.getElementById("lang");
+
+    const updateLanguage = (lang) => {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      btn.textContent = lang === "ko" ? "🌐 EN" : "🌐 KO";
+      current
