@@ -51,12 +51,14 @@
       display:flex;flex-direction:column;justify-content:center;
       align-self:center;
     }
+    .hero-text h1{color:var(--accent)}
     .side-nav{display:none}
     .side-link{
       color:var(--muted);text-decoration:none;font-size:14px;font-weight:800;
       letter-spacing:.08em;transition:color .2s ease;
     }
     .side-link:hover,.side-link:focus{color:var(--ink)}
+    .side-link.active{color:var(--accent)}
     @media (min-width:901px){
       .hero{margin-top:80px;}
       .side-nav{
@@ -67,7 +69,7 @@
       }
     }
 
-    .subtitle{color:var(--muted);font-weight:800;margin-bottom:24px;font-size:18px;line-height:1.6;white-space:nowrap}
+    .subtitle{color:var(--accent);font-weight:800;margin-bottom:24px;font-size:18px;line-height:1.6;white-space:nowrap}
     .subtitle .sep{opacity:.6}
     @media (max-width: 900px){
       .subtitle{white-space:normal}
@@ -311,6 +313,50 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       }
     };
 
+    const navLinks = Array.from(document.querySelectorAll(".side-link"));
+    const sectionTargets = navLinks
+      .map(link => {
+        const id = link.getAttribute("href").slice(1);
+        const section = document.getElementById(id);
+        return section ? { id, link, section } : null;
+      })
+      .filter(Boolean);
+    const sectionIndex = new Map(sectionTargets.map(({ id }, index) => [id, index]));
+    let currentActiveId = sectionTargets[0]?.id || null;
+    const initialHash = window.location.hash.slice(1);
+    if(initialHash && sectionIndex.has(initialHash)){
+      currentActiveId = initialHash;
+    }
+
+    function setActive(id){
+      if(!id) return;
+      currentActiveId = id;
+      navLinks.forEach(link => {
+        const match = link.getAttribute("href") === `#${id}`;
+        link.classList.toggle("active", match);
+      });
+    }
+
+    if(sectionTargets.length){
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting);
+        if(!visible.length) return;
+        visible.sort((a, b) => {
+          return (sectionIndex.get(a.target.id) || 0) - (sectionIndex.get(b.target.id) || 0);
+        });
+        setActive(visible[0].target.id);
+      }, { root: null, rootMargin: "-45% 0px -45% 0px", threshold: 0.25 });
+
+      sectionTargets.forEach(({ section }) => observer.observe(section));
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        const id = link.getAttribute("href").slice(1);
+        setActive(id);
+      });
+    });
+
     function applyLang(lang){
       document.documentElement.lang = lang === "en" ? "en" : "ko";
       document.querySelectorAll("[data-i18n]").forEach(el=>{
@@ -327,10 +373,12 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     const initial = localStorage.getItem("lang") || "ko";
     applyLang(initial);
+    setActive(currentActiveId);
 
     document.getElementById("lang").addEventListener("click", ()=>{
       const next = (localStorage.getItem("lang") || "ko") === "ko" ? "en" : "ko";
       applyLang(next);
+      setActive(currentActiveId);
     });
   </script>
 </body>
