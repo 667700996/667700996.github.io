@@ -94,9 +94,18 @@
     ul li::before{content:"•";position:absolute;left:-14px;color:var(--accent);font-size:18px}
 
     .row{margin-bottom:24px}
-    .row .title{font-weight:900;font-size:18px}
-    .row .when{color:var(--muted);font-size:14px;margin-left:8px}
-    .org{color:var(--muted);font-size:15px;margin:4px 0 6px}
+    .row .title{display:block;font-weight:900;font-size:18px}
+    .row .when{display:block;color:var(--accent);font-size:14px;font-weight:800;margin:6px 0 10px}
+    .org{
+      color:var(--muted);font-size:15px;margin:4px 0 6px;
+      display:flex;flex-direction:column;gap:6px;align-items:flex-start;text-align:left;
+    }
+    .org-line{
+      display:flex;align-items:center;justify-content:flex-start;gap:10px;
+    }
+    .org-line::before{
+      content:"·";color:var(--accent);font-size:18px;line-height:1;
+    }
 
     .footer{text-align:center;color:var(--muted);font-size:14px;margin-top:80px}
 
@@ -163,22 +172,34 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
       <div class="row" data-i18n="exp.item1">
         <span class="title">우리미래연구소 — 인공지능 연구 수석</span><span class="when">2023.01 ~</span>
-        <div class="org">LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div>
+        <div class="org">
+          <span class="org-line">LLM 실험/보안/정렬 연구 수행</span>
+          <span class="org-line">고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</span>
+        </div>
       </div>
 
       <div class="row" data-i18n="exp.item2">
         <span class="title">MN Co. — 총괄 웹 디자이너</span><span class="when">2024.06 ~ 2024.12</span>
-        <div class="org">쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계</div>
+        <div class="org">
+          <span class="org-line">쇼핑몰 UI/UX 설계 및 프런트엔드 개발</span>
+          <span class="org-line">백엔드 및 인프라 통합 구조 설계</span>
+        </div>
       </div>
 
       <div class="row" data-i18n="exp.item3">
         <span class="title">Team DevCrew — 개발팀 팀장</span><span class="when">2025.01 ~</span>
-        <div class="org">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄 · 팀 협업 프로세스/코드리뷰 문화</div>
+        <div class="org">
+          <span class="org-line">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</span>
+          <span class="org-line">팀 협업 프로세스/코드리뷰 문화</span>
+        </div>
       </div>
 
       <div class="row" data-i18n="exp.item4">
         <span class="title">온누리PG — 개발부 부장</span><span class="when">2025.05 ~</span>
-        <div class="org">PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화</div>
+        <div class="org">
+          <span class="org-line">PG 인프라 및 결제 시스템 아키텍처</span>
+          <span class="org-line">보안/암호화/트랜잭션 모듈 고도화</span>
+        </div>
       </div>
     </section>
 
@@ -256,10 +277,10 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
         "skills.infralist": "<li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li>",
 
         "exp.title": "EXPERIENCE",
-        "exp.item1": "<span class='title'>우리미래연구소 — 인공지능 연구 수석</span><span class='when'>2023.01 ~</span><div class='org'>LLM 실험/보안/정렬 연구 수행 · 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</div>",
-        "exp.item2": "<span class='title'>MN Co. — 총괄 웹 디자이너</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'>쇼핑몰 UI/UX 설계 및 프런트엔드 개발 · 백엔드 및 인프라 통합 구조 설계</div>",
-        "exp.item3": "<span class='title'>Team DevCrew — 개발팀 팀장</span><span class='when'>2025.01 ~</span><div class='org'>금융/웹 서비스 설계 및 클라우드 파이프라인 총괄 · 팀 협업 프로세스/코드리뷰 문화</div>",
-        "exp.item4": "<span class='title'>온누리PG — 개발부 부장</span><span class='when'>2025.05 ~</span><div class='org'>PG 인프라 및 결제 시스템 아키텍처 · 보안/암호화/트랜잭션 모듈 고도화</div>",
+        "exp.item1": "<span class='title'>우리미래연구소 — 인공지능 연구 수석</span><span class='when'>2023.01 ~</span><div class='org'><span class='org-line'>LLM 실험/보안/정렬 연구 수행</span><span class='org-line'>고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</span></div>",
+        "exp.item2": "<span class='title'>MN Co. — 총괄 웹 디자이너</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'><span class='org-line'>쇼핑몰 UI/UX 설계 및 프런트엔드 개발</span><span class='org-line'>백엔드 및 인프라 통합 구조 설계</span></div>",
+        "exp.item3": "<span class='title'>Team DevCrew — 개발팀 팀장</span><span class='when'>2025.01 ~</span><div class='org'><span class='org-line'>금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</span><span class='org-line'>팀 협업 프로세스/코드리뷰 문화</span></div>",
+        "exp.item4": "<span class='title'>온누리PG — 개발부 부장</span><span class='when'>2025.05 ~</span><div class='org'><span class='org-line'>PG 인프라 및 결제 시스템 아키텍처</span><span class='org-line'>보안/암호화/트랜잭션 모듈 고도화</span></div>",
 
         "proj.title": "PROJECT",
         "proj.block1": "<span class='title'>Prompt AI Research Platform</span><span class='when'>2023.01 ~</span><div class='org'>우리미래연구소</div><ul><li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li><li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li><li>AI 모델 공격/방어 실험 및 결과 분석 리드</li></ul>",
@@ -291,10 +312,10 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
         "skills.infralist": "<li>Linux / nginx</li><li>PostgreSQL</li><li>Cloud</li><li>Podman</li>",
 
         "exp.title": "EXPERIENCE",
-        "exp.item1": "<span class='title'>Woori Future Institute — Chief AI Researcher</span><span class='when'>2023.01 ~</span><div class='org'>LLM security/alignment research · High-reliability response design and prompt-attack mitigation</div>",
-        "exp.item2": "<span class='title'>MN Co. — Lead Web Designer</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'>Redesigned commerce UX and built responsive frontend · Integrated backend and infrastructure</div>",
-        "exp.item3": "<span class='title'>Team DevCrew — Engineering Lead</span><span class='when'>2025.01 ~</span><div class='org'>Financial/web platform design and cloud pipelines · Collaboration process & codereview culture</div>",
-        "exp.item4": "<span class='title'>OnnuriPG — Head of Engineering</span><span class='when'>2025.05 ~</span><div class='org'>Payment infrastructure & architecture · Security/crypto/transaction modules</div>",
+        "exp.item1": "<span class='title'>Woori Future Institute — Chief AI Researcher</span><span class='when'>2023.01 ~</span><div class='org'><span class='org-line'>LLM security/alignment research</span><span class='org-line'>High-reliability response design and prompt-attack mitigation</span></div>",
+        "exp.item2": "<span class='title'>MN Co. — Lead Web Designer</span><span class='when'>2024.06 ~ 2024.12</span><div class='org'><span class='org-line'>Redesigned commerce UX and built responsive frontend</span><span class='org-line'>Integrated backend and infrastructure</span></div>",
+        "exp.item3": "<span class='title'>Team DevCrew — Engineering Lead</span><span class='when'>2025.01 ~</span><div class='org'><span class='org-line'>Financial/web platform design and cloud pipelines</span><span class='org-line'>Collaboration process & codereview culture</span></div>",
+        "exp.item4": "<span class='title'>OnnuriPG — Head of Engineering</span><span class='when'>2025.05 ~</span><div class='org'><span class='org-line'>Payment infrastructure and architecture</span><span class='org-line'>Security, cryptography, and transaction modules</span></div>",
 
         "proj.title": "PROJECT",
         "proj.block1": "<span class='title'>Prompt AI Research Platform</span><span class='when'>2023.01 ~</span><div class='org'>Woori Future Institute</div><ul><li>Structured prompt-learning datasets and LLM security research</li><li>High-accuracy response optimization and alignment</li><li>Led adversarial evaluation and reporting</li></ul>",
