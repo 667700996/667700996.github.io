@@ -51,11 +51,16 @@
     section:not(:last-child)::after {
       content: "";
       display: block;
-      height: 3px;
-      background: #fff;
-      margin-top: 100px;
-      opacity: 0.8;
+      height: 2px;
+      background: #f0f6fc;
+      margin: 100px auto 0;
+      opacity: 0.3;
+      width: calc(100% - 120px);
+      border-radius: 2px;
     }
+
+    /* 첫 번째 구분선 제거 */
+    section.hero::after { display: none; }
 
     h1 {
       font-size: 52px;
@@ -100,7 +105,7 @@
 
     .contacts {
       display: grid;
-      gap: 12px;
+      gap: 14px;
       max-width: 640px;
     }
 
@@ -165,21 +170,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* Center "H" Icon */
-    .center-logo {
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--accent);
-      font-size: 120px;
-      opacity: 0.06;
-      font-weight: 900;
-      user-select: none;
-      pointer-events: none;
-      z-index: 0;
-    }
-
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; gap: 40px; }
       h1 { font-size: 40px; }
@@ -189,13 +179,12 @@
 
     @media print {
       body { background: #fff; color: #111; }
-      .lang, .center-logo { display: none; }
+      .lang { display: none; }
     }
   </style>
 </head>
 
 <body>
-  <div class="center-logo">H</div>
   <button id="lang" class="lang" aria-label="Language Toggle">🌐 EN</button>
 
   <main>
@@ -306,8 +295,8 @@
     const dict = {
       en: {
         "introduce.title": "INTRODUCE",
-        "introduce.1": "A full-stack developer bridging frontend, backend, and AI research. From AI prompt engineering to scalable infrastructure and UX-driven frontend development, I craft precise, high-quality systems.",
-        "introduce.2": "Not a technician handling tools — a thinker solving problems through reasoning. Code is the result of thought; systems are structured forms of logic."
+        "introduce.1": "A full-stack developer bridging frontend, backend, and AI research.<br>From AI prompt engineering to scalable infrastructure and UX-driven frontend development, I craft precise, high-quality systems.",
+        "introduce.2": "Not a technician handling tools — a thinker solving problems through reasoning.<br>Code is the result of thought; systems are structured forms of logic."
       },
       ko: {}
     };
@@ -316,8 +305,9 @@
       document.documentElement.lang = lang;
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
-        if (lang === "en" && dict.en[key]) el.textContent = dict.en[key];
-        else el.textContent = el.dataset.ko || el.textContent;
+        if (!el.dataset.ko) el.dataset.ko = el.innerHTML;
+        if (lang === "en" && dict.en[key]) el.innerHTML = dict.en[key];
+        else el.innerHTML = el.dataset.ko;
       });
       const btn = document.getElementById("lang");
       btn.textContent = lang === "en" ? "🌐 KO" : "🌐 EN";
