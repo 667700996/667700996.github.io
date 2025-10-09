@@ -19,6 +19,15 @@
       --line: #030;
       --accent: #0f0;
       --max: 1080px;
+      --size-xs: clamp(0.85rem, 0.8vw + 0.6rem, 0.95rem);
+      --size-sm: clamp(0.95rem, 0.9vw + 0.7rem, 1.05rem);
+      --size-base: clamp(1.05rem, 1vw + 0.8rem, 1.15rem);
+      --size-lg: clamp(1.35rem, 1.8vw + 0.9rem, 1.7rem);
+      --size-xl: clamp(2.4rem, 3vw + 1.4rem, 3rem);
+      --space-section: clamp(72px, 10vw, 120px);
+      --space-block: clamp(18px, 3vw, 32px);
+      --radius-lg: 16px;
+      --radius-md: 12px;
     }
     *{
       box-sizing:border-box;
@@ -33,19 +42,21 @@
       font-family: "Courier New", Courier, monospace;
       background:var(--bg);
       color:var(--ink);
-      line-height:1.9;
+      font-size:var(--size-base);
+      line-height:1.7;
       letter-spacing:.02em;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+      font-weight:400;
       overflow-x: hidden;
     }
     main{
       max-width:var(--max);
       margin:0 auto;
-      padding:64px 28px 100px
+      padding:clamp(56px, 8vw, 80px) 28px clamp(88px, 12vw, 120px)
     }
     section{
-      margin-bottom:120px;
+      margin-bottom:var(--space-section);
       position:relative
     }
     section:not(:last-child)::after{
@@ -54,7 +65,7 @@
       height:2px;
       background:var(--ink);
       opacity:.15;
-      margin:100px auto 0;
+      margin:var(--space-section) auto 0;
       width:clamp(160px, 32vw, 420px);
       border-radius:2px;
     }
@@ -63,28 +74,29 @@
     }
 
     h1{
-      font-size:52px;
-      margin-bottom:8px;
+      font-size:var(--size-xl);
+      margin-bottom:12px;
       letter-spacing:-.03em;
-      font-weight:800
+      font-weight:500
     }
     .section-title{
-      font-size:26px;
+      font-size:var(--size-lg);
       color:var(--accent);
-      font-weight:900;
-      letter-spacing:.08em;
-      margin-bottom:28px
+      font-weight:500;
+      letter-spacing:.12em;
+      margin-bottom:var(--space-block);
+      text-transform:uppercase
     }
     p{
-      font-size:18px;
-      margin-bottom:16px;
+      font-size:var(--size-base);
+      margin-bottom:var(--space-block);
       white-space:pre-line
     }
 
     .hero{
       display:grid;
       grid-template-columns:280px 1fr;
-      gap:80px;
+      gap:clamp(40px, 8vw, 88px);
       align-items:center;
       min-height:320px
     }
@@ -92,7 +104,7 @@
       width:100%;
       height:280px;
       object-fit:cover;
-      border-radius:16px;
+      border-radius:var(--radius-lg);
       border:1px solid var(--line);
       background:#111;
       align-self:center
@@ -101,7 +113,8 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
-      align-self:center
+      align-self:center;
+      gap:var(--space-block)
     }
     .hero-text h1{
       color:var(--accent)
@@ -112,9 +125,9 @@
     .side-link{
       color:var(--muted);
       text-decoration:none;
-      font-size:14px;
-      font-weight:800;
-      letter-spacing:.08em;
+      font-size:var(--size-xs);
+      font-weight:400;
+      letter-spacing:.12em;
       transition:color .2s ease
     }
     .side-link:hover,.side-link:focus{
@@ -145,10 +158,9 @@
 
     .subtitle{
       color:var(--accent);
-      font-weight:800;
-      margin-bottom:24px;
-      font-size:18px;
-      line-height:1.6;
+      font-weight:400;
+      font-size:var(--size-base);
+      line-height:1.5;
       white-space:nowrap
     }
     .subtitle .sep{
@@ -175,14 +187,19 @@
     .contact{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:12px;
       color:var(--ink);
-      text-decoration:none
+      text-decoration:none;
+      font-size:var(--size-sm)
     }
     .contact svg{
       width:20px;
       height:20px;
-      fill:var(--ink)
+      fill:none;
+      stroke:var(--ink);
+      stroke-width:1.6;
+      stroke-linecap:round;
+      stroke-linejoin:round
     }
 
     .lang{
@@ -193,21 +210,11 @@
       background:rgba(0,0,0,.85);
       backdrop-filter:blur(6px);
       color:var(--ink);
-      font-weight:700;
+      font-weight:400;
       border-radius:50px;
       padding:6px 14px;
       cursor:pointer;
       z-index:100
-    }
-
-    .label{
-      color:var(--muted);
-      font-weight:900;
-      font-size:20px;
-      margin-top:40px;
-      margin-bottom:22px;
-      text-transform:uppercase;
-      letter-spacing:.05em
     }
 
     ul{
@@ -215,27 +222,45 @@
       padding-left:20px
     }
     ul li{
-      margin-bottom:12px;
-      font-size:17px;
+      margin-bottom:var(--space-block);
+      font-size:var(--size-sm);
       position:relative
     }
     ul li::before{
-      content:">";
+      content:"-";
       position:absolute;
-      left:-14px;
+      left:-18px;
       color:var(--accent);
-      font-size:18px
+      font-size:var(--size-sm)
+    }
+    .skill-groups{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:clamp(24px, 3vw, 36px);
+      margin-top:var(--space-block)
+    }
+    .skill-group{
+      display:flex;
+      flex-direction:column;
+      gap:var(--space-block)
+    }
+    .skill-heading{
+      font-size:var(--size-sm);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      font-weight:400
     }
     .skill-list{
-      padding-left:28px;
+      padding-left:0;
       margin-top:0
     }
     .skill-list li{
       display:flex;
       align-items:center;
       gap:14px;
-      margin-bottom:16px;
-      font-size:17px;
+      margin-bottom:var(--space-block);
+      font-size:var(--size-sm);
       position:relative
     }
     .skill-list li::before{
@@ -260,7 +285,7 @@
       stroke-width:2
     }
     .skill-label{
-      font-weight:600
+      font-weight:400
     }
 
     .row{
@@ -268,8 +293,8 @@
     }
     .row-title{
       display:block;
-      font-weight:900;
-      font-size:20px;
+      font-weight:400;
+      font-size:var(--size-base);
       margin-bottom:8px;
       color:var(--muted)
     }
@@ -279,34 +304,34 @@
     .row .when{
       display:block;
       color:var(--accent);
-      font-size:17px;
-      font-weight:700;
+      font-size:var(--size-sm);
+      font-weight:400;
       margin:12px 0 18px
     }
     .org{
       color:var(--muted);
-      font-size:17px;
+      font-size:var(--size-sm);
       margin:8px 0 10px;
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:var(--space-block);
       align-items:flex-start;
       text-align:left;
-      font-weight:700
+      font-weight:400
     }
     .org-line{
       display:flex;
       align-items:center;
       justify-content:flex-start;
       gap:10px;
-      font-weight:700;
-      font-size:17px;
+      font-weight:400;
+      font-size:var(--size-sm);
       color:var(--ink)
     }
     .org-line::before{
-      content:">";
+      content:"-";
       color:var(--accent);
-      font-size:18px;
+      font-size:var(--size-sm);
       line-height:1
     }
     .org-line-no-dot::before{
@@ -316,7 +341,7 @@
     .footer{
       text-align:center;
       color:var(--muted);
-      font-size:14px;
+      font-size:var(--size-xs);
       margin-top:80px
     }
 
@@ -326,7 +351,7 @@
         gap:24px
       }
       h1{
-        font-size:38px
+        font-size:clamp(2.1rem, 8vw, 2.6rem)
       }
       .avatar{
         height:260px;
@@ -368,26 +393,26 @@
         margin-bottom:32px
       }
       .row-title{
-        font-size:18px;
-        font-weight:900;
+        font-size:var(--size-base);
+        font-weight:400;
         margin-bottom:6px
       }
       .row .when{
-        font-size:16px;
-        font-weight:700;
+        font-size:var(--size-sm);
+        font-weight:400;
         margin:8px 0 14px
       }
       .org{
-        font-size:16px;
+        font-size:var(--size-sm);
         gap:8px
       }
       .org-line{
         gap:8px;
-        font-size:16px;
-        font-weight:700
+        font-size:var(--size-sm);
+        font-weight:400
       }
       .org-line::before{
-        font-size:16px
+        font-size:var(--size-sm)
       }
       ul li{
         margin-bottom:10px
@@ -421,6 +446,10 @@
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
     }
+    .terminal-content{
+      opacity:1;
+      animation:none
+    }
     
     .typed-out {
         overflow: hidden;
@@ -439,23 +468,6 @@
         50% { border-color: orange; }
     }
     
-    .section-title::before {
-      content: "[hwan@localhost ~]$";
-      color: var(--accent);
-    }
-    
-    .terminal-content {
-        opacity: 0;
-        animation: fadeIn 0.5s forwards;
-        animation-delay: 0.5s;
-    }
-
-    @keyframes fadeIn {
-        to {
-            opacity: 1;
-        }
-    }
-
   </style>
 </head>
 <body>
@@ -467,12 +479,15 @@
       <div class="hero-text">
         <h1 id="name">Hwan</h1>
         <p class="subtitle" data-i18n="hero.role">
-          <span class="line">AI Researcher</span><span class="sep"> · </span>
-          <span class="line">Full-Stack Architect</span><span class="sep"> · </span>
-          <span class="line">Systems Leader</span>
+          <span class="line">AI 연구원</span><span class="sep"> · </span>
+          <span class="line">풀스택 아키텍트</span><span class="sep"> · </span>
+          <span class="line">시스템 리더</span>
         </p>
         <div class="contacts">
-          <a class="contact" href="mailto:hwan@onnuripg.com">✉️ <span>hwan@onnuripg.com</span></a>
+          <a class="contact" href="mailto:hwan@onnuripg.com">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 16V8a1.5 1.5 0 0 1 1.5-1.5Z"/><path d="m4 8 8 5 8-5"/></svg>
+            <span>Hwan@onnuripg.com</span>
+          </a>
           <a class="contact" href="https://github.com/667700996" target="_blank" rel="noopener">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2c-3.3.7-4-1.4-4-1.4-.6-1.3-1.4-1.6-1.4-1.6-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 3 1.3 3.7 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C18.4 6.3 19.4 6.6 19.4 6.6c.6 1.7.2 3 .1 3.3.8.9 1.2 2 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.3.8 1 .8 2v3c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
             <span>github.com/667700996</span>
@@ -487,7 +502,7 @@
 
     <section id="introduce">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="introduce.title">cat introduce.txt</div>
+        <div class="section-title" data-i18n="introduce.title">소개</div>
         <div class="terminal-body terminal-content">
           <p data-i18n="introduce.text1">프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.
 AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.</p>
@@ -499,75 +514,97 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     <section id="skills">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="skills.title">cat skills.txt</div>
+        <div class="section-title" data-i18n="skills.title">기술</div>
         <div class="terminal-body terminal-content">
-          <h2 class="label" data-i18n="skills.lang">LANGUAGES</h2>
-          <ul class="skill-list" data-i18n="skills.langlist">
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class="skill-label">HTML / CSS</span></li>
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class="skill-label">JavaScript / TypeScript</span></li>
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class="skill-label">Java</span></li>
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class="skill-label">Rust</span></li>
-          </ul>
-
-          <h2 class="label" data-i18n="skills.frameworks">FRAMEWORKS & LIBRARIES</h2>
-          <ul class="skill-list" data-i18n="skills.frameworklist">
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class="skill-label">Node.js</span></li>
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class="skill-label">React.js</span></li>
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class="skill-label">SvelteKit</span></li>
-          </ul>
-
-          <h2 class="label" data-i18n="skills.infra">INFRASTRUCTURE & DATABASES</h2>
-          <ul class="skill-list" data-i18n="skills.infralist">
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class="skill-label">Linux / nginx</span></li>
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class="skill-label">PostgreSQL</span></li>
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class="skill-label">Cloud</span></li>
-            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class="skill-label">Podman</span></li>
-          </ul>
+          <div class="skill-groups">
+            <div class="skill-group">
+              <h3 class="skill-heading" data-i18n="skills.lang">언어</h3>
+              <ul class="skill-list">
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6"/><path d="M10 9v6"/></svg></span><span class="skill-label" data-i18n="skills.language.typescript">TypeScript</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9h8"/><path d="M8 15h6"/><path d="M14 12h4"/></svg></span><span class="skill-label" data-i18n="skills.language.javascript">JavaScript</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7c1-2 3-3 4-3s3 .8 3 2.5S13 9 12 9s-3 1-3 2.5S10.5 15 12 15s3 1 3 2.5S13 20 12 20s-3-1-4-3"/><path d="M12 6v2"/><path d="M12 16v2"/></svg></span><span class="skill-label" data-i18n="skills.language.python">Python</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 6h7a3 3 0 1 1 0 6H9"/><path d="M9 6v12"/><path d="M13 18H7"/></svg></span><span class="skill-label" data-i18n="skills.language.java">Java</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M9 9h6l1 3-4 4-4-4z"/><path d="M12 4v2"/></svg></span><span class="skill-label" data-i18n="skills.language.rust">Rust</span></li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3 class="skill-heading" data-i18n="skills.frameworks">프레임워크 &amp; 라이브러리</h3>
+              <ul class="skill-list">
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M8 9.5 16 14"/><path d="M16 9.5 8 14"/></svg></span><span class="skill-label" data-i18n="skills.framework.react">React</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 8h9"/><path d="M6 12h12"/><path d="M9 16h9"/></svg></span><span class="skill-label" data-i18n="skills.framework.next">Next.js</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4Z"/><path d="M4 10h16"/><path d="M9 14h6"/><path d="M12 7V4"/></svg></span><span class="skill-label" data-i18n="skills.framework.node">Node.js</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 5h12l2 3.5-2 3.5H6L4 8.5z"/><path d="M6 12h12l2 3.5-2 3.5H6l-2-3.5z"/><path d="M9 8.5h6"/><path d="M9 15.5h6"/></svg></span><span class="skill-label" data-i18n="skills.framework.spring">Spring Boot</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4 20 8v8l-8 4-8-4V8Z"/><path d="M8.5 14.5 12 10l3.5 4.5"/></svg></span><span class="skill-label" data-i18n="skills.framework.svelte">SvelteKit</span></li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3 class="skill-heading" data-i18n="skills.platforms">플랫폼 &amp; 데이터베이스</h3>
+              <ul class="skill-list">
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/><path d="M5 16c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span><span class="skill-label" data-i18n="skills.platform.postgres">PostgreSQL</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="2.5"/><path d="M5 6.5V12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6.5"/><path d="M5 11.5V17c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-5.5"/></svg></span><span class="skill-label" data-i18n="skills.platform.mysql">MySQL</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 12h5M8 15h3"/><path d="M14 15h2"/></svg></span><span class="skill-label" data-i18n="skills.platform.mongo">MongoDB</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4Z"/><path d="M4 10h16"/><path d="M9 14h6"/><path d="M7 4h10"/></svg></span><span class="skill-label" data-i18n="skills.platform.aws">AWS</span></li>
+                <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 7V4h10v3"/><path d="M7 17v3h10v-3"/><path d="M10 11h4"/></svg></span><span class="skill-label" data-i18n="skills.platform.docker">Docker</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="experience">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="exp.title">cat experience.txt</div>
+        <div class="section-title" data-i18n="exp.title">경력</div>
         <div class="terminal-body terminal-content">
-          <div class="row" data-i18n="exp.item1">
-            <h2 class="row-title"> > 우리미래연구소</h2>
-            <h2 class="row-title row-title-muted">인공지능 연구 수석</h2>
-            <span class="when">2023.01 ~</span>
+          <div class="row">
+            <h2 class="row-title" data-i18n="exp.item1.company">우리미래연구소</h2>
+            <h2 class="row-title row-title-muted" data-i18n="exp.item1.role">인공지능 연구 수석</h2>
+            <span class="when" data-i18n="exp.item1.period">2023.01 ~</span>
             <div class="org">
-              <h3 class="org-line">LLM 실험/보안/정렬 연구 수행</h3>
-              <h3 class="org-line">고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</h3>
+              <h3 class="org-line" data-i18n="exp.item1.detail1">LLM 실험·보안·정렬 연구 총괄</h3>
+              <h3 class="org-line" data-i18n="exp.item1.detail2">프롬프트 보안 정책과 가이드라인 설계</h3>
+              <h3 class="org-line" data-i18n="exp.item1.detail3">MLOps 파이프라인 및 모델 배포 자동화</h3>
+              <h3 class="org-line" data-i18n="exp.item1.detail4">데이터 거버넌스와 품질 검증 체계 구축</h3>
+              <h3 class="org-line" data-i18n="exp.item1.detail5">연구 조직 운영과 기술 교육 리드</h3>
             </div>
           </div>
 
-          <div class="row" data-i18n="exp.item2">
-            <h2 class="row-title"> > MN Co.</h2>
-            <h2 class="row-title row-title-muted">총괄 웹 디자이너</h2>
-            <span class="when">2024.06 ~ 2024.12</span>
+          <div class="row">
+            <h2 class="row-title" data-i18n="exp.item2.company">MN Co.</h2>
+            <h2 class="row-title row-title-muted" data-i18n="exp.item2.role">총괄 웹 디자이너</h2>
+            <span class="when" data-i18n="exp.item2.period">2024.06 ~ 2024.12</span>
             <div class="org">
-              <h3 class="org-line">쇼핑몰 UI/UX 설계 및 프런트엔드 개발</h3>
-              <h3 class="org-line">백엔드 및 인프라 통합 구조 설계</h3>
+              <h3 class="org-line" data-i18n="exp.item2.detail1">브랜드 디자인 시스템 및 컴포넌트 아키텍처 구축</h3>
+              <h3 class="org-line" data-i18n="exp.item2.detail2">SPA 기반 반응형 프런트엔드 개발</h3>
+              <h3 class="org-line" data-i18n="exp.item2.detail3">스토리북·테스팅 파이프라인으로 UI 품질 확보</h3>
+              <h3 class="org-line" data-i18n="exp.item2.detail4">웹 성능 최적화와 LCP·CLS 개선</h3>
+              <h3 class="org-line" data-i18n="exp.item2.detail5">다국어 콘텐츠 운영 및 협업 워크플로 설계</h3>
             </div>
           </div>
 
-          <div class="row" data-i18n="exp.item3">
-            <h2 class="row-title"> > Team DevCrew</h2>
-            <h2 class="row-title row-title-muted">개발팀 팀장</h2>
-            <span class="when">2025.01 ~</span>
+          <div class="row">
+            <h2 class="row-title" data-i18n="exp.item3.company">Team DevCrew</h2>
+            <h2 class="row-title row-title-muted" data-i18n="exp.item3.role">개발팀 팀장</h2>
+            <span class="when" data-i18n="exp.item3.period">2025.01 ~</span>
             <div class="org">
-              <h3 class="org-line">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</h3>
-              <h3 class="org-line">팀 협업 프로세스/코드리뷰 문화</h3>
+              <h3 class="org-line" data-i18n="exp.item3.detail1">도메인 기반 마이크로서비스 아키텍처 설계</h3>
+              <h3 class="org-line" data-i18n="exp.item3.detail2">IaC·CI/CD 자동화로 배포 효율 극대화</h3>
+              <h3 class="org-line" data-i18n="exp.item3.detail3">관측성·로그·알림 체계 표준화</h3>
+              <h3 class="org-line" data-i18n="exp.item3.detail4">애자일 협업 프로세스와 의사결정 구조 확립</h3>
+              <h3 class="org-line" data-i18n="exp.item3.detail5">코드 품질 가이드와 리뷰 문화 정착</h3>
             </div>
           </div>
 
-          <div class="row" data-i18n="exp.item4">
-            <h2 class="row-title"> > 온누리PG</h2>
-            <h2 class="row-title row-title-muted">개발부 부장</h2>
-            <span class="when">2025.05 ~</span>
+          <div class="row">
+            <h2 class="row-title" data-i18n="exp.item4.company">온누리PG</h2>
+            <h2 class="row-title row-title-muted" data-i18n="exp.item4.role">개발부 부장</h2>
+            <span class="when" data-i18n="exp.item4.period">2025.05 ~</span>
             <div class="org">
-              <h3 class="org-line">PG 인프라 및 결제 시스템 아키텍처</h3>
-              <h3 class="org-line">보안/암호화/트랜잭션 모듈 고도화</h3>
+              <h3 class="org-line" data-i18n="exp.item4.detail1">결제 게이트웨이 및 정산 아키텍처 고도화</h3>
+              <h3 class="org-line" data-i18n="exp.item4.detail2">보안 인증·암호화·위협 대응 체계 강화</h3>
+              <h3 class="org-line" data-i18n="exp.item4.detail3">실시간 정산 파이프라인과 데이터 복구 전략 수립</h3>
+              <h3 class="org-line" data-i18n="exp.item4.detail4">인프라 자동화와 비용 효율화 전략 설계</h3>
+              <h3 class="org-line" data-i18n="exp.item4.detail5">규제 준수·감사 대응 프로세스 정비</h3>
             </div>
           </div>
         </div>
@@ -576,39 +613,44 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     <section id="projects">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="proj.title">cat projects.txt</div>
+        <div class="section-title" data-i18n="proj.title">프로젝트</div>
         <div class="terminal-body terminal-content">
-          <div class="row" data-i18n="proj.block1">
-            <h2 class="row-title"> > 프롬프트 AI 연구 플랫폼</h2>
-            <h2 class="row-title row-title-muted">우리미래연구소</h2>
-            <span class="when">2023.01 ~</span>
+          <div class="row">
+            <h2 class="row-title" data-i18n="proj.block1.title">프롬프트 AI 연구 플랫폼</h2>
+            <h2 class="row-title row-title-muted" data-i18n="proj.block1.org">우리미래연구소</h2>
+            <span class="when" data-i18n="proj.block1.period">2023.01 ~</span>
             <ul>
-              <li>> 프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
-              <li>> 고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
-              <li>> AI 모델 공격/방어 실험 및 결과 분석 리드</li>
+              <li data-i18n="proj.block1.detail1">프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
+              <li data-i18n="proj.block1.detail2">고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
+              <li data-i18n="proj.block1.detail3">AI 모델 공격/방어 실험 및 결과 분석 리드</li>
+              <li data-i18n="proj.block1.detail4">데이터 수집부터 레드팀 평가까지 자동화 파이프라인 구축</li>
+              <li data-i18n="proj.block1.detail5">정부·기업 협력 연구용 리포트 및 정책 제안서 작성</li>
             </ul>
           </div>
 
-          <div class="row" data-i18n="proj.block2">
-            <h2 class="row-title"> > 쇼핑몰 웹 서비스 전면 구축</h2>
-            <h2 class="row-title row-title-muted">MN Co.</h2>
-            <span class="when">2024.06 ~ 2024.12</span>
+          <div class="row">
+            <h2 class="row-title" data-i18n="proj.block2.title">쇼핑몰 웹 서비스 전면 구축</h2>
+            <h2 class="row-title row-title-muted" data-i18n="proj.block2.org">MN Co.</h2>
+            <span class="when" data-i18n="proj.block2.period">2024.06 ~ 2024.12</span>
             <ul>
-              <li>> UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
-              <li>> API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
-              <li>> 사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li>
+              <li data-i18n="proj.block2.detail1">UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
+              <li data-i18n="proj.block2.detail2">API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
+              <li data-i18n="proj.block2.detail3">사용자 중심 데이터 흐름 설계로 전환율과 안정성 향상</li>
+              <li data-i18n="proj.block2.detail4">A/B 테스트와 고객 여정 분석으로 UX 개선</li>
+              <li data-i18n="proj.block2.detail5">마케팅·CS 조직과 협업 가능한 운영 대시보드 구축</li>
             </ul>
           </div>
 
-          <div class="row" data-i18n="proj.block3">
-            <h2 class="row-title"> > 금융 웹 인프라 통합</h2>
-            <h2 class="row-title row-title-muted">Team DevCrew × 온누리PG</h2>
-            <span class="when">2025.05 ~</span>
+          <div class="row">
+            <h2 class="row-title" data-i18n="proj.block3.title">금융 웹 인프라 통합</h2>
+            <h2 class="row-title row-title-muted" data-i18n="proj.block3.org">Team DevCrew × 온누리PG</h2>
+            <span class="when" data-i18n="proj.block3.period">2025.05 ~</span>
             <ul>
-              <li>> 결제/정산 백엔드 보안 아키텍처 재설계</li>
-              <li>> 실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
-              <li>> 금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
-              <li>> 조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li>
+              <li data-i18n="proj.block3.detail1">결제·정산 백엔드 보안 아키텍처 재설계</li>
+              <li data-i18n="proj.block3.detail2">실시간 트랜잭션 로그·인증·암호화 체계 구축</li>
+              <li data-i18n="proj.block3.detail3">금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
+              <li data-i18n="proj.block3.detail4">조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li>
+              <li data-i18n="proj.block3.detail5">PCI-DSS·전자금융감독 기준에 맞춘 컴플라이언스 체계화</li>
             </ul>
           </div>
         </div>
@@ -617,13 +659,13 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     <section id="presentation">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="pres.title">cat presentation.txt</div>
+        <div class="section-title" data-i18n="pres.title">발표</div>
         <div class="terminal-body terminal-content">
-          <ul data-i18n="pres.list">
-            <li>> (2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
-            <li>> (2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
-            <li>> (2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
-            <li>> (2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
+          <ul>
+            <li data-i18n="pres.item1">(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
+            <li data-i18n="pres.item2">(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
+            <li data-i18n="pres.item3">(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
+            <li data-i18n="pres.item4">(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
           </ul>
         </div>
       </div>
@@ -633,86 +675,221 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
   </main>
 
   <nav class="side-nav" aria-label="Section navigation">
-    <a class="side-link" href="#hero" data-i18n="nav.hero">HOME</a>
-    <a class="side-link" href="#introduce" data-i18n="nav.introduce">INTRODUCE</a>
-    <a class="side-link" href="#skills" data-i18n="nav.skills">SKILL</a>
-    <a class="side-link" href="#experience" data-i18n="nav.experience">EXPERIENCE</a>
-    <a class="side-link" href="#projects" data-i18n="nav.projects">PROJECT</a>
-    <a class="side-link" href="#presentation" data-i18n="nav.presentation">PRESENTATION</a>
+    <a class="side-link" href="#hero" data-i18n="nav.hero">홈</a>
+    <a class="side-link" href="#introduce" data-i18n="nav.introduce">소개</a>
+    <a class="side-link" href="#skills" data-i18n="nav.skills">기술</a>
+    <a class="side-link" href="#experience" data-i18n="nav.experience">경력</a>
+    <a class="side-link" href="#projects" data-i18n="nav.projects">프로젝트</a>
+    <a class="side-link" href="#presentation" data-i18n="nav.presentation">발표</a>
   </nav>
 
   <script>
     const i18n = {
-      ko: {
-        "hero.role": "<span class='line'>AI 연구원</span><span class='sep'> · </span><span class='line'>풀스택 아키텍트</span><span class='sep'> · </span><span class='line'>시스템 리더</span>",
-        "introduce.title": "cat introduce.txt",
-        "introduce.text1": "프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.\nAI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.",
-        "introduce.text2": "기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.\n코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.",
+  ko: {
+    "hero.role": "<span class='line'>AI 연구원</span><span class='sep'> · </span><span class='line'>풀스택 아키텍트</span><span class='sep'> · </span><span class='line'>시스템 리더</span>",
+    "introduce.title": "소개",
+    "introduce.text1": "프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.
+AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.",
+    "introduce.text2": "기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.
+코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.",
 
-        "skills.title": "cat skills.txt",
-        "skills.lang": "LANGUAGES",
-        "skills.langlist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class='skill-label'>> HTML / CSS</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class='skill-label'>> JavaScript / TypeScript</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class='skill-label'>> Java</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class='skill-label'>> Rust</span></li>",
-        "skills.frameworks": "FRAMEWORKS & LIBRARIES",
-        "skills.frameworklist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class='skill-label'>> Node.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class='skill-label'>> React.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class='skill-label'>> SvelteKit</span></li>",
-        "skills.infra": "INFRASTRUCTURE & DATABASES",
-        "skills.infralist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class='skill-label'>> Linux / nginx</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class='skill-label'>> PostgreSQL</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class='skill-label'>> Cloud</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class='skill-label'>> Podman</span></li>",
+    "skills.title": "기술",
+    "skills.lang": "언어",
+    "skills.language.typescript": "TypeScript",
+    "skills.language.javascript": "JavaScript",
+    "skills.language.python": "Python",
+    "skills.language.java": "Java",
+    "skills.language.rust": "Rust",
+    "skills.frameworks": "프레임워크 & 라이브러리",
+    "skills.framework.react": "React",
+    "skills.framework.next": "Next.js",
+    "skills.framework.node": "Node.js",
+    "skills.framework.spring": "Spring Boot",
+    "skills.framework.svelte": "SvelteKit",
+    "skills.platforms": "플랫폼 & 데이터베이스",
+    "skills.platform.postgres": "PostgreSQL",
+    "skills.platform.mysql": "MySQL",
+    "skills.platform.mongo": "MongoDB",
+    "skills.platform.aws": "AWS",
+    "skills.platform.docker": "Docker",
 
-        "exp.title": "cat experience.txt",
-        "exp.item1": "<h2 class='row-title'>> 우리미래연구소</h2><h2 class='row-title row-title-muted'>인공지능 수석 연구원</h2><span class='when'>> 2023.01 ~</span><div class='org'><h3 class='org-line'>> LLM 실험/보 보안/정렬 연구 수행</h3><h3 class='org-line'>> 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</h3></div>",
-        "exp.item2": "<h2 class='row-title'>> MN Co.</h2><h2 class='row-title row-title-muted'>총괄 웹 디자이너</h2><span class='when'>> 2024.06 ~ 2024.12</span><div class='org'><h3 class='org-line'>> 쇼핑몰 UI/UX 설계 및 프런트엔드 개발</h3><h3 class='org-line'>> 백엔드 및 인프라 통합 구조 설계</h3></div>",
-        "exp.item3": "<h2 class='row-title'>> Team DevCrew</h2><h2 class='row-title row-title-muted'>개발팀 팀장</h2><span class='when'>> 2025.01 ~</span><div class='org'><h3 class='org-line'>> 금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</h3><h3 class='org-line'>> 팀 협업 프로세스/코드리뷰 문화</h3></div>",
-        "exp.item4": "<h2 class='row-title'>> 온누리PG</h2><h2 class='row-title row-title-muted'>개발부 부장</h2><span class='when'>> 2025.05 ~</span><div class='org'><h3 class='org-line'>> PG 인프라 및 결제 시스템 아키텍처</h3><h3 class='org-line'>> 보안/암호화/트랜잭션 모듈 고도화</h3></div>",
+    "exp.title": "경력",
+    "exp.item1.company": "우리미래연구소",
+    "exp.item1.role": "인공지능 연구 수석",
+    "exp.item1.period": "2023.01 ~",
+    "exp.item1.detail1": "LLM 실험·보안·정렬 연구 총괄",
+    "exp.item1.detail2": "프롬프트 보안 정책과 가이드라인 설계",
+    "exp.item1.detail3": "MLOps 파이프라인 및 모델 배포 자동화",
+    "exp.item1.detail4": "데이터 거버넌스와 품질 검증 체계 구축",
+    "exp.item1.detail5": "연구 조직 운영과 기술 교육 리드",
+    "exp.item2.company": "MN Co.",
+    "exp.item2.role": "총괄 웹 디자이너",
+    "exp.item2.period": "2024.06 ~ 2024.12",
+    "exp.item2.detail1": "브랜드 디자인 시스템 및 컴포넌트 아키텍처 구축",
+    "exp.item2.detail2": "SPA 기반 반응형 프런트엔드 개발",
+    "exp.item2.detail3": "스토리북·테스팅 파이프라인으로 UI 품질 확보",
+    "exp.item2.detail4": "웹 성능 최적화와 LCP·CLS 개선",
+    "exp.item2.detail5": "다국어 콘텐츠 운영 및 협업 워크플로 설계",
+    "exp.item3.company": "Team DevCrew",
+    "exp.item3.role": "개발팀 팀장",
+    "exp.item3.period": "2025.01 ~",
+    "exp.item3.detail1": "도메인 기반 마이크로서비스 아키텍처 설계",
+    "exp.item3.detail2": "IaC·CI/CD 자동화로 배포 효율 극대화",
+    "exp.item3.detail3": "관측성·로그·알림 체계 표준화",
+    "exp.item3.detail4": "애자일 협업 프로세스와 의사결정 구조 확립",
+    "exp.item3.detail5": "코드 품질 가이드와 리뷰 문화 정착",
+    "exp.item4.company": "온누리PG",
+    "exp.item4.role": "개발부 부장",
+    "exp.item4.period": "2025.05 ~",
+    "exp.item4.detail1": "결제 게이트웨이 및 정산 아키텍처 고도화",
+    "exp.item4.detail2": "보안 인증·암호화·위협 대응 체계 강화",
+    "exp.item4.detail3": "실시간 정산 파이프라인과 데이터 복구 전략 수립",
+    "exp.item4.detail4": "인프라 자동화와 비용 효율화 전략 설계",
+    "exp.item4.detail5": "규제 준수·감사 대응 프로세스 정비",
 
-        "proj.title": "cat projects.txt",
-        "proj.block1": "<h2 class='row-title'> > 프롬프트 AI 연구 플랫폼</h2><h2 class='row-title row-title-muted'>우리미래연구소</h2><span class='when'>2023.01 ~</span><ul><li>> 프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li><li>> 고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li><li>> AI 모델 공격/방어 실험 및 결과 분석 리드</li></ul>",
-        "proj.block2": "<h2 class='row-title'> > 쇼핑몰 웹 서비스 전면 구축</h2><h2 class='row-title row-title-muted'>MN Co.</h2><span class='when'>2024.06 ~ 2024.12</span><ul><li>> UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li><li>> API 서버 통합 및 nginx 캐싱/로딩 최적화</li><li>> 사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li></ul>",
-        "proj.block3": "<h2 class='row-title'> > 금융 웹 인프라 통합</h2><h2 class='row-title row-title-muted'>Team DevCrew × 온누리PG</h2><span class='when'>2025.05 ~</span><ul><li>> 결제/정산 백엔드 보안 아키텍처 재설계</li><li>> 실시간 트랜잭션 로그/인증/암호화 체계 구축</li><li>> 금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li><li>> 조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li></ul>",
+    "proj.title": "프로젝트",
+    "proj.block1.title": "프롬프트 AI 연구 플랫폼",
+    "proj.block1.org": "우리미래연구소",
+    "proj.block1.period": "2023.01 ~",
+    "proj.block1.detail1": "프롬프트 학습 데이터셋 구조화 및 LLM 보안·취약성 연구",
+    "proj.block1.detail2": "고정확도 응답 최적화 및 지식 정렬(Alignment) 연구",
+    "proj.block1.detail3": "AI 모델 공격·방어 실험 및 결과 분석 리드",
+    "proj.block1.detail4": "데이터 수집부터 레드팀 평가까지 자동화 파이프라인 구축",
+    "proj.block1.detail5": "정부·기업 협력 연구용 리포트 및 정책 제안서 작성",
+    "proj.block2.title": "쇼핑몰 웹 서비스 전면 구축",
+    "proj.block2.org": "MN Co.",
+    "proj.block2.period": "2024.06 ~ 2024.12",
+    "proj.block2.detail1": "UI/UX 전면 재설계 및 반응형 프런트엔드 개발",
+    "proj.block2.detail2": "API 서버 통합 및 nginx 캐싱·로딩 최적화",
+    "proj.block2.detail3": "사용자 중심 데이터 흐름 설계로 전환율과 안정성 향상",
+    "proj.block2.detail4": "A/B 테스트와 고객 여정 분석으로 UX 개선",
+    "proj.block2.detail5": "마케팅·CS 조직과 협업 가능한 운영 대시보드 구축",
+    "proj.block3.title": "금융 웹 인프라 통합",
+    "proj.block3.org": "Team DevCrew × 온누리PG",
+    "proj.block3.period": "2025.05 ~",
+    "proj.block3.detail1": "결제·정산 백엔드 보안 아키텍처 재설계",
+    "proj.block3.detail2": "실시간 트랜잭션 로그·인증·암호화 체계 구축",
+    "proj.block3.detail3": "금융 데이터 정합성 강화와 SRE 기반 관측성 확보",
+    "proj.block3.detail4": "조직 간 의사결정 인터페이스 정의로 품질과 속도 개선",
+    "proj.block3.detail5": "PCI-DSS·전자금융감독 기준에 맞춘 컴플라이언스 체계화",
 
-        "pres.title": "cat presentation.txt",
-        "footer": "[hwan@localhost ~]$ exit",
-        "nav.hero": "./home",
-        "nav.introduce": "./introduce",
-        "nav.skills": "./skills",
-        "nav.experience": "./experience",
-        "nav.projects": "./projects",
-        "nav.presentation": "./presentation"
-      },
-      en: {
-        "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
-        "introduce.title": "cat introduce.txt",
-        "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design.\nFrom AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
-        "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.\nCode reflects structured thought, and every system embodies logic refined through clarity.",
+    "pres.title": "발표",
+    "pres.item1": "(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나",
+    "pres.item2": "(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나",
+    "pres.item3": "(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나",
+    "pres.item4": "(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연",
 
-        "skills.title": "cat skills.txt",
-        "skills.lang": "LANGUAGES",
-        "skills.langlist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class='skill-label'>> HTML / CSS</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class='skill-label'>> JavaScript / TypeScript</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class='skill-label'>> Java</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class='skill-label'>> Rust</span></li>",
-        "skills.frameworks": "FRAMEWORKS & LIBRARIES",
-        "skills.frameworklist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class='skill-label'>> Node.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class='skill-label'>> React.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class='skill-label'>> SvelteKit</span></li>",
-        "skills.infra": "INFRASTRUCTURE & DATABASES",
-        "skills.infralist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class='skill-label'>> Linux / nginx</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class='skill-label'>> PostgreSQL</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class='skill-label'>> Cloud</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class='skill-label'>> Podman</span></li>",
+    "footer": "“Logic. Reason. Form.” — Hwan",
+    "nav.hero": "홈",
+    "nav.introduce": "소개",
+    "nav.skills": "기술",
+    "nav.experience": "경력",
+    "nav.projects": "프로젝트",
+    "nav.presentation": "발표"
+  },
+  en: {
+    "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
+    "introduce.title": "INTRODUCE",
+    "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design.
+From AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
+    "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.
+Code reflects structured thought, and every system embodies logic refined through clarity.",
 
-        "exp.title": "cat experience.txt",
-        "exp.item1": "<h2 class='row-title'>> Woori Future Institute</h2><h2 class='row-title row-title-muted'>Chief AI Researcher</h2><span class='when'>> 2023.01 ~</span><div class='org'><h3 class='org-line'>> LLM security/alignment research</h3><h3 class='org-line'>> High-reliability response design and prompt-attack mitigation</h3></div>",
-        "exp.item2": "<h2 class='row-title'>> MN Co.</h2><h2 class='row-title row-title-muted'>Lead Web Designer</h2><span class='when'>> 2024.06 ~ 2024.12</span><div class='org'><h3 class='org-line'>> Redesigned commerce UX and built responsive frontend</h3><h3 class='org-line'>> Integrated backend and infrastructure</h3></div>",
-        "exp.item3": "<h2 class='row-title'>> Team DevCrew</h2><h2 class='row-title row-title-muted'>Engineering Lead</h2><span class='when'>> 2025.01 ~</span><div class='org'><h3 class='org-line'>> Financial/web platform design and cloud pipelines</h3><h3 class='org-line'>> Collaboration process & codereview culture</h3></div>",
-        "exp.item4": "<h2 class='row-title'>> OnnuriPG</h2><h2 class='row-title row-title-muted'>Head of Engineering</h2><span class='when'>> 2025.05 ~</span><div class='org'><h3 class='org-line'>> Payment infrastructure and architecture</h3><h3 class='org-line'>> Security, cryptography, and transaction modules</h3></div>",
+    "skills.title": "SKILLS",
+    "skills.lang": "LANGUAGES",
+    "skills.language.typescript": "TypeScript",
+    "skills.language.javascript": "JavaScript",
+    "skills.language.python": "Python",
+    "skills.language.java": "Java",
+    "skills.language.rust": "Rust",
+    "skills.frameworks": "FRAMEWORKS & LIBRARIES",
+    "skills.framework.react": "React",
+    "skills.framework.next": "Next.js",
+    "skills.framework.node": "Node.js",
+    "skills.framework.spring": "Spring Boot",
+    "skills.framework.svelte": "SvelteKit",
+    "skills.platforms": "PLATFORMS & DATABASES",
+    "skills.platform.postgres": "PostgreSQL",
+    "skills.platform.mysql": "MySQL",
+    "skills.platform.mongo": "MongoDB",
+    "skills.platform.aws": "AWS",
+    "skills.platform.docker": "Docker",
 
-        "proj.title": "cat projects.txt",
-        "proj.block1": "<h2 class='row-title'> > Prompt AI Research Platform</h2><h2 class='row-title row-title-muted'>Woori Future Institute</h2><span class='when'>2023.01 ~</span><ul><li>> Structured prompt-learning datasets and LLM security research</li><li>> High-accuracy response optimization and alignment</li><li>> Led adversarial evaluation and reporting</li></ul>",
-        "proj.block2": "<h2 class='row-title'> > Commerce Web Rebuild</h2><h2 class='row-title row-title-muted'>MN Co.</h2><span class='when'>2024.06 ~ 2024.12</span><ul><li>> Responsive UX redesign and frontend implementation</li><li>> API consolidation and nginx caching/latency optimization</li><li>> User-centric data flows improved conversion and stability</li></ul>",
-        "proj.block3": "<h2 class='row-title'> > Financial Infra Integration</h2><h2 class='row-title row-title-muted'>Team DevCrew × OnnuriPG</h2><span class='when'>2025.05 ~</span><ul><li>> Redesigned secure settlement/payment backend architecture</li><li>> Real-time logging/auth/encryption pipelines</li><li>> Data integrity hardening and SRE-grade observability</li><li>> Defined decision interfaces across orgs for quality & speed</li></ul>",
+    "exp.title": "EXPERIENCE",
+    "exp.item1.company": "Woori Future Institute",
+    "exp.item1.role": "Chief AI Researcher",
+    "exp.item1.period": "2023.01 ~",
+    "exp.item1.detail1": "Led LLM experimentation, safety, and alignment programs",
+    "exp.item1.detail2": "Defined prompt security policies and governance",
+    "exp.item1.detail3": "Built automated MLOps pipelines for deployment",
+    "exp.item1.detail4": "Established data governance and quality validation",
+    "exp.item1.detail5": "Mentored research teams and drove knowledge enablement",
+    "exp.item2.company": "MN Co.",
+    "exp.item2.role": "Lead Web Designer",
+    "exp.item2.period": "2024.06 ~ 2024.12",
+    "exp.item2.detail1": "Built the brand design system and component architecture",
+    "exp.item2.detail2": "Implemented SPA-based responsive frontend experiences",
+    "exp.item2.detail3": "Secured UI quality with Storybook and automated testing",
+    "exp.item2.detail4": "Improved web vitals through performance tuning",
+    "exp.item2.detail5": "Designed multilingual content and collaboration workflows",
+    "exp.item3.company": "Team DevCrew",
+    "exp.item3.role": "Engineering Lead",
+    "exp.item3.period": "2025.01 ~",
+    "exp.item3.detail1": "Architected domain-driven microservices",
+    "exp.item3.detail2": "Scaled IaC and CI/CD automation for delivery velocity",
+    "exp.item3.detail3": "Standardized observability, logging, and alerting",
+    "exp.item3.detail4": "Enabled agile workflows and decision frameworks",
+    "exp.item3.detail5": "Raised code quality through guidelines and review culture",
+    "exp.item4.company": "OnnuriPG",
+    "exp.item4.role": "Head of Engineering",
+    "exp.item4.period": "2025.05 ~",
+    "exp.item4.detail1": "Modernized gateway and settlement architecture",
+    "exp.item4.detail2": "Strengthened security, encryption, and threat response",
+    "exp.item4.detail3": "Designed real-time settlement pipelines and recovery plans",
+    "exp.item4.detail4": "Planned infrastructure automation and cost optimization",
+    "exp.item4.detail5": "Systematized compliance and audit readiness",
 
-        "pres.title": "cat presentation.txt",
-        "pres.list": "<li>> (2023.12.10) “Thinking in Language” — Woori Future Institute Seminar</li><li>> (2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar</li><li>> (2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar</li><li>> (2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk</li>",
-        "footer": "[hwan@localhost ~]$ exit",
-        "nav.hero": "./home",
-        "nav.introduce": "./introduce",
-        "nav.skills": "./skills",
-        "nav.experience": "./experience",
-        "nav.projects": "./projects",
-        "nav.presentation": "./presentation"
-      }
-    };
+    "proj.title": "PROJECTS",
+    "proj.block1.title": "Prompt AI Research Platform",
+    "proj.block1.org": "Woori Future Institute",
+    "proj.block1.period": "2023.01 ~",
+    "proj.block1.detail1": "Structured prompt-learning datasets and LLM security research",
+    "proj.block1.detail2": "High-accuracy response optimization and alignment",
+    "proj.block1.detail3": "Led adversarial evaluation and reporting",
+    "proj.block1.detail4": "Automated pipelines from data collection to red-team evaluation",
+    "proj.block1.detail5": "Produced joint research reports and policy proposals",
+    "proj.block2.title": "Commerce Web Rebuild",
+    "proj.block2.org": "MN Co.",
+    "proj.block2.period": "2024.06 ~ 2024.12",
+    "proj.block2.detail1": "Responsive UX redesign and frontend implementation",
+    "proj.block2.detail2": "API consolidation and nginx caching/latency optimization",
+    "proj.block2.detail3": "User-centric data flows improved conversion and stability",
+    "proj.block2.detail4": "Improved UX through A/B tests and journey analytics",
+    "proj.block2.detail5": "Built operational dashboards for marketing and CS teams",
+    "proj.block3.title": "Financial Infra Integration",
+    "proj.block3.org": "Team DevCrew × OnnuriPG",
+    "proj.block3.period": "2025.05 ~",
+    "proj.block3.detail1": "Redesigned secure settlement/payment backend architecture",
+    "proj.block3.detail2": "Real-time logging/auth/encryption pipelines",
+    "proj.block3.detail3": "Data integrity hardening and SRE-grade observability",
+    "proj.block3.detail4": "Defined decision interfaces across orgs for quality and speed",
+    "proj.block3.detail5": "Operationalized compliance with PCI-DSS and financial regulations",
+
+    "pres.title": "PRESENTATIONS",
+    "pres.item1": "(2023.12.10) “Thinking in Language” — Woori Future Institute Seminar",
+    "pres.item2": "(2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar",
+    "pres.item3": "(2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar",
+    "pres.item4": "(2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk",
+
+    "footer": "“Logic. Reason. Form.” — Hwan",
+    "nav.hero": "HOME",
+    "nav.introduce": "INTRODUCE",
+    "nav.skills": "SKILLS",
+    "nav.experience": "EXPERIENCE",
+    "nav.projects": "PROJECTS",
+    "nav.presentation": "PRESENTATIONS"
+  }
+};
 
     const navLinks = Array.from(document.querySelectorAll(".side-link"));
     const sectionTargets = navLinks
