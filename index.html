@@ -13,133 +13,449 @@
 
   <style>
     :root {
-      --bg: #0d1117;
-      --ink: #f0f6fc;
-      --muted: #9da5b4;
-      --line: #30363d;
-      --accent: #3a8bff;
+      --bg: #000;
+      --ink: #0f0;
+      --muted: #0c0;
+      --line: #030;
+      --accent: #0f0;
       --max: 1080px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;scroll-behavior:smooth}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0
+    }
+    html,body{
+      height:100%;
+      scroll-behavior:smooth
+    }
     body{
-      font-family:"Pretendard Variable",Inter,"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg);color:var(--ink);line-height:1.9;letter-spacing:.02em;
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      font-family: "Courier New", Courier, monospace;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.9;
+      letter-spacing:.02em;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x: hidden;
     }
-    main{max-width:var(--max);margin:0 auto;padding:64px 28px 100px}
-    section{margin-bottom:120px;position:relative}
+    main{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:64px 28px 100px
+    }
+    section{
+      margin-bottom:120px;
+      position:relative
+    }
     section:not(:last-child)::after{
-      content:"";display:block;height:2px;background:#f0f6fc;opacity:.15;
-      margin:100px auto 0;width:clamp(160px, 32vw, 420px);border-radius:2px;
+      content:"";
+      display:block;
+      height:2px;
+      background:var(--ink);
+      opacity:.15;
+      margin:100px auto 0;
+      width:clamp(160px, 32vw, 420px);
+      border-radius:2px;
     }
-    section.hero::after{display:none}
+    section.hero::after{
+      display:none
+    }
 
-    h1{font-size:52px;margin-bottom:8px;letter-spacing:-.03em;font-weight:800}
-    .section-title{font-size:26px;color:var(--accent);font-weight:900;letter-spacing:.08em;margin-bottom:28px}
-    p{font-size:18px;margin-bottom:16px;white-space:pre-line}
+    h1{
+      font-size:52px;
+      margin-bottom:8px;
+      letter-spacing:-.03em;
+      font-weight:800
+    }
+    .section-title{
+      font-size:26px;
+      color:var(--accent);
+      font-weight:900;
+      letter-spacing:.08em;
+      margin-bottom:28px
+    }
+    p{
+      font-size:18px;
+      margin-bottom:16px;
+      white-space:pre-line
+    }
 
     .hero{
-      display:grid;grid-template-columns:280px 1fr;gap:80px;align-items:center;
-      min-height:320px;
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:80px;
+      align-items:center;
+      min-height:320px
     }
     .avatar{
-      width:100%;height:280px;object-fit:cover;border-radius:16px;border:1px solid var(--line);background:#111;
-      align-self:center;
+      width:100%;
+      height:280px;
+      object-fit:cover;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:#111;
+      align-self:center
     }
     .hero-text{
-      display:flex;flex-direction:column;justify-content:center;
-      align-self:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-self:center
     }
-    .hero-text h1{color:var(--accent)}
-    .side-nav{display:none}
+    .hero-text h1{
+      color:var(--accent)
+    }
+    .side-nav{
+      display:none
+    }
     .side-link{
-      color:var(--muted);text-decoration:none;font-size:14px;font-weight:800;
-      letter-spacing:.08em;transition:color .2s ease;
+      color:var(--muted);
+      text-decoration:none;
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:.08em;
+      transition:color .2s ease
     }
-    .side-link:hover,.side-link:focus{color:var(--ink)}
-    .side-link.active{color:var(--accent)}
+    .side-link:hover,.side-link:focus{
+      color:var(--ink)
+    }
+    .side-link.active{
+      color:var(--accent)
+    }
     @media (min-width:901px){
-      .hero{margin-top:80px;}
+      .hero{
+        margin-top:80px
+      }
       .side-nav{
-        position:fixed;right:36px;top:50%;transform:translateY(-50%);
-        display:flex;flex-direction:column;gap:14px;padding:18px 20px;
-        border:1px solid var(--line);border-radius:18px;
-        background:rgba(13,17,23,.9);backdrop-filter:blur(10px);
+        position:fixed;
+        right:36px;
+        top:50%;
+        transform:translateY(-50%);
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        padding:18px 20px;
+        border:1px solid var(--line);
+        border-radius:18px;
+        background:rgba(0,0,0,.9);
+        backdrop-filter:blur(10px)
       }
     }
 
-    .subtitle{color:var(--accent);font-weight:800;margin-bottom:24px;font-size:18px;line-height:1.6;white-space:nowrap}
-    .subtitle .sep{opacity:.6}
+    .subtitle{
+      color:var(--accent);
+      font-weight:800;
+      margin-bottom:24px;
+      font-size:18px;
+      line-height:1.6;
+      white-space:nowrap
+    }
+    .subtitle .sep{
+      opacity:.6
+    }
     @media (max-width: 900px){
-      .subtitle{white-space:normal}
-      .subtitle .line{display:block}
-      .subtitle .sep{display:none}
+      .subtitle{
+        white-space:normal
+      }
+      .subtitle .line{
+        display:block
+      }
+      .subtitle .sep{
+        display:none
+      }
     }
 
-    .contacts{display:grid;gap:14px;max-width:640px;margin-top:18px}
-    .contact{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none}
-    .contact svg{width:20px;height:20px;fill:var(--ink)}
+    .contacts{
+      display:grid;
+      gap:14px;
+      max-width:640px;
+      margin-top:18px
+    }
+    .contact{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--ink);
+      text-decoration:none
+    }
+    .contact svg{
+      width:20px;
+      height:20px;
+      fill:var(--ink)
+    }
 
     .lang{
-      position:fixed;right:20px;top:20px;border:1px solid var(--line);
-      background:rgba(13,17,23,.85);backdrop-filter:blur(6px);color:var(--ink);
-      font-weight:700;border-radius:50px;padding:6px 14px;cursor:pointer;z-index:100;
+      position:fixed;
+      right:20px;
+      top:20px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.85);
+      backdrop-filter:blur(6px);
+      color:var(--ink);
+      font-weight:700;
+      border-radius:50px;
+      padding:6px 14px;
+      cursor:pointer;
+      z-index:100
     }
 
-    .label{color:var(--muted);font-weight:900;font-size:20px;margin-top:40px;margin-bottom:22px;text-transform:uppercase;letter-spacing:.05em}
+    .label{
+      color:var(--muted);
+      font-weight:900;
+      font-size:20px;
+      margin-top:40px;
+      margin-bottom:22px;
+      text-transform:uppercase;
+      letter-spacing:.05em
+    }
 
-    ul{list-style:none;padding-left:20px}
-    ul li{margin-bottom:12px;font-size:17px;position:relative}
-    ul li::before{content:"•";position:absolute;left:-14px;color:var(--accent);font-size:18px}
-    .skill-list{padding-left:28px;margin-top:0}
-    .skill-list li{display:flex;align-items:center;gap:14px;margin-bottom:16px;font-size:17px;position:relative}
-    .skill-list li::before{content:none}
-    .skill-icon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0}
-    .skill-icon svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}
-    .skill-label{font-weight:600}
+    ul{
+      list-style:none;
+      padding-left:20px
+    }
+    ul li{
+      margin-bottom:12px;
+      font-size:17px;
+      position:relative
+    }
+    ul li::before{
+      content:">";
+      position:absolute;
+      left:-14px;
+      color:var(--accent);
+      font-size:18px
+    }
+    .skill-list{
+      padding-left:28px;
+      margin-top:0
+    }
+    .skill-list li{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:16px;
+      font-size:17px;
+      position:relative
+    }
+    .skill-list li::before{
+      content:none
+    }
+    .skill-icon{
+      width:28px;
+      height:28px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--accent);
+      flex-shrink:0
+    }
+    .skill-icon svg{
+      width:24px;
+      height:24px;
+      stroke:currentColor;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      stroke-width:2
+    }
+    .skill-label{
+      font-weight:600
+    }
 
-    .row{margin-bottom:48px}
-    .row-title{display:block;font-weight:900;font-size:20px;margin-bottom:8px;color:var(--muted)}
-    .row-title.row-title-muted{color:var(--ink)}
-    .row .when{display:block;color:var(--accent);font-size:17px;font-weight:700;margin:12px 0 18px}
-    .org{
-      color:var(--muted);font-size:17px;margin:8px 0 10px;
-      display:flex;flex-direction:column;gap:12px;align-items:flex-start;text-align:left;
+    .row{
+      margin-bottom:48px
+    }
+    .row-title{
+      display:block;
+      font-weight:900;
+      font-size:20px;
+      margin-bottom:8px;
+      color:var(--muted)
+    }
+    .row-title.row-title-muted{
+      color:var(--ink)
+    }
+    .row .when{
+      display:block;
+      color:var(--accent);
+      font-size:17px;
       font-weight:700;
+      margin:12px 0 18px
+    }
+    .org{
+      color:var(--muted);
+      font-size:17px;
+      margin:8px 0 10px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:flex-start;
+      text-align:left;
+      font-weight:700
     }
     .org-line{
-      display:flex;align-items:center;justify-content:flex-start;gap:10px;font-weight:700;font-size:17px;color:var(--ink);
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+      font-weight:700;
+      font-size:17px;
+      color:var(--ink)
     }
     .org-line::before{
-      content:"·";color:var(--accent);font-size:18px;line-height:1;
+      content:">";
+      color:var(--accent);
+      font-size:18px;
+      line-height:1
     }
-    .org-line-muted{color:var(--muted);font-weight:700}
-    .org-line-no-dot::before{content:none}
+    .org-line-no-dot::before{
+      content:none
+    }
 
-    .footer{text-align:center;color:var(--muted);font-size:14px;margin-top:80px}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      margin-top:80px
+    }
 
     @media (max-width:900px){
-      .hero{grid-template-columns:1fr;gap:24px}
-      h1{font-size:38px}
-      .avatar{height:260px;margin-top:96px}
-      main{padding:48px 18px 80px}
-      .hero-text{transform:none}
-      section{margin-bottom:90px}
-      section:not(:last-child)::after{margin-top:70px;width:70%}
-      .label{margin-top:28px;margin-bottom:16px}
-      .skill-list{padding-left:8px}
-      .skill-list li{gap:10px;margin-bottom:12px}
-      .skill-icon{width:24px;height:24px}
-      .skill-icon svg{width:20px;height:20px}
-      .row{margin-bottom:32px}
-      .row-title{font-size:18px;font-weight:900;margin-bottom:6px}
-      .row .when{font-size:16px;font-weight:700;margin:8px 0 14px}
-      .org{font-size:16px;gap:8px}
-      .org-line{gap:8px;font-size:16px;font-weight:700}
-      .org-line::before{font-size:16px}
-      ul li{margin-bottom:10px}
+      .hero{
+        grid-template-columns:1fr;
+        gap:24px
+      }
+      h1{
+        font-size:38px
+      }
+      .avatar{
+        height:260px;
+        margin-top:96px
+      }
+      main{
+        padding:48px 18px 80px
+      }
+      .hero-text{
+        transform:none
+      }
+      section{
+        margin-bottom:90px
+      }
+      section:not(:last-child)::after{
+        margin-top:70px;
+        width:70%
+      }
+      .label{
+        margin-top:28px;
+        margin-bottom:16px
+      }
+      .skill-list{
+        padding-left:8px
+      }
+      .skill-list li{
+        gap:10px;
+        margin-bottom:12px
+      }
+      .skill-icon{
+        width:24px;
+        height:24px
+      }
+      .skill-icon svg{
+        width:20px;
+        height:20px
+      }
+      .row{
+        margin-bottom:32px
+      }
+      .row-title{
+        font-size:18px;
+        font-weight:900;
+        margin-bottom:6px
+      }
+      .row .when{
+        font-size:16px;
+        font-weight:700;
+        margin:8px 0 14px
+      }
+      .org{
+        font-size:16px;
+        gap:8px
+      }
+      .org-line{
+        gap:8px;
+        font-size:16px;
+        font-weight:700
+      }
+      .org-line::before{
+        font-size:16px
+      }
+      ul li{
+        margin-bottom:10px
+      }
     }
+
+    .terminal-window {
+        text-align: left;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .terminal-header {
+        background: #333;
+        color: white;
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        font-family: monospace;
+    }
+
+    .terminal-body {
+        background: #000;
+        color: #0f0;
+        padding: 15px;
+        font-family: 'Courier New', Courier, monospace;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    
+    .typed-out {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: .15em solid orange;
+        animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: orange; }
+    }
+    
+    .section-title::before {
+      content: "[hwan@localhost ~]$";
+      color: var(--accent);
+    }
+    
+    .terminal-content {
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+        animation-delay: 0.5s;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
   </style>
 </head>
 <body>
@@ -170,131 +486,147 @@
     </section>
 
     <section id="introduce">
-      <h1 class="section-title" data-i18n="introduce.title">INTRODUCE</h1>
-      <p data-i18n="introduce.text1">프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.
+      <div class="terminal-window">
+        <div class="section-title" data-i18n="introduce.title">cat introduce.txt</div>
+        <div class="terminal-body terminal-content">
+          <p data-i18n="introduce.text1">프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.
 AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.</p>
-      <p data-i18n="introduce.text2">기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.
+          <p data-i18n="introduce.text2">기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.
 코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.</p>
+        </div>
+      </div>
     </section>
 
     <section id="skills">
-      <h1 class="section-title" data-i18n="skills.title">SKILL</h1>
-      <div>
-        <h2 class="label" data-i18n="skills.lang">LANGUAGES</h2>
-        <ul class="skill-list" data-i18n="skills.langlist">
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class="skill-label">HTML / CSS</span></li>
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class="skill-label">JavaScript / TypeScript</span></li>
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class="skill-label">Java</span></li>
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class="skill-label">Rust</span></li>
-        </ul>
+      <div class="terminal-window">
+        <div class="section-title" data-i18n="skills.title">cat skills.txt</div>
+        <div class="terminal-body terminal-content">
+          <h2 class="label" data-i18n="skills.lang">LANGUAGES</h2>
+          <ul class="skill-list" data-i18n="skills.langlist">
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class="skill-label">HTML / CSS</span></li>
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class="skill-label">JavaScript / TypeScript</span></li>
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class="skill-label">Java</span></li>
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class="skill-label">Rust</span></li>
+          </ul>
 
-        <h2 class="label" data-i18n="skills.frameworks">FRAMEWORKS & LIBRARIES</h2>
-        <ul class="skill-list" data-i18n="skills.frameworklist">
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class="skill-label">Node.js</span></li>
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class="skill-label">React.js</span></li>
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class="skill-label">SvelteKit</span></li>
-        </ul>
+          <h2 class="label" data-i18n="skills.frameworks">FRAMEWORKS & LIBRARIES</h2>
+          <ul class="skill-list" data-i18n="skills.frameworklist">
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class="skill-label">Node.js</span></li>
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class="skill-label">React.js</span></li>
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class="skill-label">SvelteKit</span></li>
+          </ul>
 
-        <h2 class="label" data-i18n="skills.infra">INFRASTRUCTURE & DATABASES</h2>
-        <ul class="skill-list" data-i18n="skills.infralist">
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class="skill-label">Linux / nginx</span></li>
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class="skill-label">PostgreSQL</span></li>
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class="skill-label">Cloud</span></li>
-          <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class="skill-label">Podman</span></li>
-        </ul>
+          <h2 class="label" data-i18n="skills.infra">INFRASTRUCTURE & DATABASES</h2>
+          <ul class="skill-list" data-i18n="skills.infralist">
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class="skill-label">Linux / nginx</span></li>
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class="skill-label">PostgreSQL</span></li>
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class="skill-label">Cloud</span></li>
+            <li><span class="skill-icon" aria-hidden="true"><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class="skill-label">Podman</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <section id="experience">
-      <h1 class="section-title" data-i18n="exp.title">EXPERIENCE</h1>
+      <div class="terminal-window">
+        <div class="section-title" data-i18n="exp.title">cat experience.txt</div>
+        <div class="terminal-body terminal-content">
+          <div class="row" data-i18n="exp.item1">
+            <h2 class="row-title"> > 우리미래연구소</h2>
+            <h2 class="row-title row-title-muted">인공지능 연구 수석</h2>
+            <span class="when">2023.01 ~</span>
+            <div class="org">
+              <h3 class="org-line">LLM 실험/보안/정렬 연구 수행</h3>
+              <h3 class="org-line">고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</h3>
+            </div>
+          </div>
 
-      <div class="row" data-i18n="exp.item1">
-        <h2 class="row-title">우리미래연구소</h2>
-        <h2 class="row-title row-title-muted">인공지능 연구 수석</h2>
-        <span class="when">2023.01 ~</span>
-        <div class="org">
-          <h3 class="org-line">LLM 실험/보안/정렬 연구 수행</h3>
-          <h3 class="org-line">고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</h3>
-        </div>
-      </div>
+          <div class="row" data-i18n="exp.item2">
+            <h2 class="row-title"> > MN Co.</h2>
+            <h2 class="row-title row-title-muted">총괄 웹 디자이너</h2>
+            <span class="when">2024.06 ~ 2024.12</span>
+            <div class="org">
+              <h3 class="org-line">쇼핑몰 UI/UX 설계 및 프런트엔드 개발</h3>
+              <h3 class="org-line">백엔드 및 인프라 통합 구조 설계</h3>
+            </div>
+          </div>
 
-      <div class="row" data-i18n="exp.item2">
-        <h2 class="row-title">MN Co.</h2>
-        <h2 class="row-title row-title-muted">총괄 웹 디자이너</h2>
-        <span class="when">2024.06 ~ 2024.12</span>
-        <div class="org">
-          <h3 class="org-line">쇼핑몰 UI/UX 설계 및 프런트엔드 개발</h3>
-          <h3 class="org-line">백엔드 및 인프라 통합 구조 설계</h3>
-        </div>
-      </div>
+          <div class="row" data-i18n="exp.item3">
+            <h2 class="row-title"> > Team DevCrew</h2>
+            <h2 class="row-title row-title-muted">개발팀 팀장</h2>
+            <span class="when">2025.01 ~</span>
+            <div class="org">
+              <h3 class="org-line">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</h3>
+              <h3 class="org-line">팀 협업 프로세스/코드리뷰 문화</h3>
+            </div>
+          </div>
 
-      <div class="row" data-i18n="exp.item3">
-        <h2 class="row-title">Team DevCrew</h2>
-        <h2 class="row-title row-title-muted">개발팀 팀장</h2>
-        <span class="when">2025.01 ~</span>
-        <div class="org">
-          <h3 class="org-line">금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</h3>
-          <h3 class="org-line">팀 협업 프로세스/코드리뷰 문화</h3>
-        </div>
-      </div>
-
-      <div class="row" data-i18n="exp.item4">
-        <h2 class="row-title">온누리PG</h2>
-        <h2 class="row-title row-title-muted">개발부 부장</h2>
-        <span class="when">2025.05 ~</span>
-        <div class="org">
-          <h3 class="org-line">PG 인프라 및 결제 시스템 아키텍처</h3>
-          <h3 class="org-line">보안/암호화/트랜잭션 모듈 고도화</h3>
+          <div class="row" data-i18n="exp.item4">
+            <h2 class="row-title"> > 온누리PG</h2>
+            <h2 class="row-title row-title-muted">개발부 부장</h2>
+            <span class="when">2025.05 ~</span>
+            <div class="org">
+              <h3 class="org-line">PG 인프라 및 결제 시스템 아키텍처</h3>
+              <h3 class="org-line">보안/암호화/트랜잭션 모듈 고도화</h3>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="projects">
-      <h1 class="section-title" data-i18n="proj.title">PROJECT</h1>
+      <div class="terminal-window">
+        <div class="section-title" data-i18n="proj.title">cat projects.txt</div>
+        <div class="terminal-body terminal-content">
+          <div class="row" data-i18n="proj.block1">
+            <h2 class="row-title"> > 프롬프트 AI 연구 플랫폼</h2>
+            <h2 class="row-title row-title-muted">우리미래연구소</h2>
+            <span class="when">2023.01 ~</span>
+            <ul>
+              <li>> 프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
+              <li>> 고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
+              <li>> AI 모델 공격/방어 실험 및 결과 분석 리드</li>
+            </ul>
+          </div>
 
-      <div class="row" data-i18n="proj.block1">
-        <h2 class="row-title">프롬프트 AI 연구 플랫폼</h2>
-        <h2 class="row-title row-title-muted">우리미래연구소</h2>
-        <span class="when">2023.01 ~</span>
-        <ul>
-          <li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
-          <li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
-          <li>AI 모델 공격/방어 실험 및 결과 분석 리드</li>
-        </ul>
-      </div>
+          <div class="row" data-i18n="proj.block2">
+            <h2 class="row-title"> > 쇼핑몰 웹 서비스 전면 구축</h2>
+            <h2 class="row-title row-title-muted">MN Co.</h2>
+            <span class="when">2024.06 ~ 2024.12</span>
+            <ul>
+              <li>> UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
+              <li>> API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
+              <li>> 사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li>
+            </ul>
+          </div>
 
-      <div class="row" data-i18n="proj.block2">
-        <h2 class="row-title">쇼핑몰 웹 서비스 전면 구축</h2>
-        <h2 class="row-title row-title-muted">MN Co.</h2>
-        <span class="when">2024.06 ~ 2024.12</span>
-        <ul>
-          <li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
-          <li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
-          <li>사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li>
-        </ul>
-      </div>
-
-      <div class="row" data-i18n="proj.block3">
-        <h2 class="row-title">금융 웹 인프라 통합</h2>
-        <h2 class="row-title row-title-muted">Team DevCrew × 온누리PG</h2>
-        <span class="when">2025.05 ~</span>
-        <ul>
-          <li>결제/정산 백엔드 보안 아키텍처 재설계</li>
-          <li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
-          <li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
-          <li>조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li>
-        </ul>
+          <div class="row" data-i18n="proj.block3">
+            <h2 class="row-title"> > 금융 웹 인프라 통합</h2>
+            <h2 class="row-title row-title-muted">Team DevCrew × 온누리PG</h2>
+            <span class="when">2025.05 ~</span>
+            <ul>
+              <li>> 결제/정산 백엔드 보안 아키텍처 재설계</li>
+              <li>> 실시간 트랜잭션 로그/인증/암호화 체계 구축</li>
+              <li>> 금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
+              <li>> 조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="presentation">
-      <h1 class="section-title" data-i18n="pres.title">PRESENTATION</h1>
-      <ul data-i18n="pres.list">
-        <li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
-        <li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
-        <li>(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
-        <li>(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
-      </ul>
+      <div class="terminal-window">
+        <div class="section-title" data-i18n="pres.title">cat presentation.txt</div>
+        <div class="terminal-body terminal-content">
+          <ul data-i18n="pres.list">
+            <li>> (2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
+            <li>> (2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
+            <li>> (2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
+            <li>> (2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <div class="footer" data-i18n="footer">“Logic. Reason. Form.” — Hwan</div>
@@ -313,73 +645,72 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
     const i18n = {
       ko: {
         "hero.role": "<span class='line'>AI 연구원</span><span class='sep'> · </span><span class='line'>풀스택 아키텍트</span><span class='sep'> · </span><span class='line'>시스템 리더</span>",
-        "introduce.title": "소개",
+        "introduce.title": "cat introduce.txt",
         "introduce.text1": "프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.\nAI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.",
         "introduce.text2": "기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.\n코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.",
 
-        "skills.title": "기술",
-        "skills.lang": "언어",
-        "skills.langlist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class='skill-label'>HTML / CSS</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class='skill-label'>JavaScript / TypeScript</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class='skill-label'>Java</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class='skill-label'>Rust</span></li>",
-        "skills.frameworks": "프레임워크 및 라이브러리",
-        "skills.frameworklist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class='skill-label'>Node.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class='skill-label'>React.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class='skill-label'>SvelteKit</span></li>",
-        "skills.infra": "인프라 및 데이터베이스",
-        "skills.infralist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class='skill-label'>Linux / nginx</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class='skill-label'>PostgreSQL</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class='skill-label'>Cloud</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class='skill-label'>Podman</span></li>",
+        "skills.title": "cat skills.txt",
+        "skills.lang": "LANGUAGES",
+        "skills.langlist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class='skill-label'>> HTML / CSS</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class='skill-label'>> JavaScript / TypeScript</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class='skill-label'>> Java</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class='skill-label'>> Rust</span></li>",
+        "skills.frameworks": "FRAMEWORKS & LIBRARIES",
+        "skills.frameworklist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class='skill-label'>> Node.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class='skill-label'>> React.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class='skill-label'>> SvelteKit</span></li>",
+        "skills.infra": "INFRASTRUCTURE & DATABASES",
+        "skills.infralist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class='skill-label'>> Linux / nginx</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class='skill-label'>> PostgreSQL</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class='skill-label'>> Cloud</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class='skill-label'>> Podman</span></li>",
 
-        "exp.title": "경력",
-        "exp.item1": "<h2 class='row-title'>우리미래연구소</h2><h2 class='row-title row-title-muted'>인공지능 수석 연구원</h2><span class='when'>2023.01 ~</span><div class='org'><h3 class='org-line'>LLM 실험/보안/정렬 연구 수행</h3><h3 class='org-line'>고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</h3></div>",
-        "exp.item2": "<h2 class='row-title'>MN Co.</h2><h2 class='row-title row-title-muted'>총괄 웹 디자이너</h2><span class='when'>2024.06 ~ 2024.12</span><div class='org'><h3 class='org-line'>쇼핑몰 UI/UX 설계 및 프런트엔드 개발</h3><h3 class='org-line'>백엔드 및 인프라 통합 구조 설계</h3></div>",
-        "exp.item3": "<h2 class='row-title'>Team DevCrew</h2><h2 class='row-title row-title-muted'>개발팀 팀장</h2><span class='when'>2025.01 ~</span><div class='org'><h3 class='org-line'>금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</h3><h3 class='org-line'>팀 협업 프로세스/코드리뷰 문화</h3></div>",
-        "exp.item4": "<h2 class='row-title'>온누리PG</h2><h2 class='row-title row-title-muted'>개발부 부장</h2><span class='when'>2025.05 ~</span><div class='org'><h3 class='org-line'>PG 인프라 및 결제 시스템 아키텍처</h3><h3 class='org-line'>보안/암호화/트랜잭션 모듈 고도화</h3></div>",
+        "exp.title": "cat experience.txt",
+        "exp.item1": "<h2 class='row-title'>> 우리미래연구소</h2><h2 class='row-title row-title-muted'>인공지능 수석 연구원</h2><span class='when'>> 2023.01 ~</span><div class='org'><h3 class='org-line'>> LLM 실험/보 보안/정렬 연구 수행</h3><h3 class='org-line'>> 고신뢰 응답 구조 설계 및 프롬프트 해킹 대응 연구</h3></div>",
+        "exp.item2": "<h2 class='row-title'>> MN Co.</h2><h2 class='row-title row-title-muted'>총괄 웹 디자이너</h2><span class='when'>> 2024.06 ~ 2024.12</span><div class='org'><h3 class='org-line'>> 쇼핑몰 UI/UX 설계 및 프런트엔드 개발</h3><h3 class='org-line'>> 백엔드 및 인프라 통합 구조 설계</h3></div>",
+        "exp.item3": "<h2 class='row-title'>> Team DevCrew</h2><h2 class='row-title row-title-muted'>개발팀 팀장</h2><span class='when'>> 2025.01 ~</span><div class='org'><h3 class='org-line'>> 금융/웹 서비스 설계 및 클라우드 파이프라인 총괄</h3><h3 class='org-line'>> 팀 협업 프로세스/코드리뷰 문화</h3></div>",
+        "exp.item4": "<h2 class='row-title'>> 온누리PG</h2><h2 class='row-title row-title-muted'>개발부 부장</h2><span class='when'>> 2025.05 ~</span><div class='org'><h3 class='org-line'>> PG 인프라 및 결제 시스템 아키텍처</h3><h3 class='org-line'>> 보안/암호화/트랜잭션 모듈 고도화</h3></div>",
 
-        "proj.title": "프로젝트",
-        "proj.block1": "<h2 class='row-title'>프롬프트 AI 연구 플랫폼</h2><h2 class='row-title row-title-muted'>우리미래연구소</h2><span class='when'>2023.01 ~</span><ul><li>프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li><li>고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li><li>AI 모델 공격/방어 실험 및 결과 분석 리드</li></ul>",
-        "proj.block2": "<h2 class='row-title'>쇼핑몰 웹 서비스 전면 구축</h2><h2 class='row-title row-title-muted'>MN Co.</h2><span class='when'>2024.06 ~ 2024.12</span><ul><li>UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li><li>API 서버 통합 및 nginx 캐싱/로딩 최적화</li><li>사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li></ul>",
-        "proj.block3": "<h2 class='row-title'>금융 웹 인프라 통합</h2><h2 class='row-title row-title-muted'>Team DevCrew × 온누리PG</h2><span class='when'>2025.05 ~</span><ul><li>결제/정산 백엔드 보안 아키텍처 재설계</li><li>실시간 트랜잭션 로그/인증/암호화 체계 구축</li><li>금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li><li>조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li></ul>",
+        "proj.title": "cat projects.txt",
+        "proj.block1": "<h2 class='row-title'> > 프롬프트 AI 연구 플랫폼</h2><h2 class='row-title row-title-muted'>우리미래연구소</h2><span class='when'>2023.01 ~</span><ul><li>> 프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li><li>> 고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li><li>> AI 모델 공격/방어 실험 및 결과 분석 리드</li></ul>",
+        "proj.block2": "<h2 class='row-title'> > 쇼핑몰 웹 서비스 전면 구축</h2><h2 class='row-title row-title-muted'>MN Co.</h2><span class='when'>2024.06 ~ 2024.12</span><ul><li>> UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li><li>> API 서버 통합 및 nginx 캐싱/로딩 최적화</li><li>> 사용자 중심 데이터 흐름 설계로 전환율/안정성 향상</li></ul>",
+        "proj.block3": "<h2 class='row-title'> > 금융 웹 인프라 통합</h2><h2 class='row-title row-title-muted'>Team DevCrew × 온누리PG</h2><span class='when'>2025.05 ~</span><ul><li>> 결제/정산 백엔드 보안 아키텍처 재설계</li><li>> 실시간 트랜잭션 로그/인증/암호화 체계 구축</li><li>> 금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li><li>> 조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li></ul>",
 
-        "pres.title": "발표",
-        "pres.list": "<li>(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li><li>(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li><li>(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li><li>(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>",
-        "footer": "“Logic. Reason. Form.” — Hwan",
-        "nav.hero": "메인",
-        "nav.introduce": "소개",
-        "nav.skills": "기술",
-        "nav.experience": "경력",
-        "nav.projects": "프로젝트",
-        "nav.presentation": "발표"
+        "pres.title": "cat presentation.txt",
+        "footer": "[hwan@localhost ~]$ exit",
+        "nav.hero": "./home",
+        "nav.introduce": "./introduce",
+        "nav.skills": "./skills",
+        "nav.experience": "./experience",
+        "nav.projects": "./projects",
+        "nav.presentation": "./presentation"
       },
       en: {
         "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
-        "introduce.title": "INTRODUCE",
+        "introduce.title": "cat introduce.txt",
         "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design.\nFrom AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
         "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.\nCode reflects structured thought, and every system embodies logic refined through clarity.",
 
-        "skills.title": "SKILL",
+        "skills.title": "cat skills.txt",
         "skills.lang": "LANGUAGES",
-        "skills.langlist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class='skill-label'>HTML / CSS</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class='skill-label'>JavaScript / TypeScript</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class='skill-label'>Java</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class='skill-label'>Rust</span></li>",
+        "skills.langlist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 5 3 12 7 19'/><path d='M17 5 21 12 17 19'/><path d='M12 4 9 20'/></svg></span><span class='skill-label'>> HTML / CSS</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 4c-2 0-3 1-3 3v2c0 1-.5 2-1.5 2 1 0 1.5 1 1.5 2v2c0 2 1 3 3 3'/><path d='M15 4c2 0 3 1 3 3v2c0 1 .5 2 1.5 2-1 0-1.5 1-1.5 2v2c0 2-1 3-3 3'/></svg></span><span class='skill-label'>> JavaScript / TypeScript</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11h9v3a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-3Z'/><path d='M16 12h1.5a1.5 1.5 0 0 1 0 3H16'/><path d='M11 5c1-1 1-1.5 0-2.5'/><path d='M14 5c1-1 1-1.5 0-2.5'/></svg></span><span class='skill-label'>> Java</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 18 7.5v9L12 20 6 16.5v-9Z'/><circle cx='12' cy='12' r='2.5'/><path d='M12 7v2'/><path d='M12 15v2'/><path d='M8.5 9.5 10 11'/><path d='M14 13l1.5 1.5'/><path d='M14 11l1.5-1.5'/><path d='M10 13l-1.5 1.5'/></svg></span><span class='skill-label'>> Rust</span></li>",
         "skills.frameworks": "FRAMEWORKS & LIBRARIES",
-        "skills.frameworklist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class='skill-label'>Node.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class='skill-label'>React.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class='skill-label'>SvelteKit</span></li>",
+        "skills.frameworklist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 4 19 8v8l-7 4-7-4V8Z'/><path d='M9.5 15V9l5 6V9'/></svg></span><span class='skill-label'>> Node.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='2.3'/><ellipse cx='12' cy='12' rx='8' ry='3'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='8' ry='3' transform='rotate(-60 12 12)'/></svg></span><span class='skill-label'>> React.js</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M15.8 4.2c-2-1.4-4.7-1.2-6.5.4L8.3 5.8c-1.4 1.4-1.2 3.6.4 4.8 1.1.8 2.6 1 3.8.6l1.9-.6c1-.3 1.9.6 1.6 1.6-.2.6-.6 1-1.2 1.2l-2.5.8c-1.9.6-4 .1-5.5-1.2-2.1-1.9-2.3-5.1-.4-7.2L8.9 5c2-2 5-2.4 7.3-.8 1.7 1.2 2 3.6.7 5.2-.8.9-2 1.4-3.2 1.1l-1.8-.4c-1-.2-1.6-1.2-1.3-2.1.2-.6.7-1.1 1.3-1.3l2.4-.7c.8-.3 1.1-1.2.5-1.8Z'/></svg></span><span class='skill-label'>> SvelteKit</span></li>",
         "skills.infra": "INFRASTRUCTURE & DATABASES",
-        "skills.infralist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class='skill-label'>Linux / nginx</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class='skill-label'>PostgreSQL</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class='skill-label'>Cloud</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class='skill-label'>Podman</span></li>",
+        "skills.infralist": "<li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M7 10 10 12 7 14'/><path d='M12 15h5'/></svg></span><span class='skill-label'>> Linux / nginx</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='7' rx='6' ry='3'/><path d='M6 7v7c0 1.7 2.7 3 6 3s6-1.3 6-3V7'/><path d='M6 12c0 1.7 2.7 3 6 3s6-1.3 6-3'/></svg></span><span class='skill-label'>> PostgreSQL</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 16a3 3 0 0 0 0-6 4.5 4.5 0 0 0-8.4-2A4 4 0 0 0 5 12a3 3 0 0 0 0 6h14Z'/></svg></span><span class='skill-label'>> Cloud</span></li><li><span class='skill-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 7v10'/><path d='M11 7v10'/><path d='M15 7v10'/><path d='M3 10h18'/></svg></span><span class='skill-label'>> Podman</span></li>",
 
-        "exp.title": "EXPERIENCE",
-        "exp.item1": "<h2 class='row-title'>Woori Future Institute</h2><h2 class='row-title row-title-muted'>Chief AI Researcher</h2><span class='when'>2023.01 ~</span><div class='org'><h3 class='org-line'>LLM security/alignment research</h3><h3 class='org-line'>High-reliability response design and prompt-attack mitigation</h3></div>",
-        "exp.item2": "<h2 class='row-title'>MN Co.</h2><h2 class='row-title row-title-muted'>Lead Web Designer</h2><span class='when'>2024.06 ~ 2024.12</span><div class='org'><h3 class='org-line'>Redesigned commerce UX and built responsive frontend</h3><h3 class='org-line'>Integrated backend and infrastructure</h3></div>",
-        "exp.item3": "<h2 class='row-title'>Team DevCrew</h2><h2 class='row-title row-title-muted'>Engineering Lead</h2><span class='when'>2025.01 ~</span><div class='org'><h3 class='org-line'>Financial/web platform design and cloud pipelines</h3><h3 class='org-line'>Collaboration process & codereview culture</h3></div>",
-        "exp.item4": "<h2 class='row-title'>OnnuriPG</h2><h2 class='row-title row-title-muted'>Head of Engineering</h2><span class='when'>2025.05 ~</span><div class='org'><h3 class='org-line'>Payment infrastructure and architecture</h3><h3 class='org-line'>Security, cryptography, and transaction modules</h3></div>",
+        "exp.title": "cat experience.txt",
+        "exp.item1": "<h2 class='row-title'>> Woori Future Institute</h2><h2 class='row-title row-title-muted'>Chief AI Researcher</h2><span class='when'>> 2023.01 ~</span><div class='org'><h3 class='org-line'>> LLM security/alignment research</h3><h3 class='org-line'>> High-reliability response design and prompt-attack mitigation</h3></div>",
+        "exp.item2": "<h2 class='row-title'>> MN Co.</h2><h2 class='row-title row-title-muted'>Lead Web Designer</h2><span class='when'>> 2024.06 ~ 2024.12</span><div class='org'><h3 class='org-line'>> Redesigned commerce UX and built responsive frontend</h3><h3 class='org-line'>> Integrated backend and infrastructure</h3></div>",
+        "exp.item3": "<h2 class='row-title'>> Team DevCrew</h2><h2 class='row-title row-title-muted'>Engineering Lead</h2><span class='when'>> 2025.01 ~</span><div class='org'><h3 class='org-line'>> Financial/web platform design and cloud pipelines</h3><h3 class='org-line'>> Collaboration process & codereview culture</h3></div>",
+        "exp.item4": "<h2 class='row-title'>> OnnuriPG</h2><h2 class='row-title row-title-muted'>Head of Engineering</h2><span class='when'>> 2025.05 ~</span><div class='org'><h3 class='org-line'>> Payment infrastructure and architecture</h3><h3 class='org-line'>> Security, cryptography, and transaction modules</h3></div>",
 
-        "proj.title": "PROJECT",
-        "proj.block1": "<h2 class='row-title'>Prompt AI Research Platform</h2><h2 class='row-title row-title-muted'>Woori Future Institute</h2><span class='when'>2023.01 ~</span><ul><li>Structured prompt-learning datasets and LLM security research</li><li>High-accuracy response optimization and alignment</li><li>Led adversarial evaluation and reporting</li></ul>",
-        "proj.block2": "<h2 class='row-title'>Commerce Web Rebuild</h2><h2 class='row-title row-title-muted'>MN Co.</h2><span class='when'>2024.06 ~ 2024.12</span><ul><li>Responsive UX redesign and frontend implementation</li><li>API consolidation and nginx caching/latency optimization</li><li>User-centric data flows improved conversion and stability</li></ul>",
-        "proj.block3": "<h2 class='row-title'>Financial Infra Integration</h2><h2 class='row-title row-title-muted'>Team DevCrew × OnnuriPG</h2><span class='when'>2025.05 ~</span><ul><li>Redesigned secure settlement/payment backend architecture</li><li>Real-time logging/auth/encryption pipelines</li><li>Data integrity hardening and SRE-grade observability</li><li>Defined decision interfaces across orgs for quality & speed</li></ul>",
+        "proj.title": "cat projects.txt",
+        "proj.block1": "<h2 class='row-title'> > Prompt AI Research Platform</h2><h2 class='row-title row-title-muted'>Woori Future Institute</h2><span class='when'>2023.01 ~</span><ul><li>> Structured prompt-learning datasets and LLM security research</li><li>> High-accuracy response optimization and alignment</li><li>> Led adversarial evaluation and reporting</li></ul>",
+        "proj.block2": "<h2 class='row-title'> > Commerce Web Rebuild</h2><h2 class='row-title row-title-muted'>MN Co.</h2><span class='when'>2024.06 ~ 2024.12</span><ul><li>> Responsive UX redesign and frontend implementation</li><li>> API consolidation and nginx caching/latency optimization</li><li>> User-centric data flows improved conversion and stability</li></ul>",
+        "proj.block3": "<h2 class='row-title'> > Financial Infra Integration</h2><h2 class='row-title row-title-muted'>Team DevCrew × OnnuriPG</h2><span class='when'>2025.05 ~</span><ul><li>> Redesigned secure settlement/payment backend architecture</li><li>> Real-time logging/auth/encryption pipelines</li><li>> Data integrity hardening and SRE-grade observability</li><li>> Defined decision interfaces across orgs for quality & speed</li></ul>",
 
-        "pres.title": "PRESENTATION",
-        "pres.list": "<li>(2023.12.10) “Thinking in Language” — Woori Future Institute Seminar</li><li>(2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar</li><li>(2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar</li><li>(2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk</li>",
-        "footer": "“Logic. Reason. Form.” — Hwan",
-        "nav.hero": "HOME",
-        "nav.introduce": "INTRODUCE",
-        "nav.skills": "SKILL",
-        "nav.experience": "EXPERIENCE",
-        "nav.projects": "PROJECT",
-        "nav.presentation": "PRESENTATION"
+        "pres.title": "cat presentation.txt",
+        "pres.list": "<li>> (2023.12.10) “Thinking in Language” — Woori Future Institute Seminar</li><li>> (2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar</li><li>> (2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar</li><li>> (2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk</li>",
+        "footer": "[hwan@localhost ~]$ exit",
+        "nav.hero": "./home",
+        "nav.introduce": "./introduce",
+        "nav.skills": "./skills",
+        "nav.experience": "./experience",
+        "nav.projects": "./projects",
+        "nav.presentation": "./presentation"
       }
     };
 
