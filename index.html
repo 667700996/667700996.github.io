@@ -80,12 +80,25 @@
       font-weight:500
     }
     .section-title{
-      font-size:var(--size-lg);
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      font-family:"Courier New", Courier, monospace;
+      font-size:var(--size-sm);
       color:var(--accent);
-      font-weight:500;
-      letter-spacing:.12em;
+      font-weight:400;
+      letter-spacing:.02em;
+      text-transform:none;
       margin-bottom:var(--space-block);
-      text-transform:uppercase
+      padding:8px 14px;
+      border:1px solid var(--line);
+      border-radius:var(--radius-md);
+      background:rgba(0,255,0,.06)
+    }
+    .section-title::before{
+      content:"hwan@term:~$";
+      color:var(--muted);
+      font-size:var(--size-xs)
     }
     p{
       font-size:var(--size-base);
@@ -219,10 +232,14 @@
 
     ul{
       list-style:none;
-      padding-left:20px
+      padding-left:24px;
+      margin:var(--space-block) 0;
+      display:flex;
+      flex-direction:column;
+      gap:var(--space-block)
     }
     ul li{
-      margin-bottom:var(--space-block);
+      margin:0;
       font-size:var(--size-sm);
       position:relative
     }
@@ -252,14 +269,16 @@
       font-weight:400
     }
     .skill-list{
+      display:flex;
+      flex-direction:column;
+      gap:var(--space-block);
       padding-left:0;
-      margin-top:0
+      margin:0
     }
     .skill-list li{
       display:flex;
       align-items:center;
       gap:14px;
-      margin-bottom:var(--space-block);
       font-size:var(--size-sm);
       position:relative
     }
@@ -306,12 +325,12 @@
       color:var(--accent);
       font-size:var(--size-sm);
       font-weight:400;
-      margin:12px 0 18px
+      margin:var(--space-block) 0
     }
     .org{
       color:var(--muted);
       font-size:var(--size-sm);
-      margin:8px 0 10px;
+      margin:var(--space-block) 0;
       display:flex;
       flex-direction:column;
       gap:var(--space-block);
@@ -375,11 +394,13 @@
         margin-bottom:16px
       }
       .skill-list{
-        padding-left:8px
+        padding-left:8px;
+        margin-top:0;
+        margin-bottom:0;
+        gap:var(--space-block)
       }
       .skill-list li{
-        gap:10px;
-        margin-bottom:12px
+        gap:10px
       }
       .skill-icon{
         width:24px;
@@ -400,22 +421,28 @@
       .row .when{
         font-size:var(--size-sm);
         font-weight:400;
-        margin:8px 0 14px
+        margin:var(--space-block) 0
       }
       .org{
         font-size:var(--size-sm);
-        gap:8px
+        gap:var(--space-block);
+        margin:var(--space-block) 0
       }
       .org-line{
-        gap:8px;
+        gap:10px;
         font-size:var(--size-sm);
         font-weight:400
       }
       .org-line::before{
         font-size:var(--size-sm)
       }
+      ul{
+        padding-left:20px;
+        margin:var(--space-block) 0;
+        gap:var(--space-block)
+      }
       ul li{
-        margin-bottom:10px
+        margin:0
       }
     }
 
@@ -502,7 +529,7 @@
 
     <section id="introduce">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="introduce.title">소개</div>
+        <div class="section-title" data-i18n="introduce.title">cat introduce.txt</div>
         <div class="terminal-body terminal-content">
           <p data-i18n="introduce.text1">프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.
 AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.</p>
@@ -514,7 +541,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     <section id="skills">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="skills.title">기술</div>
+        <div class="section-title" data-i18n="skills.title">cat skills.txt</div>
         <div class="terminal-body terminal-content">
           <div class="skill-groups">
             <div class="skill-group">
@@ -554,7 +581,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     <section id="experience">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="exp.title">경력</div>
+        <div class="section-title" data-i18n="exp.title">cat experience.txt</div>
         <div class="terminal-body terminal-content">
           <div class="row">
             <h2 class="row-title" data-i18n="exp.item1.company">우리미래연구소</h2>
@@ -613,18 +640,18 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     <section id="projects">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="proj.title">프로젝트</div>
+        <div class="section-title" data-i18n="proj.title">cat projects.txt</div>
         <div class="terminal-body terminal-content">
           <div class="row">
             <h2 class="row-title" data-i18n="proj.block1.title">프롬프트 AI 연구 플랫폼</h2>
             <h2 class="row-title row-title-muted" data-i18n="proj.block1.org">우리미래연구소</h2>
             <span class="when" data-i18n="proj.block1.period">2023.01 ~</span>
             <ul>
-              <li data-i18n="proj.block1.detail1">프롬프트 학습 데이터셋 구조화 및 LLM 보안/취약성 연구</li>
-              <li data-i18n="proj.block1.detail2">고정확도 응답 최적화 및 지식 정렬(Alignment) 연구</li>
-              <li data-i18n="proj.block1.detail3">AI 모델 공격/방어 실험 및 결과 분석 리드</li>
+              <li data-i18n="proj.block1.detail1">프롬프트 학습 데이터셋 표준화 및 안전성 검증</li>
+              <li data-i18n="proj.block1.detail2">고정확도 응답 최적화와 정렬(Alignment) 워크플로 설계</li>
+              <li data-i18n="proj.block1.detail3">적대적 공격/방어 실험과 리포트 총괄</li>
               <li data-i18n="proj.block1.detail4">데이터 수집부터 레드팀 평가까지 자동화 파이프라인 구축</li>
-              <li data-i18n="proj.block1.detail5">정부·기업 협력 연구용 리포트 및 정책 제안서 작성</li>
+              <li data-i18n="proj.block1.detail5">기관·기업 공동 연구 리포트와 정책 제안서 작성</li>
             </ul>
           </div>
 
@@ -633,11 +660,11 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
             <h2 class="row-title row-title-muted" data-i18n="proj.block2.org">MN Co.</h2>
             <span class="when" data-i18n="proj.block2.period">2024.06 ~ 2024.12</span>
             <ul>
-              <li data-i18n="proj.block2.detail1">UI/UX 전면 재설계 및 반응형 프런트엔드 개발</li>
-              <li data-i18n="proj.block2.detail2">API 서버 통합 및 nginx 캐싱/로딩 최적화</li>
-              <li data-i18n="proj.block2.detail3">사용자 중심 데이터 흐름 설계로 전환율과 안정성 향상</li>
-              <li data-i18n="proj.block2.detail4">A/B 테스트와 고객 여정 분석으로 UX 개선</li>
-              <li data-i18n="proj.block2.detail5">마케팅·CS 조직과 협업 가능한 운영 대시보드 구축</li>
+              <li data-i18n="proj.block2.detail1">브랜드 디자인 시스템과 반응형 UI 전면 재구축</li>
+              <li data-i18n="proj.block2.detail2">API 통합 및 nginx 캐싱·지연 최적화</li>
+              <li data-i18n="proj.block2.detail3">데이터 기반 사용자 여정 설계로 전환율·안정성 향상</li>
+              <li data-i18n="proj.block2.detail4">A/B 테스트와 퍼널 분석으로 UX 개선 사이클 운영</li>
+              <li data-i18n="proj.block2.detail5">마케팅·CS 조직 협업이 가능한 실시간 운영 대시보드 구축</li>
             </ul>
           </div>
 
@@ -647,10 +674,10 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
             <span class="when" data-i18n="proj.block3.period">2025.05 ~</span>
             <ul>
               <li data-i18n="proj.block3.detail1">결제·정산 백엔드 보안 아키텍처 재설계</li>
-              <li data-i18n="proj.block3.detail2">실시간 트랜잭션 로그·인증·암호화 체계 구축</li>
-              <li data-i18n="proj.block3.detail3">금융 데이터 정합성 강화 및 SRE 기반 관측성 확보</li>
+              <li data-i18n="proj.block3.detail2">실시간 트랜잭션 인증·암호화 및 로깅 체계 구축</li>
+              <li data-i18n="proj.block3.detail3">금융 데이터 정합성 강화와 SRE 기반 관측성 확보</li>
               <li data-i18n="proj.block3.detail4">조직 간 의사결정 인터페이스 정의로 품질과 속도 개선</li>
-              <li data-i18n="proj.block3.detail5">PCI-DSS·전자금융감독 기준에 맞춘 컴플라이언스 체계화</li>
+              <li data-i18n="proj.block3.detail5">PCI-DSS·전자금융감독 준수 체계를 프로덕션에 적용</li>
             </ul>
           </div>
         </div>
@@ -659,7 +686,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     <section id="presentation">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="pres.title">발표</div>
+        <div class="section-title" data-i18n="pres.title">cat presentations.txt</div>
         <div class="terminal-body terminal-content">
           <ul>
             <li data-i18n="pres.item1">(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
@@ -684,214 +711,214 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
   </nav>
 
   <script>
-    const i18n = {
-  ko: {
-    "hero.role": "<span class='line'>AI 연구원</span><span class='sep'> · </span><span class='line'>풀스택 아키텍트</span><span class='sep'> · </span><span class='line'>시스템 리더</span>",
-    "introduce.title": "소개",
-    "introduce.text1": "프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.
-AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.",
-    "introduce.text2": "기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.
-코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.",
+    const COPY = {
+      ko: {
+        "hero.role": "<span class='line'>AI 연구원</span><span class='sep'> · </span><span class='line'>풀스택 아키텍트</span><span class='sep'> · </span><span class='line'>시스템 리더</span>",
+        "introduce.title": "cat introduce.txt",
+        "introduce.text1": "프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.\nAI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.",
+        "introduce.text2": "기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.\n코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.",
 
-    "skills.title": "기술",
-    "skills.lang": "언어",
-    "skills.language.typescript": "TypeScript",
-    "skills.language.javascript": "JavaScript",
-    "skills.language.python": "Python",
-    "skills.language.java": "Java",
-    "skills.language.rust": "Rust",
-    "skills.frameworks": "프레임워크 & 라이브러리",
-    "skills.framework.react": "React",
-    "skills.framework.next": "Next.js",
-    "skills.framework.node": "Node.js",
-    "skills.framework.spring": "Spring Boot",
-    "skills.framework.svelte": "SvelteKit",
-    "skills.platforms": "플랫폼 & 데이터베이스",
-    "skills.platform.postgres": "PostgreSQL",
-    "skills.platform.mysql": "MySQL",
-    "skills.platform.mongo": "MongoDB",
-    "skills.platform.aws": "AWS",
-    "skills.platform.docker": "Docker",
+        "skills.title": "cat skills.txt",
+        "skills.lang": "언어",
+        "skills.language.typescript": "TypeScript",
+        "skills.language.javascript": "JavaScript",
+        "skills.language.python": "Python",
+        "skills.language.java": "Java",
+        "skills.language.rust": "Rust",
+        "skills.frameworks": "프레임워크 & 라이브러리",
+        "skills.framework.react": "React",
+        "skills.framework.next": "Next.js",
+        "skills.framework.node": "Node.js",
+        "skills.framework.spring": "Spring Boot",
+        "skills.framework.svelte": "SvelteKit",
+        "skills.platforms": "플랫폼 & 데이터베이스",
+        "skills.platform.postgres": "PostgreSQL",
+        "skills.platform.mysql": "MySQL",
+        "skills.platform.mongo": "MongoDB",
+        "skills.platform.aws": "AWS",
+        "skills.platform.docker": "Docker",
 
-    "exp.title": "경력",
-    "exp.item1.company": "우리미래연구소",
-    "exp.item1.role": "인공지능 연구 수석",
-    "exp.item1.period": "2023.01 ~",
-    "exp.item1.detail1": "LLM 실험·보안·정렬 연구 총괄",
-    "exp.item1.detail2": "프롬프트 보안 정책과 가이드라인 설계",
-    "exp.item1.detail3": "MLOps 파이프라인 및 모델 배포 자동화",
-    "exp.item1.detail4": "데이터 거버넌스와 품질 검증 체계 구축",
-    "exp.item1.detail5": "연구 조직 운영과 기술 교육 리드",
-    "exp.item2.company": "MN Co.",
-    "exp.item2.role": "총괄 웹 디자이너",
-    "exp.item2.period": "2024.06 ~ 2024.12",
-    "exp.item2.detail1": "브랜드 디자인 시스템 및 컴포넌트 아키텍처 구축",
-    "exp.item2.detail2": "SPA 기반 반응형 프런트엔드 개발",
-    "exp.item2.detail3": "스토리북·테스팅 파이프라인으로 UI 품질 확보",
-    "exp.item2.detail4": "웹 성능 최적화와 LCP·CLS 개선",
-    "exp.item2.detail5": "다국어 콘텐츠 운영 및 협업 워크플로 설계",
-    "exp.item3.company": "Team DevCrew",
-    "exp.item3.role": "개발팀 팀장",
-    "exp.item3.period": "2025.01 ~",
-    "exp.item3.detail1": "도메인 기반 마이크로서비스 아키텍처 설계",
-    "exp.item3.detail2": "IaC·CI/CD 자동화로 배포 효율 극대화",
-    "exp.item3.detail3": "관측성·로그·알림 체계 표준화",
-    "exp.item3.detail4": "애자일 협업 프로세스와 의사결정 구조 확립",
-    "exp.item3.detail5": "코드 품질 가이드와 리뷰 문화 정착",
-    "exp.item4.company": "온누리PG",
-    "exp.item4.role": "개발부 부장",
-    "exp.item4.period": "2025.05 ~",
-    "exp.item4.detail1": "결제 게이트웨이 및 정산 아키텍처 고도화",
-    "exp.item4.detail2": "보안 인증·암호화·위협 대응 체계 강화",
-    "exp.item4.detail3": "실시간 정산 파이프라인과 데이터 복구 전략 수립",
-    "exp.item4.detail4": "인프라 자동화와 비용 효율화 전략 설계",
-    "exp.item4.detail5": "규제 준수·감사 대응 프로세스 정비",
+        "exp.title": "cat experience.txt",
+        "exp.item1.company": "우리미래연구소",
+        "exp.item1.role": "인공지능 연구 수석",
+        "exp.item1.period": "2023.01 ~",
+        "exp.item1.detail1": "LLM 실험·보안·정렬 연구 총괄",
+        "exp.item1.detail2": "프롬프트 보안 정책과 가이드라인 설계",
+        "exp.item1.detail3": "MLOps 파이프라인 및 모델 배포 자동화",
+        "exp.item1.detail4": "데이터 거버넌스와 품질 검증 체계 구축",
+        "exp.item1.detail5": "연구 조직 운영과 기술 교육 리드",
+        "exp.item2.company": "MN Co.",
+        "exp.item2.role": "총괄 웹 디자이너",
+        "exp.item2.period": "2024.06 ~ 2024.12",
+        "exp.item2.detail1": "브랜드 디자인 시스템 및 컴포넌트 아키텍처 구축",
+        "exp.item2.detail2": "SPA 기반 반응형 프런트엔드 개발",
+        "exp.item2.detail3": "스토리북·테스팅 파이프라인으로 UI 품질 확보",
+        "exp.item2.detail4": "웹 성능 최적화와 LCP·CLS 개선",
+        "exp.item2.detail5": "다국어 콘텐츠 운영 및 협업 워크플로 설계",
+        "exp.item3.company": "Team DevCrew",
+        "exp.item3.role": "개발팀 팀장",
+        "exp.item3.period": "2025.01 ~",
+        "exp.item3.detail1": "도메인 기반 마이크로서비스 아키텍처 설계",
+        "exp.item3.detail2": "IaC·CI/CD 자동화로 배포 효율 극대화",
+        "exp.item3.detail3": "관측성·로그·알림 체계 표준화",
+        "exp.item3.detail4": "애자일 협업 프로세스와 의사결정 구조 확립",
+        "exp.item3.detail5": "코드 품질 가이드와 리뷰 문화 정착",
+        "exp.item4.company": "온누리PG",
+        "exp.item4.role": "개발부 부장",
+        "exp.item4.period": "2025.05 ~",
+        "exp.item4.detail1": "결제 게이트웨이 및 정산 아키텍처 고도화",
+        "exp.item4.detail2": "보안 인증·암호화·위협 대응 체계 강화",
+        "exp.item4.detail3": "실시간 정산 파이프라인과 데이터 복구 전략 수립",
+        "exp.item4.detail4": "인프라 자동화와 비용 효율화 전략 설계",
+        "exp.item4.detail5": "규제 준수·감사 대응 프로세스 정비",
 
-    "proj.title": "프로젝트",
-    "proj.block1.title": "프롬프트 AI 연구 플랫폼",
-    "proj.block1.org": "우리미래연구소",
-    "proj.block1.period": "2023.01 ~",
-    "proj.block1.detail1": "프롬프트 학습 데이터셋 구조화 및 LLM 보안·취약성 연구",
-    "proj.block1.detail2": "고정확도 응답 최적화 및 지식 정렬(Alignment) 연구",
-    "proj.block1.detail3": "AI 모델 공격·방어 실험 및 결과 분석 리드",
-    "proj.block1.detail4": "데이터 수집부터 레드팀 평가까지 자동화 파이프라인 구축",
-    "proj.block1.detail5": "정부·기업 협력 연구용 리포트 및 정책 제안서 작성",
-    "proj.block2.title": "쇼핑몰 웹 서비스 전면 구축",
-    "proj.block2.org": "MN Co.",
-    "proj.block2.period": "2024.06 ~ 2024.12",
-    "proj.block2.detail1": "UI/UX 전면 재설계 및 반응형 프런트엔드 개발",
-    "proj.block2.detail2": "API 서버 통합 및 nginx 캐싱·로딩 최적화",
-    "proj.block2.detail3": "사용자 중심 데이터 흐름 설계로 전환율과 안정성 향상",
-    "proj.block2.detail4": "A/B 테스트와 고객 여정 분석으로 UX 개선",
-    "proj.block2.detail5": "마케팅·CS 조직과 협업 가능한 운영 대시보드 구축",
-    "proj.block3.title": "금융 웹 인프라 통합",
-    "proj.block3.org": "Team DevCrew × 온누리PG",
-    "proj.block3.period": "2025.05 ~",
-    "proj.block3.detail1": "결제·정산 백엔드 보안 아키텍처 재설계",
-    "proj.block3.detail2": "실시간 트랜잭션 로그·인증·암호화 체계 구축",
-    "proj.block3.detail3": "금융 데이터 정합성 강화와 SRE 기반 관측성 확보",
-    "proj.block3.detail4": "조직 간 의사결정 인터페이스 정의로 품질과 속도 개선",
-    "proj.block3.detail5": "PCI-DSS·전자금융감독 기준에 맞춘 컴플라이언스 체계화",
+        "proj.title": "cat projects.txt",
+        "proj.block1.title": "프롬프트 AI 연구 플랫폼",
+        "proj.block1.org": "우리미래연구소",
+        "proj.block1.period": "2023.01 ~",
+        "proj.block1.detail1": "프롬프트 학습 데이터셋 표준화 및 안전성 검증",
+        "proj.block1.detail2": "고정확도 응답 최적화와 정렬(Alignment) 워크플로 설계",
+        "proj.block1.detail3": "적대적 공격/방어 실험과 리포트 총괄",
+        "proj.block1.detail4": "데이터 수집부터 레드팀 평가까지 자동화 파이프라인 구축",
+        "proj.block1.detail5": "기관·기업 공동 연구 리포트와 정책 제안서 작성",
+        "proj.block2.title": "쇼핑몰 웹 서비스 전면 구축",
+        "proj.block2.org": "MN Co.",
+        "proj.block2.period": "2024.06 ~ 2024.12",
+        "proj.block2.detail1": "브랜드 디자인 시스템과 반응형 UI 전면 재구축",
+        "proj.block2.detail2": "API 통합 및 nginx 캐싱·지연 최적화",
+        "proj.block2.detail3": "데이터 기반 사용자 여정 설계로 전환율·안정성 향상",
+        "proj.block2.detail4": "A/B 테스트와 퍼널 분석으로 UX 개선 사이클 운영",
+        "proj.block2.detail5": "마케팅·CS 조직 협업이 가능한 실시간 운영 대시보드 구축",
+        "proj.block3.title": "금융 웹 인프라 통합",
+        "proj.block3.org": "Team DevCrew × 온누리PG",
+        "proj.block3.period": "2025.05 ~",
+        "proj.block3.detail1": "결제·정산 백엔드 보안 아키텍처 재설계",
+        "proj.block3.detail2": "실시간 트랜잭션 인증·암호화 및 로깅 체계 구축",
+        "proj.block3.detail3": "금융 데이터 정합성 강화와 SRE 기반 관측성 확보",
+        "proj.block3.detail4": "조직 간 의사결정 인터페이스 정의로 품질과 속도 개선",
+        "proj.block3.detail5": "PCI-DSS·전자금융감독 준수 체계를 프로덕션에 적용",
 
-    "pres.title": "발표",
-    "pres.item1": "(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나",
-    "pres.item2": "(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나",
-    "pres.item3": "(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나",
-    "pres.item4": "(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연",
+        "pres.title": "cat presentations.txt",
+        "pres.item1": "(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나",
+        "pres.item2": "(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나",
+        "pres.item3": "(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나",
+        "pres.item4": "(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연",
 
-    "footer": "“Logic. Reason. Form.” — Hwan",
-    "nav.hero": "홈",
-    "nav.introduce": "소개",
-    "nav.skills": "기술",
-    "nav.experience": "경력",
-    "nav.projects": "프로젝트",
-    "nav.presentation": "발표"
-  },
-  en: {
-    "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
-    "introduce.title": "INTRODUCE",
-    "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design.
-From AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
-    "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.
-Code reflects structured thought, and every system embodies logic refined through clarity.",
+        "footer": "“Logic. Reason. Form.” — Hwan",
+        "nav.hero": "홈",
+        "nav.introduce": "소개",
+        "nav.skills": "기술",
+        "nav.experience": "경력",
+        "nav.projects": "프로젝트",
+        "nav.presentation": "발표"
+      },
+      en: {
+        "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
+        "introduce.title": "cat introduce.txt",
+        "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design.\nFrom AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
+        "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.\nCode reflects structured thought, and every system embodies logic refined through clarity.",
 
-    "skills.title": "SKILLS",
-    "skills.lang": "LANGUAGES",
-    "skills.language.typescript": "TypeScript",
-    "skills.language.javascript": "JavaScript",
-    "skills.language.python": "Python",
-    "skills.language.java": "Java",
-    "skills.language.rust": "Rust",
-    "skills.frameworks": "FRAMEWORKS & LIBRARIES",
-    "skills.framework.react": "React",
-    "skills.framework.next": "Next.js",
-    "skills.framework.node": "Node.js",
-    "skills.framework.spring": "Spring Boot",
-    "skills.framework.svelte": "SvelteKit",
-    "skills.platforms": "PLATFORMS & DATABASES",
-    "skills.platform.postgres": "PostgreSQL",
-    "skills.platform.mysql": "MySQL",
-    "skills.platform.mongo": "MongoDB",
-    "skills.platform.aws": "AWS",
-    "skills.platform.docker": "Docker",
+        "skills.title": "cat skills.txt",
+        "skills.lang": "LANGUAGES",
+        "skills.language.typescript": "TypeScript",
+        "skills.language.javascript": "JavaScript",
+        "skills.language.python": "Python",
+        "skills.language.java": "Java",
+        "skills.language.rust": "Rust",
+        "skills.frameworks": "FRAMEWORKS & LIBRARIES",
+        "skills.framework.react": "React",
+        "skills.framework.next": "Next.js",
+        "skills.framework.node": "Node.js",
+        "skills.framework.spring": "Spring Boot",
+        "skills.framework.svelte": "SvelteKit",
+        "skills.platforms": "PLATFORMS & DATABASES",
+        "skills.platform.postgres": "PostgreSQL",
+        "skills.platform.mysql": "MySQL",
+        "skills.platform.mongo": "MongoDB",
+        "skills.platform.aws": "AWS",
+        "skills.platform.docker": "Docker",
 
-    "exp.title": "EXPERIENCE",
-    "exp.item1.company": "Woori Future Institute",
-    "exp.item1.role": "Chief AI Researcher",
-    "exp.item1.period": "2023.01 ~",
-    "exp.item1.detail1": "Led LLM experimentation, safety, and alignment programs",
-    "exp.item1.detail2": "Defined prompt security policies and governance",
-    "exp.item1.detail3": "Built automated MLOps pipelines for deployment",
-    "exp.item1.detail4": "Established data governance and quality validation",
-    "exp.item1.detail5": "Mentored research teams and drove knowledge enablement",
-    "exp.item2.company": "MN Co.",
-    "exp.item2.role": "Lead Web Designer",
-    "exp.item2.period": "2024.06 ~ 2024.12",
-    "exp.item2.detail1": "Built the brand design system and component architecture",
-    "exp.item2.detail2": "Implemented SPA-based responsive frontend experiences",
-    "exp.item2.detail3": "Secured UI quality with Storybook and automated testing",
-    "exp.item2.detail4": "Improved web vitals through performance tuning",
-    "exp.item2.detail5": "Designed multilingual content and collaboration workflows",
-    "exp.item3.company": "Team DevCrew",
-    "exp.item3.role": "Engineering Lead",
-    "exp.item3.period": "2025.01 ~",
-    "exp.item3.detail1": "Architected domain-driven microservices",
-    "exp.item3.detail2": "Scaled IaC and CI/CD automation for delivery velocity",
-    "exp.item3.detail3": "Standardized observability, logging, and alerting",
-    "exp.item3.detail4": "Enabled agile workflows and decision frameworks",
-    "exp.item3.detail5": "Raised code quality through guidelines and review culture",
-    "exp.item4.company": "OnnuriPG",
-    "exp.item4.role": "Head of Engineering",
-    "exp.item4.period": "2025.05 ~",
-    "exp.item4.detail1": "Modernized gateway and settlement architecture",
-    "exp.item4.detail2": "Strengthened security, encryption, and threat response",
-    "exp.item4.detail3": "Designed real-time settlement pipelines and recovery plans",
-    "exp.item4.detail4": "Planned infrastructure automation and cost optimization",
-    "exp.item4.detail5": "Systematized compliance and audit readiness",
+        "exp.title": "cat experience.txt",
+        "exp.item1.company": "Woori Future Institute",
+        "exp.item1.role": "Chief AI Researcher",
+        "exp.item1.period": "2023.01 ~",
+        "exp.item1.detail1": "Led LLM experimentation, safety, and alignment programs",
+        "exp.item1.detail2": "Defined prompt security policies and governance",
+        "exp.item1.detail3": "Built automated MLOps pipelines for deployment",
+        "exp.item1.detail4": "Established data governance and quality validation",
+        "exp.item1.detail5": "Mentored research teams and drove knowledge enablement",
+        "exp.item2.company": "MN Co.",
+        "exp.item2.role": "Lead Web Designer",
+        "exp.item2.period": "2024.06 ~ 2024.12",
+        "exp.item2.detail1": "Built the brand design system and component architecture",
+        "exp.item2.detail2": "Implemented SPA-based responsive frontend experiences",
+        "exp.item2.detail3": "Secured UI quality with Storybook and automated testing",
+        "exp.item2.detail4": "Improved web vitals through performance tuning",
+        "exp.item2.detail5": "Designed multilingual content and collaboration workflows",
+        "exp.item3.company": "Team DevCrew",
+        "exp.item3.role": "Engineering Lead",
+        "exp.item3.period": "2025.01 ~",
+        "exp.item3.detail1": "Architected domain-driven microservices",
+        "exp.item3.detail2": "Scaled IaC and CI/CD automation for delivery velocity",
+        "exp.item3.detail3": "Standardized observability, logging, and alerting",
+        "exp.item3.detail4": "Enabled agile workflows and decision frameworks",
+        "exp.item3.detail5": "Raised code quality through guidelines and review culture",
+        "exp.item4.company": "OnnuriPG",
+        "exp.item4.role": "Head of Engineering",
+        "exp.item4.period": "2025.05 ~",
+        "exp.item4.detail1": "Modernized gateway and settlement architecture",
+        "exp.item4.detail2": "Strengthened security, encryption, and threat response",
+        "exp.item4.detail3": "Designed real-time settlement pipelines and recovery plans",
+        "exp.item4.detail4": "Planned infrastructure automation and cost optimization",
+        "exp.item4.detail5": "Systematized compliance and audit readiness",
 
-    "proj.title": "PROJECTS",
-    "proj.block1.title": "Prompt AI Research Platform",
-    "proj.block1.org": "Woori Future Institute",
-    "proj.block1.period": "2023.01 ~",
-    "proj.block1.detail1": "Structured prompt-learning datasets and LLM security research",
-    "proj.block1.detail2": "High-accuracy response optimization and alignment",
-    "proj.block1.detail3": "Led adversarial evaluation and reporting",
-    "proj.block1.detail4": "Automated pipelines from data collection to red-team evaluation",
-    "proj.block1.detail5": "Produced joint research reports and policy proposals",
-    "proj.block2.title": "Commerce Web Rebuild",
-    "proj.block2.org": "MN Co.",
-    "proj.block2.period": "2024.06 ~ 2024.12",
-    "proj.block2.detail1": "Responsive UX redesign and frontend implementation",
-    "proj.block2.detail2": "API consolidation and nginx caching/latency optimization",
-    "proj.block2.detail3": "User-centric data flows improved conversion and stability",
-    "proj.block2.detail4": "Improved UX through A/B tests and journey analytics",
-    "proj.block2.detail5": "Built operational dashboards for marketing and CS teams",
-    "proj.block3.title": "Financial Infra Integration",
-    "proj.block3.org": "Team DevCrew × OnnuriPG",
-    "proj.block3.period": "2025.05 ~",
-    "proj.block3.detail1": "Redesigned secure settlement/payment backend architecture",
-    "proj.block3.detail2": "Real-time logging/auth/encryption pipelines",
-    "proj.block3.detail3": "Data integrity hardening and SRE-grade observability",
-    "proj.block3.detail4": "Defined decision interfaces across orgs for quality and speed",
-    "proj.block3.detail5": "Operationalized compliance with PCI-DSS and financial regulations",
+        "proj.title": "cat projects.txt",
+        "proj.block1.title": "Prompt AI Research Platform",
+        "proj.block1.org": "Woori Future Institute",
+        "proj.block1.period": "2023.01 ~",
+        "proj.block1.detail1": "Standardized prompt-learning datasets with safety validation",
+        "proj.block1.detail2": "Designed alignment workflows for high-accuracy responses",
+        "proj.block1.detail3": "Led adversarial attack/defense experiments and reporting",
+        "proj.block1.detail4": "Automated pipelines from data collection through red-team evaluation",
+        "proj.block1.detail5": "Authored joint research reports and policy recommendations",
+        "proj.block2.title": "Commerce Web Rebuild",
+        "proj.block2.org": "MN Co.",
+        "proj.block2.period": "2024.06 ~ 2024.12",
+        "proj.block2.detail1": "Rebuilt the brand design system and responsive UI",
+        "proj.block2.detail2": "Consolidated APIs with nginx caching and latency tuning",
+        "proj.block2.detail3": "Improved conversion and stability with data-driven journeys",
+        "proj.block2.detail4": "Ran continuous UX cycles with A/B testing and funnel analysis",
+        "proj.block2.detail5": "Delivered real-time operational dashboards for marketing and CS",
+        "proj.block3.title": "Financial Infra Integration",
+        "proj.block3.org": "Team DevCrew × OnnuriPG",
+        "proj.block3.period": "2025.05 ~",
+        "proj.block3.detail1": "Redesigned secure settlement/payment backend architecture",
+        "proj.block3.detail2": "Implemented real-time authentication, encryption, and logging",
+        "proj.block3.detail3": "Hardened data integrity with SRE-grade observability",
+        "proj.block3.detail4": "Defined cross-team decision interfaces to improve quality and speed",
+        "proj.block3.detail5": "Applied PCI-DSS and financial compliance in production",
 
-    "pres.title": "PRESENTATIONS",
-    "pres.item1": "(2023.12.10) “Thinking in Language” — Woori Future Institute Seminar",
-    "pres.item2": "(2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar",
-    "pres.item3": "(2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar",
-    "pres.item4": "(2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk",
+        "pres.title": "cat presentations.txt",
+        "pres.item1": "(2023.12.10) “Thinking in Language” — Woori Future Institute Seminar",
+        "pres.item2": "(2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar",
+        "pres.item3": "(2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar",
+        "pres.item4": "(2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk",
 
-    "footer": "“Logic. Reason. Form.” — Hwan",
-    "nav.hero": "HOME",
-    "nav.introduce": "INTRODUCE",
-    "nav.skills": "SKILLS",
-    "nav.experience": "EXPERIENCE",
-    "nav.projects": "PROJECTS",
-    "nav.presentation": "PRESENTATIONS"
-  }
-};
+        "footer": "“Logic. Reason. Form.” — Hwan",
+        "nav.hero": "HOME",
+        "nav.introduce": "INTRODUCE",
+        "nav.skills": "SKILLS",
+        "nav.experience": "EXPERIENCE",
+        "nav.projects": "PROJECTS",
+        "nav.presentation": "PRESENTATIONS"
+      }
+    };
+    const HTML_KEYS = new Set(["hero.role"]);
+    const ALL_KEYS = Object.keys(COPY.ko);
+
 
     const navLinks = Array.from(document.querySelectorAll(".side-link"));
+    const langButton = document.getElementById("lang");
     const sectionTargets = navLinks
       .map(link => {
         const id = link.getAttribute("href").slice(1);
@@ -966,28 +993,33 @@ Code reflects structured thought, and every system embodies logic refined throug
       });
     });
 
-    function applyLang(lang){
-      document.documentElement.lang = lang === "en" ? "en" : "ko";
-      document.querySelectorAll("[data-i18n]").forEach(el=>{
-        const key = el.getAttribute("data-i18n");
-        const val = i18n[lang][key];
-        if(typeof val === "string"){
-          if(val.includes("<")) el.innerHTML = val;
-          else el.textContent = val;
-        }
+    let currentLang = "ko";
+
+    function applyLanguage(lang){
+      const locale = lang === "en" ? "en" : "ko";
+      currentLang = locale;
+      document.documentElement.lang = locale;
+      ALL_KEYS.forEach(key => {
+        const el = document.querySelector('[data-i18n="' + key + '"]');
+        if(!el) return;
+        const value = COPY[locale][key];
+        if(value === undefined) return;
+        if(HTML_KEYS.has(key)) el.innerHTML = value;
+        else el.textContent = value;
       });
-      document.getElementById("lang").textContent = lang === "ko" ? "🌐 EN" : "🌐 KO";
-      localStorage.setItem("lang", lang);
+      langButton.textContent = locale === "ko" ? "🌐 EN" : "🌐 KO";
+      langButton.setAttribute("aria-label", locale === "ko" ? "Switch to English" : "한국어로 보기");
+      localStorage.setItem("lang", locale);
     }
 
-    const initial = localStorage.getItem("lang") || "ko";
-    applyLang(initial);
+    const storedLang = localStorage.getItem("lang");
+    applyLanguage(storedLang === "en" ? "en" : "ko");
     setActive(currentActiveId);
     requestUpdate();
 
-    document.getElementById("lang").addEventListener("click", ()=>{
-      const next = (localStorage.getItem("lang") || "ko") === "ko" ? "en" : "ko";
-      applyLang(next);
+    langButton.addEventListener("click", ()=>{
+      const next = currentLang === "ko" ? "en" : "ko";
+      applyLanguage(next);
       setActive(currentActiveId);
       requestUpdate();
     });
