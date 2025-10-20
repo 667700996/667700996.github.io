@@ -480,6 +480,60 @@
       opacity:1;
       animation:none
     }
+
+    .presentation-list{
+      list-style:none;
+      padding-left:0;
+      margin:var(--space-block) 0;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .presentation-item{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+    .presentation-item span{
+      display:inline-block;
+    }
+    .presentation-date::before{
+      content:"(";
+      margin-right:2px;
+    }
+    .presentation-date::after{
+      content:")";
+      margin-left:2px;
+    }
+    .presentation-title::after{
+      content:" —";
+      margin-left:6px;
+    }
+    .presentation-title{
+      font-weight:600;
+    }
+    @media (max-width: 600px){
+      .presentation-list{
+        gap:18px;
+      }
+      .presentation-item{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:4px;
+      }
+      .presentation-date::before,
+      .presentation-date::after,
+      .presentation-title::after{
+        content:none;
+      }
+      .presentation-title{
+        margin-top:2px;
+      }
+      .presentation-location{
+        margin-top:2px;
+      }
+    }
     
     .typed-out {
         overflow: hidden;
@@ -687,11 +741,27 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       <div class="terminal-window">
         <div class="section-title" data-i18n="pres.title">cat presentations.txt</div>
         <div class="terminal-body terminal-content">
-          <ul>
-            <li data-i18n="pres.item1">(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나</li>
-            <li data-i18n="pres.item2">(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나</li>
-            <li data-i18n="pres.item3">(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나</li>
-            <li data-i18n="pres.item4">(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연</li>
+          <ul class="presentation-list">
+            <li class="presentation-item">
+              <span class="presentation-date" data-i18n="pres.item1.date">2023.12.10</span>
+              <span class="presentation-title" data-i18n="pres.item1.title">“언어로 사고하는 인공지능”</span>
+              <span class="presentation-location" data-i18n="pres.item1.location">우리미래연구소 세미나</span>
+            </li>
+            <li class="presentation-item">
+              <span class="presentation-date" data-i18n="pres.item2.date">2024.07.15</span>
+              <span class="presentation-title" data-i18n="pres.item2.title">“시각에서 설계로, UX가 시스템을 이끈다.”</span>
+              <span class="presentation-location" data-i18n="pres.item2.location">MN Co. 세미나</span>
+            </li>
+            <li class="presentation-item">
+              <span class="presentation-date" data-i18n="pres.item3.date">2024.03.20</span>
+              <span class="presentation-title" data-i18n="pres.item3.title">“프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.”</span>
+              <span class="presentation-location" data-i18n="pres.item3.location">우리미래연구소 세미나</span>
+            </li>
+            <li class="presentation-item">
+              <span class="presentation-date" data-i18n="pres.item4.date">2025.09.15</span>
+              <span class="presentation-title" data-i18n="pres.item4.title">“금융 인프라 보안, 신뢰를 설계하다.”</span>
+              <span class="presentation-location" data-i18n="pres.item4.location">온누리PG 보안 강연</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -798,10 +868,18 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
         "proj.block3.detail5": "PCI-DSS 준수 체계를 프로덕션에 적용",
 
         "pres.title": "cat presentations.txt",
-        "pres.item1": "(2023.12.10) “언어로 사고하는 인공지능” — 우리미래연구소 세미나",
-        "pres.item2": "(2024.07.15) “시각에서 설계로, UX가 시스템을 이끈다.” — MN Co. 세미나",
-        "pres.item3": "(2024.03.20) “프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.” — 우리미래연구소 세미나",
-        "pres.item4": "(2025.09.15) “금융 인프라 보안, 신뢰를 설계하다.” — 온누리PG 보안 강연",
+        "pres.item1.date": "2023.12.10",
+        "pres.item1.title": "“언어로 사고하는 인공지능”",
+        "pres.item1.location": "우리미래연구소 세미나",
+        "pres.item2.date": "2024.07.15",
+        "pres.item2.title": "“시각에서 설계로, UX가 시스템을 이끈다.”",
+        "pres.item2.location": "MN Co. 세미나",
+        "pres.item3.date": "2024.03.20",
+        "pres.item3.title": "“프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.”",
+        "pres.item3.location": "우리미래연구소 세미나",
+        "pres.item4.date": "2025.09.15",
+        "pres.item4.title": "“금융 인프라 보안, 신뢰를 설계하다.”",
+        "pres.item4.location": "온누리PG 보안 강연",
 
         "footer": "“Logic. Reason. Form.” — Hwan",
         "nav.hero": "홈",
@@ -898,10 +976,18 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
         "proj.block3.detail5": "Applied PCI-DSS and financial compliance in production",
 
         "pres.title": "cat presentations.txt",
-        "pres.item1": "(2023.12.10) “Thinking in Language” — Woori Future Institute Seminar",
-        "pres.item2": "(2024.07.15) “From Vision to Design: UX Shapes Systems” — MN Co. Seminar",
-        "pres.item3": "(2024.03.20) “Advanced Prompt Engineering” — Woori Future Institute Seminar",
-        "pres.item4": "(2025.09.15) “Securing Financial Infrastructure” — OnnuriPG Security Talk",
+        "pres.item1.date": "2023.12.10",
+        "pres.item1.title": "“Thinking in Language”",
+        "pres.item1.location": "Woori Future Institute Seminar",
+        "pres.item2.date": "2024.07.15",
+        "pres.item2.title": "“From Vision to Design: UX Shapes Systems”",
+        "pres.item2.location": "MN Co. Seminar",
+        "pres.item3.date": "2024.03.20",
+        "pres.item3.title": "“Advanced Prompt Engineering”",
+        "pres.item3.location": "Woori Future Institute Seminar",
+        "pres.item4.date": "2025.09.15",
+        "pres.item4.title": "“Securing Financial Infrastructure”",
+        "pres.item4.location": "OnnuriPG Security Talk",
 
         "footer": "“Logic. Reason. Form.” — Hwan",
         "nav.hero": "HOME",
