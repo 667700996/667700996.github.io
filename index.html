@@ -332,15 +332,17 @@
     .hero-text{
       display:flex;
       flex-direction:column;
-      justify-content:center;
-      align-self:center;
-      gap:var(--space-block)
+      justify-content:space-between;
+      align-self:stretch;
+      min-height:280px;
+      padding:4px 0;
     }
     .hero-text > * {
       margin: 0;
     }
     .hero-text h1{
-      color:var(--accent-strong)
+      color:var(--accent-strong);
+      margin-bottom:0;
     }
 
     .subtitle{
@@ -354,6 +356,17 @@
       opacity:.6
     }
     @media (max-width: 900px){
+      .hero{
+        grid-template-columns:1fr;
+        gap:32px;
+      }
+      .hero-text{
+        justify-content:flex-start;
+        align-self:center;
+        min-height:auto;
+        padding:0;
+        gap:16px;
+      }
       .subtitle{
         white-space:normal
       }
@@ -367,9 +380,9 @@
 
     .contacts{
       display:grid;
-      gap:14px;
+      gap:10px;
       max-width:640px;
-      margin-top:18px
+      margin-top:0
     }
     .contact{
       display:flex;
@@ -395,22 +408,40 @@
     .log-list{
       display:flex;
       flex-direction:column;
-      gap:var(--space-block);
+      gap:12px;
     }
     .log-entry{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      padding:20px;
       border:1px solid var(--line);
       border-radius:var(--radius-md);
+      overflow:hidden;
       background:rgba(16,16,16,.6);
-      transition:border-color .2s ease, transform .2s ease;
+      transition:border-color .2s ease;
     }
-    .log-entry:hover,
-    .log-entry:focus-within{
+    .log-entry.open{
       border-color:var(--accent-strong);
-      transform:translateY(-2px);
+    }
+    .log-toggle{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:18px 20px;
+      background:none;
+      border:none;
+      color:var(--ink);
+      cursor:pointer;
+      text-align:left;
+      font-family:inherit;
+    }
+    .log-toggle:focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:2px;
+    }
+    .log-header{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
     }
     .log-date{
       font-size:var(--size-xs);
@@ -418,24 +449,30 @@
       letter-spacing:.08em;
     }
     .log-heading{
-      font-size:var(--size-lg);
+      font-size:var(--size-base);
       font-weight:500;
-      letter-spacing:-.01em;
+      letter-spacing:-.005em;
       color:var(--ink);
+    }
+    .log-icon{
+      font-size:1.2rem;
+      transition:transform .2s ease;
+    }
+    .log-entry.open .log-icon{
+      transform:rotate(180deg);
+    }
+    .log-content{
+      padding:0 20px 20px;
+      display:none;
+    }
+    .log-entry.open .log-content{
+      display:block;
     }
     .log-text{
       margin:0;
       font-size:var(--size-sm);
       color:var(--muted);
       line-height:1.6;
-    }
-    @media (max-width:600px){
-      .log-entry{
-        padding:18px;
-      }
-      .log-heading{
-        font-size:var(--size-base);
-      }
     }
 
     .lang{
@@ -830,6 +867,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2c-3.3.7-4-1.4-4-1.4-.6-1.3-1.4-1.6-1.4-1.6-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 3 1.3 3.7 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C18.4 6.3 19.4 6.6 19.4 6.6c.6 1.7.2 3 .1 3.3.8.9 1.2 2 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.3.8 1 .8 2v3c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
             <span>github.com/667700996</span>
           </a>
+          <a class="contact" href="https://solved.ac/profile/667700996" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-3.9 9.7-9 10-5.1-.3-9-5-9-10V6l9-4Z"/><path d="M9 12h6"/><path d="M12 9v6"/></svg>
+            <span>solved.ac/profile/667700996</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1026,15 +1067,29 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
         <div class="section-title" data-i18n="log.title">cat log.txt</div>
         <div class="terminal-body terminal-content">
           <div class="log-list">
-            <article class="log-entry">
-              <time class="log-date" data-i18n="log.entry1.date">2025.01.03</time>
-              <h2 class="log-heading" data-i18n="log.entry1.title">연구 일지: 대규모 정렬 실험 노트</h2>
-              <p class="log-text" data-i18n="log.entry1.excerpt">LLM 정렬 실험에서 수집한 결과와 프롬프트 안전성 검증 절차를 기록했습니다. 실험 자동화 파이프라인 개선 아이디어도 정리했습니다.</p>
+            <article class="log-entry" data-log-id="entry1">
+              <button class="log-toggle" type="button" aria-expanded="false">
+                <span class="log-header">
+                  <time class="log-date" data-i18n="log.entry1.date">2025.01.03</time>
+                  <span class="log-heading" data-i18n="log.entry1.title">연구 일지: 대규모 정렬 실험 노트</span>
+                </span>
+                <span class="log-icon" aria-hidden="true">▾</span>
+              </button>
+              <div class="log-content" hidden>
+                <p class="log-text" data-i18n="log.entry1.excerpt">테스트용 로그 본문입니다. 정렬 실험에서 얻은 주요 인사이트와 시스템 개선 아이디어를 요약해 둡니다.</p>
+              </div>
             </article>
-            <article class="log-entry">
-              <time class="log-date" data-i18n="log.entry2.date">2024.12.18</time>
-              <h2 class="log-heading" data-i18n="log.entry2.title">프로젝트 회고: 쇼핑몰 전면 개편</h2>
-              <p class="log-text" data-i18n="log.entry2.excerpt">MN Co.와 진행한 6개월 간의 쇼핑몰 개편 과정을 되돌아보며 성능 지표 개선과 조직 협업에서 배운 점을 정리했습니다.</p>
+            <article class="log-entry" data-log-id="entry2">
+              <button class="log-toggle" type="button" aria-expanded="false">
+                <span class="log-header">
+                  <time class="log-date" data-i18n="log.entry2.date">2024.12.18</time>
+                  <span class="log-heading" data-i18n="log.entry2.title">프로젝트 회고: 쇼핑몰 전면 개편</span>
+                </span>
+                <span class="log-icon" aria-hidden="true">▾</span>
+              </button>
+              <div class="log-content" hidden>
+                <p class="log-text" data-i18n="log.entry2.excerpt">테스트용 콘텐츠입니다. 프로젝트에서 겪은 시행착오와 다음 반복을 위한 액션 아이템을 목록화했습니다.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -1234,6 +1289,22 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
           closeMobileMenu();
         }
         requestUpdate();
+      });
+    });
+
+    const logEntries = Array.from(document.querySelectorAll(".log-entry"));
+    logEntries.forEach(entry => {
+      const toggle = entry.querySelector(".log-toggle");
+      const content = entry.querySelector(".log-content");
+      if(!toggle || !content) return;
+      toggle.addEventListener("click", () => {
+        const isOpen = entry.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        if(isOpen){
+          content.removeAttribute("hidden");
+        }else{
+          content.setAttribute("hidden", "");
+        }
       });
     });
   </script>
