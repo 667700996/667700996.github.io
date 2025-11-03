@@ -427,7 +427,7 @@
       justify-content:space-between;
       gap:6px;
       padding:4px 18px;
-      background:none;
+      background:rgba(16,16,16,.6);
       border:none;
       color:var(--ink);
       cursor:pointer;
@@ -457,6 +457,13 @@
     .log-icon{
       font-size:1.2rem;
       transition:transform .2s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:28px;
+      height:28px;
+      border:1px solid var(--line);
+      border-radius:6px;
     }
     .log-entry.open .log-icon{
       transform:rotate(180deg);
@@ -467,8 +474,6 @@
     }
     .log-entry.open .log-content{
       display:block;
-      max-height:300px;
-      overflow-y:auto;
     }
     .log-text{
       margin:0;
@@ -1072,25 +1077,29 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
             <article class="log-entry" data-log-id="entry1">
               <button class="log-toggle" type="button" aria-expanded="false">
                 <span class="log-header">
-                  <time class="log-date" data-i18n="log.entry1.date">2025.01.03</time>
-                  <span class="log-heading" data-i18n="log.entry1.title">연구 일지: 대규모 정렬 실험 노트</span>
+                  <time class="log-date" data-i18n="log.entry1.date">2025.01.01</time>
+                  <span class="log-heading" data-i18n="log.entry1.title">AI 시대, 코드를 연주하다</span>
                 </span>
                 <span class="log-icon" aria-hidden="true">▾</span>
               </button>
               <div class="log-content" hidden>
-                <p class="log-text" data-i18n="log.entry1.excerpt">테스트용 로그 본문입니다. 정렬 실험에서 얻은 주요 인사이트와 시스템 개선 아이디어를 요약해 둡니다.</p>
+                <p class="log-text" data-i18n="log.entry1.p1">새해 첫날, AI 시대의 코딩 리듬을 다시 맞춰 보려고 바이브 코딩 세션을 열었다. 프롬프트와 IDE가 하나의 악기처럼 반응하니 문장 하나에도 리듬감이 생기고, 커서 이동 소리마저 박자를 맞춘다. 화면을 가득 채운 텍스트의 파동이 마치 트랙 위를 흐르는 비트처럼 귓가에 머문다.</p>
+                <p class="log-text" data-i18n="log.entry1.p2">실시간으로 모델과 주고받는 코드 피드백은 함께 즉흥 연주를 하는 느낌이다. AI가 던져주는 제안 위에 내 감각을 얹는 순간마다 생산성과 몰입이 동시에 상승하고, 모호했던 설계도 즉석에서 명징해진다. 라이브 코딩을 지켜보던 동료가 “이건 새로운 세션”이라며 웃어준 것도 인상적이다.</p>
+                <p class="log-text" data-i18n="log.entry1.p3">오늘 정리한 규칙을 팀 플레이북에 추가했다. 바이브를 유지한 채 품질을 담보하는 최소한의 템포, 그게 2025년을 여는 나의 첫 다짐이며, 다음 리허설을 위한 체크리스트까지 정비해 두었다. 오후엔 이 흐름 그대로 빠르게 프로토타입을 하나 완성했고, 팀 채널에 공유하니 모두가 신나게 토론을 이어 갔다.</p>
               </div>
             </article>
             <article class="log-entry" data-log-id="entry2">
               <button class="log-toggle" type="button" aria-expanded="false">
                 <span class="log-header">
-                  <time class="log-date" data-i18n="log.entry2.date">2024.12.18</time>
-                  <span class="log-heading" data-i18n="log.entry2.title">프로젝트 회고: 쇼핑몰 전면 개편</span>
+                  <time class="log-date" data-i18n="log.entry2.date">2025.06.01</time>
+                  <span class="log-heading" data-i18n="log.entry2.title">하드웨어의 서사, 인간의 리듬</span>
                 </span>
                 <span class="log-icon" aria-hidden="true">▾</span>
               </button>
               <div class="log-content" hidden>
-                <p class="log-text" data-i18n="log.entry2.excerpt">테스트용 콘텐츠입니다. 프로젝트에서 겪은 시행착오와 다음 반복을 위한 액션 아이템을 목록화했습니다.</p>
+                <p class="log-text" data-i18n="log.entry2.p1">6월의 첫날, 새벽 공기와 함께 랙 앞에 섰다. 전원 분배기부터 랜선까지 한 가닥씩 손에 익히니 이건 조립이라기보다 세밀한 의식을 치르는 기분이고, 땀방울조차 정리된 케이블 사이로 스며든다. 작은 케이블 타이를 묶을 때마다 체스판에서 수를 두는 듯한 집중이 이어졌다.</p>
+                <p class="log-text" data-i18n="log.entry2.p2">케이블을 정리할 때마다 노트에 작은 흔적을 남겼다. 전류가 흐르기 전부터 어떤 서버가 될지 상상하니 자식을 만드는 듯한 설렘이 마디마디에 스며들고, 커넥터가 딱 맞물릴 때마다 심박수가 살짝 뛴다. 헤더 핀을 하나씩 맞출 때 들리는 클릭 소리는 이 여정을 축복해 주는 박수처럼 느껴졌다.</p>
+                <p class="log-text" data-i18n="log.entry2.p3">마지막 부팅에서 팬이 일정한 속도로 돌아가는 건반음을 냈다. 프로그래머로서 하드웨어까지 직접 맞춘 서버가 쏟아낼 로그를 생각하니 더없이 든든하고, 내일 새벽엔 모니터링 대시보드를 다시 세공할 계획이다. 완벽하게 정리된 케이블 덕분에 랙 뒷면이 한 장의 회로도처럼 단정해진 것도 작은 자랑거리다.</p>
               </div>
             </article>
           </div>
