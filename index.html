@@ -30,6 +30,7 @@
       --space-block: clamp(18px, 3vw, 32px);
       --radius-lg: 16px;
       --radius-md: 12px;
+      --header-height: 96px;
     }
     *{
       box-sizing:border-box;
@@ -51,6 +52,7 @@
       -moz-osx-font-smoothing:grayscale;
       font-weight:400;
       overflow-x: hidden;
+      padding-top:var(--header-height, 96px);
     }
     main{
       max-width:var(--max);
@@ -59,7 +61,8 @@
     }
     section{
       margin-bottom:var(--space-section);
-      position:relative
+      position:relative;
+      scroll-margin-top: calc(var(--header-height) + 32px);
     }
     section:not(:last-child)::after{
       content:"";
@@ -108,6 +111,212 @@
       white-space:pre-line
     }
 
+    .site-header{
+      position:fixed;
+      inset:0 0 auto 0;
+      z-index:120;
+      border-bottom:1px solid var(--line);
+      background:rgba(16,16,16,.9);
+      backdrop-filter:blur(10px);
+      width:100%;
+      transition:transform .25s ease;
+      will-change:transform;
+    }
+    .site-header.header-hidden{
+      transform:translateY(-100%);
+    }
+    .header-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 28px;
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:var(--ink);
+      font-weight:500;
+      font-size:var(--size-sm);
+      letter-spacing:.04em;
+    }
+    .brand-avatar{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      object-fit:cover;
+      border:2px solid var(--line);
+      background:var(--panel);
+      flex-shrink:0;
+    }
+    .header-nav{
+      display:flex;
+      align-items:center;
+      gap:0;
+      flex:1;
+      flex-wrap:wrap;
+    }
+    .nav-link{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:var(--size-xs);
+      letter-spacing:.1em;
+      transition:color .2s ease;
+      display:inline-flex;
+      align-items:center;
+      padding:0 10px;
+    }
+    .header-nav .nav-link:first-child{
+      padding-left:0;
+    }
+    .header-nav .nav-link:last-child{
+      padding-right:0;
+    }
+    .nav-link:hover,
+    .nav-link:focus{
+      color:var(--accent-strong);
+    }
+    .nav-link.active{
+      color:var(--accent-strong);
+    }
+    .header-nav .nav-link::before{
+      content:" / ";
+      display:inline-block;
+      white-space:pre;
+      margin:0;
+      color:var(--line);
+    }
+
+    .side-nav{
+      display:none;
+    }
+    .side-link{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:var(--size-xs);
+      font-weight:400;
+      letter-spacing:.12em;
+      transition:color .2s ease;
+    }
+    .side-link:hover,
+    .side-link:focus{
+      color:var(--accent-strong);
+    }
+    .side-link.active{
+      color:var(--accent-strong);
+    }
+    @media (min-width:901px){
+      .hero{
+        margin-top:calc(var(--header-height) + 24px);
+      }
+      .side-nav{
+        position:fixed;
+        right:36px;
+        top:50%;
+        transform:translateY(-50%);
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        padding:18px 20px;
+        border:1px solid var(--line);
+        border-radius:18px;
+        background:rgba(16,16,16,.9);
+        backdrop-filter:blur(10px);
+      }
+    }
+    .menu-toggle{
+      display:none;
+    }
+    .mobile-menu{
+      display:none;
+    }
+    @media (max-width:720px){
+      :root{
+        --header-height: 132px;
+      }
+      .header-inner{
+        flex-wrap:nowrap;
+        gap:16px;
+        align-items:center;
+        justify-content:space-between;
+      }
+      .header-inner::after{
+        content:"";
+        flex:1;
+      }
+      .brand{
+        flex-basis:auto;
+        font-size:var(--size-xs);
+        gap:10px;
+      }
+      .brand span{
+        display:none;
+      }
+      .header-nav{
+        display:none;
+      }
+      .menu-toggle{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        width:44px;
+        height:44px;
+        border-radius:12px;
+        border:1px solid var(--line);
+        background:rgba(16,16,16,.85);
+        color:var(--ink);
+        cursor:pointer;
+        font-size:22px;
+      }
+      .menu-toggle:focus,
+      .menu-toggle:hover{
+        color:var(--accent-strong);
+      }
+      .mobile-menu{
+        display:block;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        max-height:0;
+        overflow:hidden;
+        background:rgba(16,16,16,.95);
+        border-bottom:1px solid var(--line);
+        backdrop-filter:blur(12px);
+        transition:max-height .3s ease;
+      }
+      .mobile-menu.open{
+        max-height:420px;
+      }
+      .mobile-nav{
+        display:flex;
+        flex-direction:column;
+        padding:12px 24px 24px;
+        gap:8px;
+      }
+      .mobile-link{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:12px 0;
+        color:var(--ink);
+        text-decoration:none;
+        font-size:var(--size-sm);
+        border-bottom:1px solid var(--line);
+        letter-spacing:.08em;
+      }
+      .mobile-link:last-child{
+        border-bottom:none;
+      }
+      .mobile-link:focus,
+      .mobile-link:hover{
+        color:var(--accent-strong);
+      }
+    }
+
     .hero{
       display:grid;
       grid-template-columns:280px 1fr;
@@ -136,42 +345,6 @@
     }
     .hero-text h1{
       color:var(--accent-strong)
-    }
-    .side-nav{
-      display:none
-    }
-    .side-link{
-      color:var(--muted);
-      text-decoration:none;
-      font-size:var(--size-xs);
-      font-weight:400;
-      letter-spacing:.12em;
-      transition:color .2s ease
-    }
-    .side-link:hover,.side-link:focus{
-      color:var(--accent-strong)
-    }
-    .side-link.active{
-      color:var(--accent-strong)
-    }
-    @media (min-width:901px){
-      .hero{
-        margin-top:80px
-      }
-      .side-nav{
-        position:fixed;
-        right:36px;
-        top:50%;
-        transform:translateY(-50%);
-        display:flex;
-        flex-direction:column;
-        gap:14px;
-        padding:18px 20px;
-        border:1px solid var(--line);
-        border-radius:18px;
-        background:rgba(16,16,16,.9);
-        backdrop-filter:blur(10px)
-      }
     }
 
     .subtitle{
@@ -221,6 +394,52 @@
     }
     .contact:hover{
       color:var(--accent-strong);
+    }
+
+    .log-list{
+      display:flex;
+      flex-direction:column;
+      gap:var(--space-block);
+    }
+    .log-entry{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:20px;
+      border:1px solid var(--line);
+      border-radius:var(--radius-md);
+      background:rgba(16,16,16,.6);
+      transition:border-color .2s ease, transform .2s ease;
+    }
+    .log-entry:hover,
+    .log-entry:focus-within{
+      border-color:var(--accent-strong);
+      transform:translateY(-2px);
+    }
+    .log-date{
+      font-size:var(--size-xs);
+      color:var(--muted);
+      letter-spacing:.08em;
+    }
+    .log-heading{
+      font-size:var(--size-lg);
+      font-weight:500;
+      letter-spacing:-.01em;
+      color:var(--ink);
+    }
+    .log-text{
+      margin:0;
+      font-size:var(--size-sm);
+      color:var(--muted);
+      line-height:1.6;
+    }
+    @media (max-width:600px){
+      .log-entry{
+        padding:18px;
+      }
+      .log-heading{
+        font-size:var(--size-base);
+      }
     }
 
     .lang{
@@ -567,7 +786,34 @@
   </style>
 </head>
 <body>
-  <button id="lang" class="lang" aria-label="Language Toggle">🌐 EN</button>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#hero">
+        <img class="brand-avatar" src="assets/profile.jpg" alt="Hwan profile thumbnail" />
+      </a>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a class="nav-link" href="#hero" data-i18n="nav.hero">메인</a>
+        <a class="nav-link" href="#introduce" data-i18n="nav.introduce">소개</a>
+        <a class="nav-link" href="#skills" data-i18n="nav.skills">기술</a>
+        <a class="nav-link" href="#experience" data-i18n="nav.experience">경력</a>
+        <a class="nav-link" href="#projects" data-i18n="nav.projects">프로젝트</a>
+        <a class="nav-link" href="#presentation" data-i18n="nav.presentation">발표</a>
+        <a class="nav-link" href="#log" data-i18n="nav.log">로그</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="메뉴 열기">☰</button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <nav class="mobile-nav" aria-label="모바일 메뉴">
+        <a class="mobile-link" href="#hero" data-i18n="nav.hero">메인</a>
+        <a class="mobile-link" href="#introduce" data-i18n="nav.introduce">소개</a>
+        <a class="mobile-link" href="#skills" data-i18n="nav.skills">기술</a>
+        <a class="mobile-link" href="#experience" data-i18n="nav.experience">경력</a>
+        <a class="mobile-link" href="#projects" data-i18n="nav.projects">프로젝트</a>
+        <a class="mobile-link" href="#presentation" data-i18n="nav.presentation">발표</a>
+        <a class="mobile-link" href="#log" data-i18n="nav.log">로그</a>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <section id="hero" class="hero" aria-labelledby="name">
@@ -575,9 +821,9 @@
       <div class="hero-text">
         <h1 id="name">Hwan</h1>
         <p class="subtitle" data-i18n="hero.role">
-          <span class="line">AI 연구원</span><span class="sep"> · </span>
-          <span class="line">풀스택 아키텍트</span><span class="sep"> · </span>
-          <span class="line">시스템 리더</span>
+          <span class="line">AI Researcher</span><span class="sep"> · </span>
+          <span class="line">Full-Stack Architect</span><span class="sep"> · </span>
+          <span class="line">Systems Leader</span>
         </p>
         <div class="contacts">
           <a class="contact" href="mailto:hwan@onnuripg.com">
@@ -610,7 +856,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
         <div class="terminal-body terminal-content">
           <div class="skill-groups">
             <div class="skill-group">
-              <h3 class="skill-heading" data-i18n="skills.lang">언어</h3>
+              <h3 class="skill-heading" data-i18n="skills.lang">Languages</h3>
               <ul class="skill-list">
                 <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6"/><path d="M10 9v6"/></svg></span><span class="skill-label" data-i18n="skills.language.typescript">TypeScript</span></li>
                 <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9h8"/><path d="M8 15h6"/><path d="M14 12h4"/></svg></span><span class="skill-label" data-i18n="skills.language.javascript">JavaScript</span></li>
@@ -620,7 +866,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
               </ul>
             </div>
             <div class="skill-group">
-              <h3 class="skill-heading" data-i18n="skills.frameworks">프레임워크 &amp; 라이브러리</h3>
+              <h3 class="skill-heading" data-i18n="skills.frameworks">Frameworks &amp; Libraries</h3>
               <ul class="skill-list">
                 <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M8 9.5 16 14"/><path d="M16 9.5 8 14"/></svg></span><span class="skill-label" data-i18n="skills.framework.react">React</span></li>
                 <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 8h9"/><path d="M6 12h12"/><path d="M9 16h9"/></svg></span><span class="skill-label" data-i18n="skills.framework.next">Next.js</span></li>
@@ -630,7 +876,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
               </ul>
             </div>
             <div class="skill-group">
-              <h3 class="skill-heading" data-i18n="skills.platforms">플랫폼 &amp; 데이터베이스</h3>
+              <h3 class="skill-heading" data-i18n="skills.platforms">Platforms &amp; Databases</h3>
               <ul class="skill-list">
                 <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/><path d="M5 16c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span><span class="skill-label" data-i18n="skills.platform.postgres">PostgreSQL</span></li>
                 <li><span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="2.5"/><path d="M5 6.5V12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6.5"/><path d="M5 11.5V17c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-5.5"/></svg></span><span class="skill-label" data-i18n="skills.platform.mysql">MySQL</span></li>
@@ -779,250 +1025,70 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       </div>
     </section>
 
+    <section id="log">
+      <div class="terminal-window">
+        <div class="section-title" data-i18n="log.title">cat log.txt</div>
+        <div class="terminal-body terminal-content">
+          <div class="log-list">
+            <article class="log-entry">
+              <time class="log-date" data-i18n="log.entry1.date">2025.01.03</time>
+              <h2 class="log-heading" data-i18n="log.entry1.title">연구 일지: 대규모 정렬 실험 노트</h2>
+              <p class="log-text" data-i18n="log.entry1.excerpt">LLM 정렬 실험에서 수집한 결과와 프롬프트 안전성 검증 절차를 기록했습니다. 실험 자동화 파이프라인 개선 아이디어도 정리했습니다.</p>
+            </article>
+            <article class="log-entry">
+              <time class="log-date" data-i18n="log.entry2.date">2024.12.18</time>
+              <h2 class="log-heading" data-i18n="log.entry2.title">프로젝트 회고: 쇼핑몰 전면 개편</h2>
+              <p class="log-text" data-i18n="log.entry2.excerpt">MN Co.와 진행한 6개월 간의 쇼핑몰 개편 과정을 되돌아보며 성능 지표 개선과 조직 협업에서 배운 점을 정리했습니다.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="footer" data-i18n="footer">“Logic. Reason. Form.” — Hwan</div>
   </main>
 
   <nav class="side-nav" aria-label="Section navigation">
-    <a class="side-link" href="#hero" data-i18n="nav.hero">홈</a>
+    <a class="side-link" href="#hero" data-i18n="nav.hero">메인</a>
     <a class="side-link" href="#introduce" data-i18n="nav.introduce">소개</a>
     <a class="side-link" href="#skills" data-i18n="nav.skills">기술</a>
     <a class="side-link" href="#experience" data-i18n="nav.experience">경력</a>
     <a class="side-link" href="#projects" data-i18n="nav.projects">프로젝트</a>
     <a class="side-link" href="#presentation" data-i18n="nav.presentation">발표</a>
+    <a class="side-link" href="#log" data-i18n="nav.log">로그</a>
   </nav>
 
   <script>
-    const COPY = {
-      ko: {
-        "hero.role": "<span class='line'>AI 연구원</span><span class='sep'> · </span><span class='line'>풀스택 아키텍트</span><span class='sep'> · </span><span class='line'>시스템 리더</span>",
-        "introduce.title": "cat introduce.txt",
-        "introduce.text1": "프론트엔드, 백엔드 그리고 인공지능 연구 전반을 아우르는 풀스택 개발자입니다.\nAI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한 완성도 높은 시스템을 설계합니다.",
-        "introduce.text2": "기술을 다루는 사람이 아니라, 사고로 문제를 해결하는 개발자입니다.\n코드는 사고의 결과이며, 시스템은 논리로 다듬어진 사고의 구조라 믿습니다.",
+    document.documentElement.lang = "ko";
 
-        "skills.title": "cat skills.txt",
-        "skills.lang": "언어",
-        "skills.language.typescript": "TypeScript",
-        "skills.language.javascript": "JavaScript",
-        "skills.language.python": "Python",
-        "skills.language.java": "Java",
-        "skills.language.rust": "Rust",
-        "skills.frameworks": "프레임워크 & 라이브러리",
-        "skills.framework.react": "React",
-        "skills.framework.next": "Next.js",
-        "skills.framework.node": "Node.js",
-        "skills.framework.spring": "Spring Boot",
-        "skills.framework.svelte": "SvelteKit",
-        "skills.platforms": "플랫폼 & 데이터베이스",
-        "skills.platform.postgres": "PostgreSQL",
-        "skills.platform.mysql": "MySQL",
-        "skills.platform.mongo": "MongoDB",
-        "skills.platform.aws": "AWS",
-        "skills.platform.docker": "Docker",
+    const header = document.querySelector(".site-header");
+    const navLinks = Array.from(document.querySelectorAll(".nav-link, .side-link, .mobile-link"));
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-        "exp.title": "cat experience.txt",
-        "exp.item1.company": "우리미래연구소",
-        "exp.item1.role": "인공지능 연구 수석",
-        "exp.item1.period": "2023.01 ~",
-        "exp.item1.detail1": "LLM 실험·보안·정렬 연구 총괄",
-        "exp.item1.detail2": "프롬프트 보안 정책과 가이드라인 설계",
-        "exp.item1.detail3": "MLOps 파이프라인 및 모델 배포 자동화",
-        "exp.item1.detail4": "데이터 거버넌스와 품질 검증 체계 구축",
-        "exp.item1.detail5": "연구 조직 운영과 기술 교육 리드",
-        "exp.item2.company": "MN Co.",
-        "exp.item2.role": "총괄 웹 디자이너",
-        "exp.item2.period": "2024.06 ~ 2024.12",
-        "exp.item2.detail1": "브랜드 디자인 시스템 및 컴포넌트 아키텍처 구축",
-        "exp.item2.detail2": "SPA 기반 반응형 프런트엔드 개발",
-        "exp.item2.detail3": "스토리북·테스팅 파이프라인으로 UI 품질 확보",
-        "exp.item2.detail4": "웹 성능 최적화와 LCP·CLS 개선",
-        "exp.item2.detail5": "다국어 콘텐츠 운영 및 협업 워크플로 설계",
-        "exp.item3.company": "Team DevCrew",
-        "exp.item3.role": "개발팀 팀장",
-        "exp.item3.period": "2025.01 ~",
-        "exp.item3.detail1": "도메인 기반 마이크로서비스 아키텍처 설계",
-        "exp.item3.detail2": "IaC·CI/CD 자동화로 배포 효율 극대화",
-        "exp.item3.detail3": "관측성·로그·알림 체계 표준화",
-        "exp.item3.detail4": "애자일 협업 프로세스와 의사결정 구조 확립",
-        "exp.item3.detail5": "코드 품질 가이드와 리뷰 문화 정착",
-        "exp.item4.company": "온누리PG",
-        "exp.item4.role": "개발부 부장",
-        "exp.item4.period": "2025.05 ~",
-        "exp.item4.detail1": "결제 게이트웨이 및 정산 아키텍처 고도화",
-        "exp.item4.detail2": "보안 인증·암호화·위협 대응 체계 강화",
-        "exp.item4.detail3": "실시간 정산 파이프라인과 데이터 복구 전략 수립",
-        "exp.item4.detail4": "인프라 자동화와 비용 효율화 전략 설계",
-        "exp.item4.detail5": "규제 준수·감사 대응 프로세스 정비",
+    const sectionTargets = [];
+    const seenSections = new Set();
 
-        "proj.title": "cat projects.txt",
-        "proj.block1.title": "프롬프트 AI 연구 플랫폼",
-        "proj.block1.org": "우리미래연구소",
-        "proj.block1.period": "2023.01 ~",
-        "proj.block1.detail1": "프롬프트 학습 데이터셋 표준화 및 안전성 검증",
-        "proj.block1.detail2": "고정확도 응답 최적화와 정렬 워크플로 설계",
-        "proj.block1.detail3": "적대적 공격/방어 실험과 리포트 총괄",
-        "proj.block1.detail4": "데이터 수집부터 평가까지 자동화 파이프라인 구축",
-        "proj.block1.detail5": "기관·기업 공동 연구 리포트와 정책 제안서 작성",
-        "proj.block2.title": "쇼핑몰 웹 서비스 전면 구축",
-        "proj.block2.org": "MN Co.",
-        "proj.block2.period": "2024.06 ~ 2024.12",
-        "proj.block2.detail1": "브랜드 디자인 시스템과 반응형 UI 전면 재구축",
-        "proj.block2.detail2": "API 통합 및 nginx 캐싱·지연 최적화",
-        "proj.block2.detail3": "데이터 사용자 여정 설계로 전환율·안정성 향상",
-        "proj.block2.detail4": "A/B 테스트와 퍼널 분석으로 UX 개선 사이클 운영",
-        "proj.block2.detail5": "마케팅·CS 조직 협업 운영 대시보드 구축",
-        "proj.block3.title": "금융 웹 인프라 통합",
-        "proj.block3.org": "Team DevCrew × 온누리PG",
-        "proj.block3.period": "2025.05 ~",
-        "proj.block3.detail1": "결제·정산 백엔드 보안 아키텍처 재설계",
-        "proj.block3.detail2": "실시간 트랜잭션 인증·암호화 및 로깅 체계 구축",
-        "proj.block3.detail3": "금융 데이터 정합성 강화와 SRE 기반 관측성 확보",
-        "proj.block3.detail4": "의사결정 인터페이스 정의로 품질과 속도 개선",
-        "proj.block3.detail5": "PCI-DSS 준수 체계를 프로덕션에 적용",
+    navLinks.forEach(link => {
+      const href = link.getAttribute("href");
+      if(!href || !href.startsWith("#")) return;
+      const id = href.slice(1);
+      if(seenSections.has(id)) return;
+      const section = document.getElementById(id);
+      if(!section) return;
+      seenSections.add(id);
+      sectionTargets.push({ id, section });
+    });
 
-        "pres.title": "cat presentations.txt",
-        "pres.item1.date": "2023.12.10",
-        "pres.item1.title": "“언어로 사고하는 인공지능”",
-        "pres.item1.location": "우리미래연구소 세미나",
-        "pres.item2.date": "2024.07.15",
-        "pres.item2.title": "“시각에서 설계로, UX가 시스템을 이끈다.”",
-        "pres.item2.location": "MN Co. 세미나",
-        "pres.item3.date": "2024.03.20",
-        "pres.item3.title": "“프롬프트 엔지니어링 심화, 사고를 프로그래밍하다.”",
-        "pres.item3.location": "우리미래연구소 세미나",
-        "pres.item4.date": "2025.09.15",
-        "pres.item4.title": "“금융 인프라 보안, 신뢰를 설계하다.”",
-        "pres.item4.location": "온누리PG 보안 강연",
+    const sectionOrder = new Map(
+      Array.from(document.querySelectorAll("main section[id]")).map((section, index) => [section.id, index])
+    );
+    sectionTargets.sort((a, b) => {
+      const orderA = sectionOrder.get(a.id) ?? Number.MAX_SAFE_INTEGER;
+      const orderB = sectionOrder.get(b.id) ?? Number.MAX_SAFE_INTEGER;
+      return orderA - orderB;
+    });
 
-        "footer": "“Logic. Reason. Form.” — Hwan",
-        "nav.hero": "홈",
-        "nav.introduce": "소개",
-        "nav.skills": "기술",
-        "nav.experience": "경력",
-        "nav.projects": "프로젝트",
-        "nav.presentation": "발표"
-      },
-      en: {
-        "hero.role": "<span class='line'>AI Researcher</span><span class='sep'> · </span><span class='line'>Full-Stack Architect</span><span class='sep'> · </span><span class='line'>Systems Leader</span>",
-        "introduce.title": "cat introduce.txt",
-        "introduce.text1": "I’m a full-stack developer bridging AI research, scalable infrastructure, and thoughtful front-end design.\nFrom AI prompt engineering to large-scale infrastructure, I design precise and reliable systems.",
-        "introduce.text2": "I’m not just someone who works with technology — I solve problems through reasoning.\nCode reflects structured thought, and every system embodies logic refined through clarity.",
-
-        "skills.title": "cat skills.txt",
-        "skills.lang": "LANGUAGES",
-        "skills.language.typescript": "TypeScript",
-        "skills.language.javascript": "JavaScript",
-        "skills.language.python": "Python",
-        "skills.language.java": "Java",
-        "skills.language.rust": "Rust",
-        "skills.frameworks": "FRAMEWORKS & LIBRARIES",
-        "skills.framework.react": "React",
-        "skills.framework.next": "Next.js",
-        "skills.framework.node": "Node.js",
-        "skills.framework.spring": "Spring Boot",
-        "skills.framework.svelte": "SvelteKit",
-        "skills.platforms": "PLATFORMS & DATABASES",
-        "skills.platform.postgres": "PostgreSQL",
-        "skills.platform.mysql": "MySQL",
-        "skills.platform.mongo": "MongoDB",
-        "skills.platform.aws": "AWS",
-        "skills.platform.docker": "Docker",
-
-        "exp.title": "cat experience.txt",
-        "exp.item1.company": "Woori Future Institute",
-        "exp.item1.role": "Chief AI Researcher",
-        "exp.item1.period": "2023.01 ~",
-        "exp.item1.detail1": "Led LLM experimentation, safety, and alignment programs",
-        "exp.item1.detail2": "Defined prompt security policies and governance",
-        "exp.item1.detail3": "Built automated MLOps pipelines for deployment",
-        "exp.item1.detail4": "Established data governance and quality validation",
-        "exp.item1.detail5": "Mentored research teams and drove knowledge enablement",
-        "exp.item2.company": "MN Co.",
-        "exp.item2.role": "Lead Web Designer",
-        "exp.item2.period": "2024.06 ~ 2024.12",
-        "exp.item2.detail1": "Built the brand design system and component architecture",
-        "exp.item2.detail2": "Implemented SPA-based responsive frontend experiences",
-        "exp.item2.detail3": "Secured UI quality with Storybook and automated testing",
-        "exp.item2.detail4": "Improved web vitals through performance tuning",
-        "exp.item2.detail5": "Designed multilingual content and collaboration workflows",
-        "exp.item3.company": "Team DevCrew",
-        "exp.item3.role": "Engineering Lead",
-        "exp.item3.period": "2025.01 ~",
-        "exp.item3.detail1": "Architected domain-driven microservices",
-        "exp.item3.detail2": "Scaled IaC and CI/CD automation for delivery velocity",
-        "exp.item3.detail3": "Standardized observability, logging, and alerting",
-        "exp.item3.detail4": "Enabled agile workflows and decision frameworks",
-        "exp.item3.detail5": "Raised code quality through guidelines and review culture",
-        "exp.item4.company": "OnnuriPG",
-        "exp.item4.role": "Head of Engineering",
-        "exp.item4.period": "2025.05 ~",
-        "exp.item4.detail1": "Modernized gateway and settlement architecture",
-        "exp.item4.detail2": "Strengthened security, encryption, and threat response",
-        "exp.item4.detail3": "Designed real-time settlement pipelines and recovery plans",
-        "exp.item4.detail4": "Planned infrastructure automation and cost optimization",
-        "exp.item4.detail5": "Systematized compliance and audit readiness",
-
-        "proj.title": "cat projects.txt",
-        "proj.block1.title": "Prompt AI Research Platform",
-        "proj.block1.org": "Woori Future Institute",
-        "proj.block1.period": "2023.01 ~",
-        "proj.block1.detail1": "Standardized prompt-learning datasets with safety validation",
-        "proj.block1.detail2": "Designed alignment workflows for high-accuracy responses",
-        "proj.block1.detail3": "Led adversarial attack/defense experiments and reporting",
-        "proj.block1.detail4": "Automated pipelines from data collection through red-team evaluation",
-        "proj.block1.detail5": "Authored joint research reports and policy recommendations",
-        "proj.block2.title": "Commerce Web Rebuild",
-        "proj.block2.org": "MN Co.",
-        "proj.block2.period": "2024.06 ~ 2024.12",
-        "proj.block2.detail1": "Rebuilt the brand design system and responsive UI",
-        "proj.block2.detail2": "Consolidated APIs with nginx caching and latency tuning",
-        "proj.block2.detail3": "Improved conversion and stability with data-driven journeys",
-        "proj.block2.detail4": "Ran continuous UX cycles with A/B testing and funnel analysis",
-        "proj.block2.detail5": "Delivered real-time operational dashboards for marketing and CS",
-        "proj.block3.title": "Financial Infra Integration",
-        "proj.block3.org": "Team DevCrew × OnnuriPG",
-        "proj.block3.period": "2025.05 ~",
-        "proj.block3.detail1": "Redesigned secure settlement/payment backend architecture",
-        "proj.block3.detail2": "Implemented real-time authentication, encryption, and logging",
-        "proj.block3.detail3": "Hardened data integrity with SRE-grade observability",
-        "proj.block3.detail4": "Defined cross-team decision interfaces to improve quality and speed",
-        "proj.block3.detail5": "Applied PCI-DSS and financial compliance in production",
-
-        "pres.title": "cat presentations.txt",
-        "pres.item1.date": "2023.12.10",
-        "pres.item1.title": "“Thinking in Language”",
-        "pres.item1.location": "Woori Future Institute Seminar",
-        "pres.item2.date": "2024.07.15",
-        "pres.item2.title": "“From Vision to Design: UX Shapes Systems”",
-        "pres.item2.location": "MN Co. Seminar",
-        "pres.item3.date": "2024.03.20",
-        "pres.item3.title": "“Advanced Prompt Engineering”",
-        "pres.item3.location": "Woori Future Institute Seminar",
-        "pres.item4.date": "2025.09.15",
-        "pres.item4.title": "“Securing Financial Infrastructure”",
-        "pres.item4.location": "OnnuriPG Security Talk",
-
-        "footer": "“Logic. Reason. Form.” — Hwan",
-        "nav.hero": "HOME",
-        "nav.introduce": "INTRODUCE",
-        "nav.skills": "SKILLS",
-        "nav.experience": "EXPERIENCE",
-        "nav.projects": "PROJECTS",
-        "nav.presentation": "PRESENTATIONS"
-      }
-    };
-    const HTML_KEYS = new Set(["hero.role"]);
-    const ALL_KEYS = Object.keys(COPY.ko);
-
-
-    const navLinks = Array.from(document.querySelectorAll(".side-link"));
-    const langButton = document.getElementById("lang");
-    const sectionTargets = navLinks
-      .map(link => {
-        const id = link.getAttribute("href").slice(1);
-        const section = document.getElementById(id);
-        return section ? { id, link, section } : null;
-      })
-      .filter(Boolean);
     const sectionIndex = new Map(sectionTargets.map(({ id }, index) => [id, index]));
     let currentActiveId = sectionTargets[0]?.id || null;
     const initialHash = window.location.hash.slice(1);
@@ -1066,59 +1132,113 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       }
     }
 
+    let lastScrollY = window.scrollY;
+    function handleHeaderScroll(){
+      if(!header) return;
+      const isMobile = window.matchMedia("(max-width: 720px)").matches;
+      if(!isMobile){
+        header.classList.remove("header-hidden");
+        lastScrollY = window.scrollY;
+        return;
+      }
+      if(mobileMenu?.classList.contains("open")){
+        header.classList.remove("header-hidden");
+        lastScrollY = window.scrollY;
+        return;
+      }
+
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY;
+      lastScrollY = currentY;
+
+      if(currentY <= 10){
+        header.classList.remove("header-hidden");
+        return;
+      }
+      if(delta > 6 && currentY > 120){
+        header.classList.add("header-hidden");
+      }else if(delta < -6){
+        header.classList.remove("header-hidden");
+      }
+    }
+
+    function updateAll(){
+      updateActiveByScroll();
+      handleHeaderScroll();
+    }
+
     let ticking = false;
     function requestUpdate(){
       if(ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
         ticking = false;
-        updateActiveByScroll();
+        updateAll();
       });
     }
 
     if(sectionTargets.length){
+      if(currentActiveId){
+        setActive(currentActiveId);
+      }
       requestUpdate();
       window.addEventListener("scroll", requestUpdate, { passive: true });
       window.addEventListener("resize", requestUpdate);
     }
 
-    navLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        const id = link.getAttribute("href").slice(1);
-        setActive(id);
-        requestUpdate();
-      });
-    });
-
-    let currentLang = "ko";
-
-    function applyLanguage(lang){
-      const locale = lang === "en" ? "en" : "ko";
-      currentLang = locale;
-      document.documentElement.lang = locale;
-      ALL_KEYS.forEach(key => {
-        const el = document.querySelector('[data-i18n="' + key + '"]');
-        if(!el) return;
-        const value = COPY[locale][key];
-        if(value === undefined) return;
-        if(HTML_KEYS.has(key)) el.innerHTML = value;
-        else el.textContent = value;
-      });
-      langButton.textContent = locale === "ko" ? "🌐 EN" : "🌐 KO";
-      langButton.setAttribute("aria-label", locale === "ko" ? "Switch to English" : "한국어로 보기");
-      localStorage.setItem("lang", locale);
+    function closeMobileMenu(){
+      if(!menuToggle || !mobileMenu) return;
+      mobileMenu.classList.remove("open");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "메뉴 열기");
+      lastScrollY = window.scrollY;
     }
 
-    const storedLang = localStorage.getItem("lang");
-    applyLanguage(storedLang === "en" ? "en" : "ko");
-    setActive(currentActiveId);
-    requestUpdate();
+    function openMobileMenu(){
+      if(!menuToggle || !mobileMenu) return;
+      mobileMenu.classList.add("open");
+      mobileMenu.setAttribute("aria-hidden", "false");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "메뉴 닫기");
+      lastScrollY = window.scrollY;
+    }
 
-    langButton.addEventListener("click", ()=>{
-      const next = currentLang === "ko" ? "en" : "ko";
-      applyLanguage(next);
-      setActive(currentActiveId);
-      requestUpdate();
+    if(menuToggle && mobileMenu){
+      menuToggle.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.contains("open");
+        if(isOpen){
+          closeMobileMenu();
+        }else{
+          openMobileMenu();
+          header?.classList.remove("header-hidden");
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if(window.innerWidth > 720 && mobileMenu.classList.contains("open")){
+          closeMobileMenu();
+        }
+      });
+
+      document.addEventListener("keydown", event => {
+        if(event.key === "Escape" && mobileMenu.classList.contains("open")){
+          closeMobileMenu();
+        }
+      });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        const href = link.getAttribute("href");
+        if(!href || !href.startsWith("#")) return;
+        const id = href.slice(1);
+        setActive(id);
+        if(link.classList.contains("mobile-link")){
+          closeMobileMenu();
+        }
+        requestUpdate();
+      });
     });
   </script>
 </body>
