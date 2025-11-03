@@ -1288,6 +1288,14 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
           closeMobileMenu();
         }
       });
+
+      document.addEventListener("click", event => {
+        if(!mobileMenu.classList.contains("open")) return;
+        const target = event.target;
+        if(menuToggle.contains(target)) return;
+        if(mobileMenu.contains(target)) return;
+        closeMobileMenu();
+      });
     }
 
     navLinks.forEach(link => {
