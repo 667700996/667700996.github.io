@@ -230,6 +230,9 @@
     .menu-toggle{
       display:none;
     }
+    .mobile-brand-label{
+      display:none;
+    }
     .mobile-menu{
       display:none;
     }
@@ -246,7 +249,7 @@
         flex-basis:auto;
         font-size:var(--size-xs);
         gap:10px;
-        margin-right:auto;
+        margin-right:0;
       }
       .brand span{
         display:none;
@@ -270,6 +273,15 @@
       .menu-toggle:focus,
       .menu-toggle:hover{
         color:var(--accent-strong);
+      }
+      .mobile-brand-label{
+        display:flex;
+        flex:1;
+        justify-content:center;
+        font-size:var(--size-sm);
+        letter-spacing:.12em;
+        color:var(--ink);
+        font-weight:600;
       }
       .mobile-menu{
         display:block;
@@ -840,6 +852,7 @@
         <a class="nav-link" href="#presentation" data-i18n="nav.presentation">발표</a>
         <a class="nav-link" href="#log" data-i18n="nav.log">로그</a>
       </nav>
+      <div class="mobile-brand-label" aria-hidden="true">299-792-458</div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="메뉴 열기">☰</button>
     </div>
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
@@ -1311,7 +1324,21 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       });
     });
 
-    const logEntries = Array.from(document.querySelectorAll(".log-entry"));
+    const logList = document.querySelector(".log-list");
+    let logEntries = [];
+    if(logList){
+      const entries = Array.from(logList.querySelectorAll(".log-entry"));
+      const parseLogDate = entry => {
+        const dateText = entry.querySelector(".log-date")?.textContent?.trim() || "";
+        const numeric = Number(dateText.replace(/\./g, ""));
+        return Number.isNaN(numeric) ? 0 : numeric;
+      };
+      entries
+        .sort((a, b) => parseLogDate(b) - parseLogDate(a))
+        .forEach(entry => logList.appendChild(entry));
+      logEntries = entries;
+    }
+
     logEntries.forEach(entry => {
       const toggle = entry.querySelector(".log-toggle");
       const content = entry.querySelector(".log-content");
