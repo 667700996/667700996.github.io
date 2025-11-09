@@ -269,9 +269,23 @@
         background:rgba(16,16,16,.85);
         color:var(--ink);
         cursor:pointer;
-        font-size:22px;
-        line-height:1;
+        font-size:0;
+        line-height:0;
         padding:0;
+      }
+      .menu-toggle-icon{
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        width:20px;
+        height:14px;
+      }
+      .menu-toggle-icon span{
+        display:block;
+        width:100%;
+        height:2px;
+        border-radius:2px;
+        background:currentColor;
       }
       .menu-toggle:focus,
       .menu-toggle:hover{
@@ -856,7 +870,13 @@
         <a class="nav-link" href="#log" data-i18n="nav.log">로그</a>
       </nav>
       <div class="mobile-brand-label" aria-hidden="true">299-792-458</div>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="메뉴 열기">☰</button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="메뉴 열기">
+        <span class="menu-toggle-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
     </div>
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <nav class="mobile-nav" aria-label="모바일 메뉴">
@@ -1122,13 +1142,13 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
               <button class="log-toggle" type="button" aria-expanded="false">
                 <span class="log-header">
                   <time class="log-date" data-i18n="log.entry3.date">2025.11.05</time>
-                  <span class="log-heading" data-i18n="log.entry3.title">Open Source Summit Korea 2025</span>
+                  <span class="log-heading" data-i18n="log.entry3.title">오픈소스의 미래</span>
                 </span>
                 <span class="log-icon" aria-hidden="true">▾</span>
               </button>
               <div class="log-content" hidden>
-                <p class="log-text" data-i18n="log.entry3.p1">한국에서 처음 열린 Open Source Summit Korea 2025는 도시 전체가 새롭게 숨을 들이마시는 듯한 기류로 가득했다. 커뮤니티 부스마다 살아 있는 목소리가 겹겹이 쌓이고, 홀마다 울려 퍼지는 세션의 톤이 묘하게 통일감을 띠었다. 오랜만에 ‘행사장에 있다’는 감각보다 ‘흐름 속을 걷는다’는 감각이 더 가까웠다.</p>
-                <p class="log-text" data-i18n="log.entry3.p2">발표들은 대체로 추상적이었지만, 그 추상 속에 서로가 같은 방향을 바라보고 있다는 안도감이 있었다. “오픈소스가 AI를 이끈다”는 문장도 구체적인 제품 소개보다는, 사람과 아이디어가 엮이는 방식이 미래의 에너지가 될 거라는 믿음으로 채워졌다. 기술적 디테일을 나열하기보다 관점과 태도를 나누는 시간이 더 오래 기억에 남는다.</p>
+                <p class="log-text" data-i18n="log.entry3.p1">한국에서 처음 열린 Open Source Summit Korea 2025에 직접 참가했다. 도시 전체가 새롭게 숨을 들이마시는 듯한 기류로 가득했고, 커뮤니티 부스마다 살아 있는 목소리가 겹겹이 쌓였다. 홀마다 울려 퍼지는 세션의 톤은 묘하게 통일감을 띠어, ‘행사장에 있다’는 감각보다 ‘흐름 속을 걷는다’는 감각이 더 가까웠다.</p>
+                <p class="log-text" data-i18n="log.entry3.p2">발표들은 대체로 추상적이었지만 ‘오픈소스의 미래’라는 주제를 마음 깊숙이 던졌다. “오픈소스가 AI를 이끈다”는 문장도 구체적인 제품 소개보다는, 사람과 아이디어가 엮이는 방식이 미래의 에너지가 될 거라는 믿음으로 채워졌다. 기술적 디테일을 나열하기보다 관점과 태도를 나누는 시간이 더 오래 기억에 남는다.</p>
                 <p class="log-text" data-i18n="log.entry3.p3">워크숍 자리에서는 각자의 프로젝트를 설명하는 대신, 왜 오픈소스에 남아 있는지에 대한 경험담이 이어졌다. 문장을 적을수록 관계가 선명해지는 느낌이 들어, 돌아오는 길에 간단한 감상을 노트에 옮겼다. 아직 정리되지 않은 생각이지만, 이번 서밋에서 받은 자극 덕분에 다시 한 번 내가 연결되고 싶은 지점을 확인했다.</p>
               </div>
             </article>
