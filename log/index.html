@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hwan · Log</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #101010;
+      --ink: #f4f4f4;
+      --muted: #9ea0a6;
+      --accent: #5aa7ff;
+      --radius: 14px;
+      --max: 880px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 24px 80px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Courier New", Courier, monospace;
+      min-height: 100vh;
+    }
+    header {
+      max-width: var(--max);
+      margin: 0 auto 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    main { max-width: var(--max); margin: 0 auto; }
+    h1 { font-size: clamp(2rem, 5vw, 2.5rem); margin: 0; }
+    p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .log-grid {
+      display: grid;
+      gap: 20px;
+    }
+    article {
+      border: 1px solid rgba(90, 167, 255, 0.3);
+      border-radius: var(--radius);
+      padding: 20px;
+      background: var(--panel);
+      transition: transform 140ms ease, border-color 140ms ease;
+    }
+    article:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    a.log-link {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .log-date { font-size: 0.9rem; color: var(--muted); letter-spacing: 0.06em; }
+    .log-title { font-size: 1.35rem; }
+    .log-summary { color: var(--muted); }
+    .log-meta { display: flex; gap: 12px; font-size: 0.9rem; color: var(--muted); }
+    .tag-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+    .tag {
+      border: 1px solid rgba(154, 158, 166, 0.6);
+      border-radius: 999px;
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .home-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .empty-state { text-align: center; color: var(--muted); padding: 60px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="home-link" href="/">← 홈으로</a>
+    <div>
+      <h1>cat log.txt</h1>
+      <p>로그는 마크다운으로 기록되며, 클릭하면 전체 글을 읽을 수 있습니다.</p>
+    </div>
+  </header>
+  <main>
+    <div id="log-grid" class="log-grid" aria-live="polite">
+      <p class="empty-state">불러오는 중...</p>
+    </div>
+  </main>
+  <script>
+    const grid = document.getElementById("log-grid");
+    async function loadPosts(){
+      try{
+        const res = await fetch("./posts.json", { cache: "no-store" });
+        if(!res.ok) throw new Error("Failed to load posts");
+        const posts = await res.json();
+        if(!Array.isArray(posts) || posts.length === 0){
+          grid.innerHTML = '<p class="empty-state">아직 작성된 로그가 없습니다.</p>';
+          return;
+        }
+        posts
+          .slice()
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .forEach(post => {
+            const article = document.createElement("article");
+            article.innerHTML = `
+              <a class="log-link" href="./post.html?slug=${post.slug}">
+                <span class="log-date">${formatDate(post.date)} · ${post.readingTime || ""}</span>
+                <span class="log-title">${post.title}</span>
+                <span class="log-summary">${post.summary || ""}</span>
+                ${renderTags(post.tags)}
+              </a>
+            `;
+            grid.appendChild(article);
+          });
+      }catch(error){
+        console.error(error);
+        grid.innerHTML = '<p class="empty-state">로그를 불러오지 못했습니다.</p>';
+      }
+    }
+    function formatDate(date){
+      if(!date) return "";
+      const d = new Date(date);
+      if(Number.isNaN(d.getTime())) return date;
+      return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+    }
+    function renderTags(tags){
+      if(!tags || !tags.length) return "";
+      const tagItems = tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+      return `<div class="tag-list" aria-label="태그">${tagItems}</div>`;
+    }
+    loadPosts();
+  </script>
+</body>
+</html>

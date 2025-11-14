@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Log · Hwan</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050505;
+      --ink: #f4f4f4;
+      --muted: #a6a6a6;
+      --panel: #101010;
+      --accent: #5aa7ff;
+      --max: 760px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 22px 64px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Courier New", Courier, monospace;
+      min-height: 100vh;
+    }
+    header {
+      max-width: var(--max);
+      margin: 0 auto 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    main { max-width: var(--max); margin: 0 auto; background: var(--panel); padding: 32px; border-radius: 18px; border: 1px solid rgba(90, 167, 255, 0.25); }
+    nav a { color: var(--accent); text-decoration: none; margin-right: 12px; }
+    h1 { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); }
+    .log-meta { color: var(--muted); font-size: 0.95rem; letter-spacing: 0.04em; }
+    article { line-height: 1.9; font-size: 1.05rem; }
+    article h2, article h3 { margin-top: 32px; }
+    article p { margin: 1.2em 0; }
+    pre {
+      background: #050505;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+    }
+    code { font-family: "Courier New", Courier, monospace; }
+    .error { color: #ff7b72; text-align: center; padding: 80px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">← 홈</a>
+      <a href="./index.html">목록</a>
+    </nav>
+    <div>
+      <p class="log-meta" id="post-date"></p>
+      <h1 id="post-title">불러오는 중...</h1>
+      <p class="log-meta" id="post-tags"></p>
+    </div>
+  </header>
+  <main>
+    <article id="post-body">콘텐츠를 불러오는 중입니다.</article>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha256-G8VDHFqRSbuuSSMzdON3NofM8JrIoYNewc19hXtODpE=" crossorigin="anonymous"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("slug");
+    const titleEl = document.getElementById("post-title");
+    const dateEl = document.getElementById("post-date");
+    const tagsEl = document.getElementById("post-tags");
+    const bodyEl = document.getElementById("post-body");
+
+    if(!slug){
+      showError("잘못된 접근입니다. 목록에서 다시 선택해주세요.");
+    }else{
+      loadPost(slug);
+    }
+
+    async function loadPost(postSlug){
+      try{
+        const res = await fetch("./posts.json", { cache: "no-store" });
+        if(!res.ok) throw new Error("metadata");
+        const posts = await res.json();
+        const meta = posts.find(post => post.slug === postSlug);
+        if(!meta){
+          showError("해당 로그를 찾을 수 없습니다.");
+          return;
+        }
+        titleEl.textContent = meta.title;
+        dateEl.textContent = formatDate(meta.date, meta.readingTime);
+        tagsEl.textContent = Array.isArray(meta.tags) ? meta.tags.map(tag => `#${tag}`).join("  ") : "";
+        document.title = `${meta.title} · Log`;
+        await loadMarkdown(meta.slug);
+      }catch(error){
+        console.error(error);
+        showError("로그 정보를 불러오는 데 실패했습니다.");
+      }
+    }
+
+    async function loadMarkdown(slug){
+      try{
+        const res = await fetch(`./posts/${slug}.md`, { cache: "no-store" });
+        if(!res.ok) throw new Error("markdown");
+        const text = await res.text();
+        bodyEl.innerHTML = marked.parse(text, { mangle: false, headerIds: false });
+      }catch(error){
+        console.error(error);
+        showError("본문을 불러오지 못했습니다.");
+      }
+    }
+
+    function formatDate(date, reading){
+      if(!date) return reading || "";
+      const d = new Date(date);
+      const formatted = Number.isNaN(d.getTime())
+        ? date
+        : `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+      return reading ? `${formatted} · ${reading}` : formatted;
+    }
+
+    function showError(message){
+      titleEl.textContent = "Log";
+      dateEl.textContent = "";
+      tagsEl.textContent = "";
+      bodyEl.innerHTML = `<p class="error">${message}</p>`;
+    }
+  </script>
+</body>
+</html>
