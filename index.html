@@ -163,19 +163,14 @@
     .visit-counter{
       display:flex;
       align-items:center;
-      gap:6px;
-      font-size:var(--size-xs);
-      letter-spacing:.08em;
-      color:var(--muted);
       border:1px solid var(--line);
       border-radius:999px;
-      padding:6px 12px;
+      padding:4px 10px;
       background:rgba(0,0,0,.2);
     }
-    .visit-counter strong{
-      font-size:var(--size-sm);
-      color:var(--ink);
-      letter-spacing:.02em;
+    .visit-counter img{
+      height:24px;
+      display:block;
     }
     .nav-link{
       color:var(--muted);
@@ -942,10 +937,9 @@
         <a class="nav-link" href="#presentation" data-i18n="nav.presentation">발표</a>
         <a class="nav-link" href="#log" data-i18n="nav.log">로그</a>
       </nav>
-      <div class="visit-counter" aria-live="polite">
-        <span>visits</span>
-        <strong id="visit-count">—</strong>
-      </div>
+      <a class="visit-counter" href="https://myhits.vercel.app" target="_blank" rel="noopener">
+        <img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fgithub.com%2F299-792-458?color=gray&label=Visits&size=large&base_count=299792" alt="Visits counter" />
+      </a>
       <div class="mobile-brand-label" aria-hidden="true">299-792-458</div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="메뉴 열기">
         <span class="menu-toggle-icon" aria-hidden="true">
@@ -1498,24 +1492,6 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
     }
     hydrateLogList();
 
-    const visitCountEl = document.getElementById("visit-count");
-    async function updateVisitCount(){
-      if(!visitCountEl) return;
-      try{
-        const res = await fetch("https://api.countapi.xyz/hit/299-792-458.github.io/site-total", { cache: "no-store" });
-        if(!res.ok) throw new Error("visit fetch failed");
-        const data = await res.json();
-        visitCountEl.textContent = formatVisitNumber(data.value);
-      }catch(error){
-        console.error(error);
-        visitCountEl.textContent = "offline";
-      }
-    }
-    function formatVisitNumber(value){
-      if(typeof value !== "number") return "—";
-      return value.toLocaleString("ko-KR");
-    }
-    updateVisitCount();
   </script>
 </body>
 </html>
