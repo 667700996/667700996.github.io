@@ -479,11 +479,43 @@
     }
     .log-link{
       display:flex;
-      flex-direction:column;
-      gap:10px;
+      gap:16px;
       padding:18px 20px 20px;
       color:inherit;
       text-decoration:none;
+      align-items:stretch;
+    }
+    .log-thumb{
+      width:110px;
+      height:110px;
+      border-radius:var(--radius-md);
+      overflow:hidden;
+      border:1px solid var(--line);
+      flex-shrink:0;
+      background:rgba(255,255,255,.02);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .log-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .log-thumb.placeholder{
+      font-size:var(--size-sm);
+      letter-spacing:.3em;
+      color:var(--muted);
+      background:rgba(90,167,255,.1);
+      border-color:rgba(90,167,255,.3);
+    }
+    .log-info{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+      min-width:0;
     }
     .log-date{
       font-size:var(--size-xs);
@@ -521,6 +553,15 @@
       color:var(--muted);
       font-size:var(--size-sm);
       padding:24px 0;
+    }
+    @media(max-width:600px){
+      .log-link{
+        flex-direction:column;
+      }
+      .log-thumb{
+        width:100%;
+        height:180px;
+      }
     }
 
     .lang{
@@ -1364,6 +1405,12 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       link.className = "log-link";
       link.href = `log/post.html?slug=${encodeURIComponent(post.slug)}`;
 
+      const thumb = createLogThumbnail(post);
+      link.appendChild(thumb);
+
+      const info = document.createElement("div");
+      info.className = "log-info";
+
       const date = document.createElement("time");
       date.className = "log-date";
       date.textContent = formatLogDate(post.date, post.readingTime);
@@ -1376,17 +1423,32 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
       summary.className = "log-summary";
       summary.textContent = post.summary || "";
 
-      link.appendChild(date);
-      link.appendChild(title);
+      info.appendChild(date);
+      info.appendChild(title);
       if(post.summary){
-        link.appendChild(summary);
+        info.appendChild(summary);
       }
       const tags = renderLogTags(post.tags);
       if(tags){
-        link.appendChild(tags);
+        info.appendChild(tags);
       }
+      link.appendChild(info);
       article.appendChild(link);
       return article;
+    }
+    function createLogThumbnail(post){
+      const span = document.createElement("span");
+      span.className = "log-thumb";
+      if(post.coverImage){
+        const img = document.createElement("img");
+        img.src = post.coverImage;
+        img.alt = post.title || "";
+        span.appendChild(img);
+      }else{
+        span.classList.add("placeholder");
+        span.textContent = "LOG";
+      }
+      return span;
     }
 
     function formatLogDate(date, reading){

@@ -42,7 +42,6 @@
     article {
       border: 1px solid rgba(90, 167, 255, 0.3);
       border-radius: var(--radius);
-      padding: 20px;
       background: var(--panel);
       transition: transform 140ms ease, border-color 140ms ease;
     }
@@ -54,8 +53,41 @@
       text-decoration: none;
       color: inherit;
       display: flex;
+      gap: 18px;
+      padding: 20px;
+      align-items: stretch;
+    }
+    .log-thumb {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      border: 1px solid rgba(154, 158, 166, 0.4);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .log-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .log-thumb.placeholder {
+      color: var(--muted);
+      letter-spacing: 0.3em;
+      font-size: 0.9rem;
+      background: rgba(90, 167, 255, 0.08);
+      border-color: rgba(90, 167, 255, 0.4);
+    }
+    .log-info {
+      display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
     }
     .log-date { font-size: 0.9rem; color: var(--muted); letter-spacing: 0.06em; }
     .log-title { font-size: 1.35rem; }
@@ -76,6 +108,15 @@
       font-size: 0.95rem;
     }
     .empty-state { text-align: center; color: var(--muted); padding: 60px 0; }
+    @media (max-width: 640px) {
+      a.log-link {
+        flex-direction: column;
+      }
+      .log-thumb {
+        width: 100%;
+        height: 200px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -106,10 +147,13 @@
             const article = document.createElement("article");
             article.innerHTML = `
               <a class="log-link" href="./post.html?slug=${post.slug}">
-                <span class="log-date">${formatDate(post.date)} · ${post.readingTime || ""}</span>
-                <span class="log-title">${post.title}</span>
-                <span class="log-summary">${post.summary || ""}</span>
-                ${renderTags(post.tags)}
+                ${renderThumb(post)}
+                <span class="log-info">
+                  <span class="log-date">${formatDate(post.date)} · ${post.readingTime || ""}</span>
+                  <span class="log-title">${post.title}</span>
+                  ${post.summary ? `<span class="log-summary">${post.summary}</span>` : ""}
+                  ${renderTags(post.tags)}
+                </span>
               </a>
             `;
             grid.appendChild(article);
@@ -129,6 +173,12 @@
       if(!tags || !tags.length) return "";
       const tagItems = tags.map(tag => `<span class="tag">${tag}</span>`).join("");
       return `<div class="tag-list" aria-label="태그">${tagItems}</div>`;
+    }
+    function renderThumb(post){
+      if(post.coverImage){
+        return `<span class="log-thumb"><img src="${post.coverImage}" alt="${post.title || "cover"}" /></span>`;
+      }
+      return `<span class="log-thumb placeholder">LOG</span>`;
     }
     loadPosts();
   </script>
