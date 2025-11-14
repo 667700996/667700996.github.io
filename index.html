@@ -439,6 +439,32 @@
       flex-direction:column;
       gap:16px;
     }
+    .log-title-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      width:100%;
+    }
+    .log-view-all{
+      font-size:var(--size-xs);
+      color:var(--accent-strong);
+      text-decoration:none;
+      border:1px solid var(--accent-strong);
+      padding:6px 12px;
+      border-radius:999px;
+      transition:background .2s ease, color .2s ease;
+      white-space:nowrap;
+    }
+    .log-view-all:hover{
+      background:var(--accent-strong);
+      color:#fff;
+    }
+    .log-description{
+      margin:0 0 18px;
+      font-size:var(--size-sm);
+      color:var(--muted);
+    }
     .log-entry{
       border:1px solid var(--line);
       border-radius:var(--radius-lg);
@@ -1092,11 +1118,13 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
 
     <section id="log">
       <div class="terminal-window">
-        <div class="section-title" data-i18n="log.title">cat log.txt</div>
+        <div class="section-title log-title-row">
+          <span data-i18n="log.title">cat log.txt</span>
+          <a class="log-view-all" href="https://299-792-458.github.io/log/index.html" target="_blank" rel="noopener">전체 목록</a>
+        </div>
         <div class="terminal-body terminal-content">
-          <div class="log-list" id="log-list">
-            <p class="log-empty" data-i18n="log.loading">로그를 불러오는 중...</p>
-          </div>
+          <p class="log-description">최근 3개의 로그입니다. 더 많은 글은 전체 목록에서 확인할 수 있어요.</p>
+          <div class="log-list" id="log-list"></div>
         </div>
       </div>
     </section>
@@ -1320,6 +1348,7 @@ AI 프롬프트 엔지니어링부터 대규모 인프라 구축까지 정밀한
         posts
           .slice()
           .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 3)
           .forEach(post => logList.appendChild(createLogEntry(post)));
       }catch(error){
         console.error(error);

@@ -105,7 +105,8 @@
         const res = await fetch(`./posts/${slug}.md`, { cache: "no-store" });
         if(!res.ok) throw new Error("markdown");
         const text = await res.text();
-        bodyEl.innerHTML = marked.parse(text, { mangle: false, headerIds: false });
+        const sanitized = stripLeadingHeading(text);
+        bodyEl.innerHTML = marked.parse(sanitized || text, { mangle: false, headerIds: false });
       }catch(error){
         console.error(error);
         showError("본문을 불러오지 못했습니다.");
@@ -126,6 +127,24 @@
       dateEl.textContent = "";
       tagsEl.textContent = "";
       bodyEl.innerHTML = `<p class="error">${message}</p>`;
+    }
+
+    function stripLeadingHeading(markdown){
+      if(typeof markdown !== "string") return markdown;
+      const withoutBom = markdown.replace(/^\uFEFF/, "");
+      const lines = withoutBom.split(/\r?\n/);
+      let index = 0;
+      while(index < lines.length && !lines[index].trim()){
+        index++;
+      }
+      if(index < lines.length && /^#\s+/.test(lines[index].trim())){
+        index++;
+        while(index < lines.length && !lines[index].trim()){
+          index++;
+        }
+        return lines.slice(index).join("\n").replace(/^\s+/, "");
+      }
+      return withoutBom;
     }
   </script>
 </body>
