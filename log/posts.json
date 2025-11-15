@@ -6,7 +6,7 @@
     "summary": "AI와 함께하는 즉흥 라이브 코딩 세션에서 발견한 리듬과 플레이북",
     "readingTime": "6 min",
     "tags": ["AI", "Workflow", "Team"],
-    "coverImage": "/log/images/ai-era.jpg"
+    "coverImage": "/log/images/ai-era.webp"
   },
   {
     "slug": "hardware-ritual",
@@ -15,7 +15,7 @@
     "summary": "새벽 랙 구성부터 모니터링까지, 손으로 짜 올린 서버 구축기",
     "readingTime": "5 min",
     "tags": ["Hardware", "Infra"],
-    "coverImage": "/log/images/hardware.jpg"
+    "coverImage": "/log/images/hardware.webp"
   },
   {
     "slug": "opensource-future",
@@ -24,7 +24,7 @@
     "summary": "Open Source Summit Korea 2025에서 느낀 커뮤니티의 결",
     "readingTime": "4 min",
     "tags": ["Community", "Open Source"],
-    "coverImage": "/log/images/opensource.jpg"
+    "coverImage": "/log/images/opensource.webp"
   },
   {
     "slug": "happy-hhkb",
@@ -33,6 +33,6 @@
     "summary": "초콜릿이 부서지는 듯한 키감을 찾아 세 번째이자 마지막으로 들인 HHKB 이야기",
     "readingTime": "3 min",
     "tags": ["Hardware", "Keyboard", "HHKB"],
-    "coverImage": "/log/images/hhkb.jpg"
+    "coverImage": "/log/images/hhkb.webp"
   }
 ]
