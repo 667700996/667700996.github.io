@@ -1,5 +1,14 @@
 [
   {
+    "slug": "navier-stokes-astra",
+    "title": "소용돌이가 무한에 닿는 순간",
+    "date": "2026-09-15",
+    "summary": "AI가 나비에-스토크스 난제의 유한 시간 폭발을 증명하고 GPT-6 아스트라가 Lean으로 검증한 사건을 돌아본 글",
+    "readingTime": "4 min",
+    "tags": ["Think"],
+    "coverImage": "/log/images/navier-stokes-blowup.webp"
+  },
+  {
     "slug": "ai-era-code",
     "title": "AI와의 합주",
     "date": "2025-01-01",
