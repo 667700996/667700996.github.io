@@ -1,5 +1,14 @@
 [
   {
+    "slug": "the-prompt",
+    "title": "The Prompt",
+    "date": "2026-03-30",
+    "summary": "어떤 주제든 일관된 답을 끌어내는 단 하나의 프롬프트 공유",
+    "readingTime": "3 min",
+    "tags": ["Code"],
+    "coverImage": "/log/images/thinking-icon.svg"
+  },
+  {
     "slug": "navier-stokes-astra",
     "title": "소용돌이가 무한에 닿는 순간",
     "date": "2026-09-15",
